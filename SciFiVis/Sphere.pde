@@ -1,3 +1,15 @@
+int ptsW, ptsH;
+
+int numPointsW;
+int numPointsH_2pi; 
+int numPointsH;
+
+float[] coorX;
+float[] coorY;
+float[] coorZ;
+float[] multXZ;
+
+
 void initializeSphere(int numPtsW, int numPtsH_2pi) {
 
   // The number of points around the width and height

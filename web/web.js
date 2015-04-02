@@ -8,7 +8,7 @@
 
 $(document).ready(function(){
 
-	// var pjs = Processing.instances[0];
+	var pjs = Processing.instances[0];
 
 	var canvas = document.getElementById("canvas1");
 	//var p = new Processing(canvas, sketchProc);

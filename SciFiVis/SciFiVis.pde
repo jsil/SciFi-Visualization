@@ -1,30 +1,18 @@
 /* Digital Humanities Project
-   Visualization of Imagined Science Fiction Locations
-
-   Code by Kali Rupert & Jordan Silver
-*/
+ Visualization of Imagined Science Fiction Locations
+ 
+ Code by Kali Rupert & Jordan Silver
+ */
 
 /* Pre-loading images for Processing.js
-   @pjs preload="img/world32k.jpg";
-*/
-
-
+ @pjs preload="img/world32k.jpg,img/starscape.jpg";
+ */
 
 // textureSphere code from: https://processing.org/examples/texturesphere.html
 // variables for texturing sphere:
-int ptsW, ptsH;
-
-int numPointsW;
-int numPointsH_2pi; 
-int numPointsH;
-
-float[] coorX;
-float[] coorY;
-float[] coorZ;
-float[] multXZ;
 
 
-
+PImage bg;
 PImage img;
 
 int screenWidth;
@@ -36,86 +24,134 @@ float zRot;
 float yRot;
 
 float camX;
+float camY;
+
+float dragX;
+float dragY;
+
+ArrayList<Node> testNodes;
 
 void setWeb() {
-   web = true; 
+  web = true;
 }
 
 void loadWeb(boolean isWeb) {
-  if(isWeb) {
-      img=loadImage("img/world32k.jpg");
-      screenWidth = 800;
-      screenHeight = 600;
+  if (isWeb) {
+    img=loadImage("img/world32k.jpg");
+    bg=loadImage("img/starscape.jpg");
+    println("image loaded");
+    screenWidth = 800;
+    screenHeight = 600;
+    //bg.resize(800,600);
+  } else {
+    img=loadImage("world32k.jpg");
+    bg=loadImage("starscape.jpg");
+    screenWidth = displayWidth;
+    screenHeight = displayHeight;
+    bg.resize(screenWidth, screenHeight);
   }
-  else {
-      img=loadImage("world32k.jpg");
-      screenWidth = displayWidth;
-      screenHeight = displayHeight;
-  }
+  println(bg.width);
 }
 
 
 void setup() {
   loadWeb(false);
-  
-  size(screenWidth,screenHeight,P3D);
-  
+
+  println("bg width: " + bg.width + "; canvas width: " + screenWidth);
+  size(screenWidth, screenHeight, P3D);
+
+  //initialize variables
   ptsW=30;
   ptsH=30;
   // Parameters below are the number of vertices around the width and height
   initializeSphere(ptsW, ptsH);
-  
+
   zRot = 0;
   yRot = 0;
-  
+
   camX = width/2;
+  camY = height/2;
+  
+  
+  //add test nodes
+  testNodes = new ArrayList<Node>();
+  for (int i=0; i<5; i++) {
+    testNodes.add(new Node(random(500)+500,random(360)));
+  }
 }
 
 
 void draw() {
-  
-  background(0);
-//  camera(width/2+map(mouseX, 0, width, -2*width, 2*width), 
-//         height/2+map(mouseY, 0, height, -height, height),
-//         height/2/tan(PI*30.0 / 180.0), 
-//         width, height/2.0, 0, 
-//         0, 1, 0);
+  bg.resize(screenWidth, screenHeight);
+  background(bg);
 
-  camera(camX,height/2,0,
-      camX,height/2,-2000,
-      0.0,1.0,0.0);
-  
+  //  camera(width/2+map(mouseX, 0, width, -2*width, 2*width), 
+  //         height/2+map(mouseY, 0, height, -height, height),
+  //         height/2/tan(PI*30.0 / 180.0), 
+  //         width, height/2.0, 0, 
+  //         0, 1, 0);
+
+  camera(camX, camY, 0, 
+  camX, height/2, -2000, 
+  0.0, 1.0, 0.0);
+
+  //translate to center
   pushMatrix();
-  
   translate(width/2, height/2, -2000);
-  
+
   rotateX(radians(-20));
+  //draw center
+  pushMatrix();
   rotateY(radians(yRot));
-  
   noStroke();
   textureSphere(200, 200, 200, img);
-  
   popMatrix();
-  
+
+  //draw ellipse
+  pushMatrix();
+  rotateX(radians(90));
+  noFill();
+  stroke(255);
+  ellipseMode(CENTER);
+  ellipse(0, 0, 1500, 1500);
+  popMatrix();
+
+  //draw nodes
+  for (int i=0; i<testNodes.size (); i++) {
+    pushMatrix();
+    testNodes.get(i).draw(); 
+    popMatrix();
+  }
+  popMatrix();
+
   yRot = yRot + 0.5;
 }
 
 // Use arrow keys to change detail settings
 void keyPressed() {
-//  if (keyCode == ENTER) saveFrame();
-//  if (keyCode == UP) ptsH++;
-//  if (keyCode == DOWN) ptsH--;
-//  if (keyCode == LEFT) ptsW--;
-//  if (keyCode == RIGHT) ptsW++;
-//  if (ptsW == 0) ptsW = 1;
-//  if (ptsH == 0) ptsH = 2;
-//  // Parameters below are the number of vertices around the width and height
-//  initializeSphere(ptsW, ptsH);
-if(keyCode == RIGHT) {
-   camX = camX + 15; 
+  //  if (keyCode == ENTER) saveFrame();
+  //  if (keyCode == UP) ptsH++;
+  //  if (keyCode == DOWN) ptsH--;
+  //  if (keyCode == LEFT) ptsW--;
+  //  if (keyCode == RIGHT) ptsW++;
+  //  if (ptsW == 0) ptsW = 1;
+  //  if (ptsH == 0) ptsH = 2;
+  //  // Parameters below are the number of vertices around the width and height
+  //  initializeSphere(ptsW, ptsH);
+  if (keyCode == RIGHT) {
+    camX = camX + 15;
+  } else if (keyCode == LEFT) {
+    camX = camX - 15;
+  }
 }
-else if(keyCode == LEFT) {
-   camX = camX - 15; 
+
+void mousePressed() {
+  dragY = mouseY;
+  dragX = mouseY;
 }
+
+void mouseDragged() {
+  camY = (mouseY - dragY) * 5;
+  camX = -1-((mouseX - dragX) * 5);
 }
 

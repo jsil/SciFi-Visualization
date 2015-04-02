@@ -4,6 +4,8 @@ class Node {
   float distance;
 
   float angle;
+  
+  PFont font = loadFont("largeFont.vlw");
 
 
   Node() {
@@ -11,7 +13,8 @@ class Node {
     angle = random(360);
   }
 
-  Node(float distanceSet, float angleSet) {
+  Node(String bookNameSet, float distanceSet, float angleSet) {
+    bookName = bookNameSet;
     distance = distanceSet;
     angle = angleSet;
   }
@@ -23,6 +26,13 @@ class Node {
 
     translate(distance, 0, 0);
     sphere(25);
+    
+    //rotateX(180);
+    rotateY(radians(360-angle));
+    translate(-40,-60,40);
+    stroke(255);
+    textFont(font);
+    text(bookName,0,0);
   }
 }
 

@@ -31,6 +31,8 @@ float dragY;
 
 ArrayList<Node> testNodes;
 
+UI ui;
+
 void setWeb() {
   web = true;
 }
@@ -72,11 +74,13 @@ void setup() {
   camX = width/2;
   camY = height/2;
   
+  ui = new UI();
+  
   
   //add test nodes
   testNodes = new ArrayList<Node>();
   for (int i=0; i<5; i++) {
-    testNodes.add(new Node(random(500)+500,random(360)));
+    testNodes.add(new Node("Test" + i,random(500)+500,random(360)));
   }
 }
 
@@ -122,6 +126,10 @@ void draw() {
     testNodes.get(i).draw(); 
     popMatrix();
   }
+  popMatrix();
+  
+  pushMatrix();
+  ui.draw();
   popMatrix();
 
   yRot = yRot + 0.5;

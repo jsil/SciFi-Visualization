@@ -22,19 +22,18 @@ void initializeSphere(int numPtsW, int numPtsH_2pi) {
   coorZ=new float[numPointsW];   // All the z-coor in a horizontal circle radius 1
   multXZ=new float[numPointsH];  // The radius of each horizontal circle (that you will multiply with coorX and coorZ)
 
-  for (int i=0; i<numPointsW ;i++) {  // For all the points around the width
+  for (int i=0; i<numPointsW; i++) {  // For all the points around the width
     float thetaW=i*2*PI/(numPointsW-1);
     coorX[i]=sin(thetaW);
     coorZ[i]=cos(thetaW);
   }
-  
+
   for (int i=0; i<numPointsH; i++) {  // For all points from top to bottom
     if (int(numPointsH_2pi/2) != (float)numPointsH_2pi/2 && i==numPointsH-1) {  // If the numPointsH_2pi is odd and it is at the last pt
       float thetaH=(i-1)*2*PI/(numPointsH_2pi);
       coorY[i]=cos(PI+thetaH); 
       multXZ[i]=0;
-    } 
-    else {
+    } else {
       //The numPointsH_2pi and 2 below allows there to be a flat bottom if the numPointsH is odd
       float thetaH=i*2*PI/(numPointsH_2pi);
 
@@ -54,7 +53,7 @@ void textureSphere(float rx, float ry, float rz, PImage t) {
 
   beginShape(TRIANGLE_STRIP);
   texture(t);
-  for (int i=0; i<(numPointsH-1); i++) {  // For all the rings but top and bottom
+  for (int i=0; i< (numPointsH-1); i++) {  // For all the rings but top and bottom
     // Goes into the array here instead of loop to save time
     float coory=coorY[i];
     float cooryPlus=coorY[i+1];

@@ -73,15 +73,16 @@ void setup() {
 
   camX = width/2;
   camY = height/2;
-  
+
   ui = new UI();
-  
-  
-  //add test nodes
-  testNodes = new ArrayList<Node>();
-  for (int i=0; i<5; i++) {
-    testNodes.add(new Node("Test" + i,random(500)+500,random(360)));
-  }
+
+  parseTable();
+
+
+  //add test node
+  //  for (int i=0; i<5; i++) {
+  //    testNodes.add(new Node("Test" + i, random(500)+500, random(360)));
+  //  }
 }
 
 
@@ -127,7 +128,7 @@ void draw() {
     popMatrix();
   }
   popMatrix();
-  
+
   pushMatrix();
   ui.draw();
   popMatrix();
@@ -161,5 +162,21 @@ void mousePressed() {
 void mouseDragged() {
   camY = (mouseY - dragY) * 5;
   camX = -1-((mouseX - dragX) * 5);
+}
+
+void parseTable() {
+  Table table = loadTable("testData.csv", "header");
+  testNodes = new ArrayList<Node>();
+
+  for (TableRow row : table.rows ()) {
+    String novel = row.getString(0);
+    String author  = row.getString(1);
+    int published = row.getInt(2);
+    String dateOfAction = row.getString(3);
+    String locationOfAction = row.getString(4);
+
+    testNodes.add(new Node(novel, author, published, dateOfAction, locationOfAction));
+    //println("added " + novel);
+  }
 }
 

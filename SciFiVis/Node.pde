@@ -1,11 +1,15 @@
 class Node {
 
-  String bookName;
   float distance;
-
   float angle;
-  
+
   PFont font = loadFont("largeFont.vlw");
+
+  String novel;
+  String author;
+  int published;
+  String dateOfAction;
+  String locationOfAction;
 
 
   Node() {
@@ -13,10 +17,20 @@ class Node {
     angle = random(360);
   }
 
-  Node(String bookNameSet, float distanceSet, float angleSet) {
-    bookName = bookNameSet;
-    distance = distanceSet;
-    angle = angleSet;
+  Node(String novelSet, String authorSet, int publishedSet, String dateOfActionSet, String locationOfActionSet) {
+    novel = novelSet;
+    author = authorSet;
+    published = publishedSet;
+    dateOfAction = dateOfActionSet;
+    locationOfAction = locationOfActionSet;
+    distance = 200 + random(1000);
+    angle = random(360);
+  }
+
+  Node (String novelSet) {
+    novel = novelSet; 
+    distance = 200 + random(1000);
+    angle = random(360);
   }
 
   void draw() {
@@ -26,13 +40,17 @@ class Node {
 
     translate(distance, 0, 0);
     sphere(25);
-    
+
     //rotateX(180);
     rotateY(radians(360-angle));
-    translate(-40,-60,40);
+    translate(-40, -60, 40);
     stroke(255);
     textFont(font);
-    text(bookName,0,0);
+    text(novel, 0, 0);
+  }
+
+  String getNovel() {
+    return novel;
   }
 }
 

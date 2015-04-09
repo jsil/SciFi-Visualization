@@ -63,9 +63,9 @@ void setup() {
   size(screenWidth, screenHeight, P3D);
 
   //initialize variables
+  // Parameters below are the number of vertices around the width and height
   ptsW=30;
   ptsH=30;
-  // Parameters below are the number of vertices around the width and height
   initializeSphere(ptsW, ptsH);
 
   zRot = 0;
@@ -77,12 +77,6 @@ void setup() {
   ui = new UI();
 
   parseTable();
-
-
-  //add test node
-  //  for (int i=0; i<5; i++) {
-  //    testNodes.add(new Node("Test" + i, random(500)+500, random(360)));
-  //  }
 }
 
 
@@ -95,43 +89,62 @@ void draw() {
   //         height/2/tan(PI*30.0 / 180.0), 
   //         width, height/2.0, 0, 
   //         0, 1, 0);
+  
+  beginCamera();
 
   camera(camX, camY, 0, 
   camX, height/2, -2000, 
   0.0, 1.0, 0.0);
 
+
   //translate to center
-  pushMatrix();
+  pushMatrix();//0
+
   translate(width/2, height/2, -2000);
 
+  pushMatrix();//1
+
   rotateX(radians(-20));
+  
   //draw center
-  pushMatrix();
+  pushMatrix();//2a
   rotateY(radians(yRot));
   noStroke();
   textureSphere(200, 200, 200, img);
-  popMatrix();
+  popMatrix();//2a
 
   //draw ellipse
-  pushMatrix();
+  pushMatrix();//2b
   rotateX(radians(90));
   noFill();
   stroke(255);
   ellipseMode(CENTER);
   ellipse(0, 0, 1500, 1500);
-  popMatrix();
+  popMatrix();//2b
+
 
   //draw nodes
   for (int i=0; i<testNodes.size (); i++) {
-    pushMatrix();
+    pushMatrix();//2c
     testNodes.get(i).draw(); 
-    popMatrix();
+    popMatrix();//2c
   }
-  popMatrix();
 
+  
+  endCamera();
+  
+  popMatrix();//1
+
+  popMatrix();//0
+  
+  camera();//reset camera so UI can be drawn accurately
+  
   pushMatrix();
   ui.draw();
   popMatrix();
+
+
+
 
   yRot = yRot + 0.5;
 }

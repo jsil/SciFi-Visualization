@@ -5,9 +5,9 @@ class UI {
 
   void draw() {
 
-    translate(0, screenHeight-20);
     stroke(255);
-    text("Created by...", 0, 0);
+    text("Science Fiction Novel Visualization", 0, 30);
+    
   }
 }
 

@@ -45,12 +45,14 @@ void loadWeb(boolean isWeb) {
     screenWidth = 800;
     screenHeight = 600;
     //bg.resize(800,600);
+    testNodes = new ArrayList<Node>();
   } else {
     img=loadImage("world32k.jpg");
     bg=loadImage("starscape.jpg");
     screenWidth = displayWidth;
     screenHeight = displayHeight;
     bg.resize(screenWidth, screenHeight);
+    parseTable();
   }
   println(bg.width);
 }
@@ -76,13 +78,13 @@ void setup() {
 
   ui = new UI();
 
-  parseTable();
 }
 
 
 void draw() {
   bg.resize(screenWidth, screenHeight);
   background(bg);
+//  background(0);
 
   //  camera(width/2+map(mouseX, 0, width, -2*width, 2*width), 
   //         height/2+map(mouseY, 0, height, -height, height),
@@ -175,6 +177,11 @@ void mousePressed() {
 void mouseDragged() {
   camY = (mouseY - dragY) * 5;
   camX = -1-((mouseX - dragX) * 5);
+}
+
+void addNode(String novel, String author, int published, String dateOfAction, String locationOfAction) {
+    testNodes.add(new Node(novel, author, published, dateOfAction, locationOfAction));
+    println("N: " + novel + " A: " + author + " P: " + published);
 }
 
 void parseTable() {

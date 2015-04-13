@@ -1,25 +1,17 @@
 class Filter {
-  Node node;
-  Filter(Node node) {
-    this.node = node;
+
+  Filter() {
   }
 
-  void drawEarly() {
+  void filterPublished(Node node) {
     if (published <= 1969) {
-      node.draw();
+      return 1;
+    } else if ((published > 1969) & (published <= 1990)) {
+      return 2;
+    } else {
+      return 3;
     }
   }
 
-  void drawMiddle() {
-    if ((published > 1969) & (published <= 1989) {
-      node.draw();
-    }
-  }
-
-  void drawLate() {
-    if (published > 1989) {
-      node.draw();
-    }
-  }
 }
 

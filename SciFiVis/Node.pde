@@ -45,12 +45,20 @@ class Node {
     rotateY(radians(360-angle));
     translate(-40, -60, 40);
     stroke(255);
-    textFont(font);
+    textFont(defaultFont);
     text(novel, 0, 0);
   }
 
   String getNovel() {
     return novel;
+  }
+
+  boolean contains(String search) {
+    if (novel.toLowerCase().indexOf(search.toLowerCase()) != -1 || author.toLowerCase().indexOf(search.toLowerCase()) != -1) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 

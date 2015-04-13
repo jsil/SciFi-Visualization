@@ -18,18 +18,55 @@ $(document).ready(function() {
   	pjs.setWeb();
   	//pjs.setup();
 
-  	jQuery.get('testData.csv', function(data) {
+  	jQuery.get('pre1969.csv', function(data) {
     var array = CSVToArray(data);
     for (var i = 0; i < array.length; i++) {
     	pjs.addNode(array[i][0],array[i][1],array[i][2],array[i][3],array[i][4]);
     };
-});
+    });
+
+    jQuery.get('post1969.csv', function(data) {
+    var array2 = CSVToArray(data);
+    for (var i = 0; i < array2.length; i++) {
+        pjs.addNode(array2[i][0],array2[i][1],array2[i][2],array2[i][3],array2[i][4]);
+    };
+    });
+
+    jQuery.get('post1990.csv', function(data) {
+    var array3 = CSVToArray(data);
+    for (var i = 0; i < array3.length; i++) {
+        pjs.addNode(array3[i][0],array3[i][1],array3[i][2],array3[i][3],array3[i][4]);
+    };
+    });
+
+
+
+    var input = document.getElementById("nodeSearch");
+
+    input.addEventListener('input', function()
+    {
+        console.log(input.value);
+        var nodes = pjs.searchNodes(input.value);
+        var searchSpace = document.getElementById("searchSpace");
+        searchSpace.innerHTML = "";
+        if(input.value != "") {
+            for (var i = nodes.length - 1; i >= 0; i--) {
+                var tempElement = document.createElement('div');
+                tempElement.className = "searchResult";
+                tempElement.innerHTML = nodes[i];
+                searchSpace.appendChild(tempElement);
+            };
+        }
+    });
+
 
 
 
  }
 
   },500);
+
+
 
 
 

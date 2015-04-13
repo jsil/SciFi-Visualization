@@ -4,9 +4,13 @@
  Code by Kali Rupert & Jordan Silver
  */
 
+/* @pjs font="Facet.ttf"; */
+
 /* Pre-loading images for Processing.js
  @pjs preload="img/world32k.jpg,img/starscape.jpg";
  */
+
+
 
 // textureSphere code from: https://processing.org/examples/texturesphere.html
 // variables for texturing sphere:
@@ -29,9 +33,13 @@ float camY;
 float dragX;
 float dragY;
 
-ArrayList<Node> testNodes;
+ArrayList<Node> nodes;
+
+PFont defaultFont;
 
 UI ui;
+
+boolean DEBUG = false;
 
 void setWeb() {
   web = true;
@@ -41,11 +49,10 @@ void loadWeb(boolean isWeb) {
   if (isWeb) {
     img=loadImage("img/world32k.jpg");
     bg=loadImage("img/starscape.jpg");
-    println("image loaded");
-    screenWidth = 800;
-    screenHeight = 600;
+    screenWidth = 1280  ;
+    screenHeight = 678;
     //bg.resize(800,600);
-    testNodes = new ArrayList<Node>();
+    nodes = new ArrayList<Node>();
   } else {
     img=loadImage("world32k.jpg");
     bg=loadImage("starscape.jpg");
@@ -54,14 +61,20 @@ void loadWeb(boolean isWeb) {
     bg.resize(screenWidth, screenHeight);
     parseTable();
   }
-  println(bg.width);
+  defaultFont = createFont("Facet", 18);
 }
+
+//void resize(int w, int h) {
+//  println("resized");
+//  size(w, h, P3D);
+//  //   draw();
+//}
 
 
 void setup() {
-  loadWeb(false);
+  loadWeb(true);
 
-  println("bg width: " + bg.width + "; canvas width: " + screenWidth);
+  //  println("bg width: " + bg.width + "; canvas width: " + screenWidth);
   size(screenWidth, screenHeight, P3D);
 
   //initialize variables
@@ -78,20 +91,21 @@ void setup() {
 
   ui = new UI();
 
+  //println(searchNodes("du"));
 }
 
 
 void draw() {
   bg.resize(screenWidth, screenHeight);
-  background(bg);
-//  background(0);
+  //  background(bg);
+  background(0);
 
   //  camera(width/2+map(mouseX, 0, width, -2*width, 2*width), 
   //         height/2+map(mouseY, 0, height, -height, height),
   //         height/2/tan(PI*30.0 / 180.0), 
   //         width, height/2.0, 0, 
   //         0, 1, 0);
-  
+
   beginCamera();
 
   camera(camX, camY, 0, 
@@ -107,7 +121,7 @@ void draw() {
   pushMatrix();//1
 
   rotateX(radians(-20));
-  
+
   //draw center
   pushMatrix();//2a
   rotateY(radians(yRot));
@@ -126,21 +140,21 @@ void draw() {
 
 
   //draw nodes
-  for (int i=0; i<testNodes.size (); i++) {
+  for (int i=0; i<nodes.size (); i++) {
     pushMatrix();//2c
-    testNodes.get(i).draw(); 
+    nodes.get(i).draw(); 
     popMatrix();//2c
   }
 
-  
+
   endCamera();
-  
+
   popMatrix();//1
 
   popMatrix();//0
-  
+
   camera();//reset camera so UI can be drawn accurately
-  
+
   pushMatrix();
   ui.draw();
   popMatrix();
@@ -163,9 +177,9 @@ void keyPressed() {
   //  // Parameters below are the number of vertices around the width and height
   //  initializeSphere(ptsW, ptsH);
   if (keyCode == RIGHT) {
-    camX = camX + 15;
+    camX = camX + 35;
   } else if (keyCode == LEFT) {
-    camX = camX - 15;
+    camX = camX - 35;
   }
 }
 
@@ -180,13 +194,14 @@ void mouseDragged() {
 }
 
 void addNode(String novel, String author, int published, String dateOfAction, String locationOfAction) {
-    testNodes.add(new Node(novel, author, published, dateOfAction, locationOfAction));
+  nodes.add(new Node(novel, author, published, dateOfAction, locationOfAction));
+  if (DEBUG)
     println("N: " + novel + " A: " + author + " P: " + published);
 }
 
 void parseTable() {
   Table table = loadTable("testData.csv", "header");
-  testNodes = new ArrayList<Node>();
+  nodes = new ArrayList<Node>();
 
   for (TableRow row : table.rows ()) {
     String novel = row.getString(0);
@@ -195,8 +210,23 @@ void parseTable() {
     String dateOfAction = row.getString(3);
     String locationOfAction = row.getString(4);
 
-    testNodes.add(new Node(novel, author, published, dateOfAction, locationOfAction));
+    nodes.add(new Node(novel, author, published, dateOfAction, locationOfAction));
     //println("added " + novel);
   }
+}
+
+String[] searchNodes(String search) {
+  ArrayList<String> returnedStrings = new ArrayList<String>();
+  for (int i=0; i<nodes.size (); i++) {
+    if (nodes.get(i).contains(search)) {
+      returnedStrings.add(nodes.get(i).getNovel());
+    }
+  }
+  String[] convertedStrings = new String[returnedStrings.size()];
+  for (int i=0; i<returnedStrings.size (); i++) {
+    convertedStrings[i] = returnedStrings.get(i);
+  }
+
+  return convertedStrings;
 }
 

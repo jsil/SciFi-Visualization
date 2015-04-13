@@ -3,10 +3,10 @@ class Filter {
   Filter() {
   }
 
-  void filterPublished(Node node) {
-    if (published <= 1969) {
+int filterPublished(Node node) {
+    if (node.published <= 1969) {
       return 1;
-    } else if ((published > 1969) & (published <= 1990)) {
+    } else if ((node.published > 1969) & (node.published <= 1990)) {
       return 2;
     } else {
       return 3;

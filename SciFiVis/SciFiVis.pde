@@ -42,7 +42,7 @@ UI ui;
 boolean DEBUG = false;
 
 void setWeb() {
-  web = true;
+  web = false;
 }
 
 void loadWeb(boolean isWeb) {

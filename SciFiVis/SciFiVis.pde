@@ -11,6 +11,17 @@
  */
 
 
+//TODO:
+/*
+  analytics percentage
+  make earth grow with number of earth-nodes
+  figure out toggle-able options
+    -fiction or non-fiction
+  novels with multiple locations (The Forever War)
+  
+  
+*/
+
 
 // textureSphere code from: https://processing.org/examples/texturesphere.html
 // variables for texturing sphere:
@@ -200,7 +211,8 @@ void mouseDragged() {
 }
 
 void addNode(String novel, String author, int published, String dateOfAction, String locationOfAction) {
-  nodes.add(new Node(novel, author, published, dateOfAction, locationOfAction));
+  //to do: incorperate dateOfAction work/user
+  nodes.add(new Node(novel, author, published, dateOfAction, dateOfAction, locationOfAction));
   if (DEBUG)
     println("N: " + novel + " A: " + author + " P: " + published);
 }
@@ -215,7 +227,8 @@ void parseTable(String tableName) {
     String dateOfAction = row.getString(3);
     String locationOfAction = row.getString(4);
 
-    nodes.add(new Node(novel, author, published, dateOfAction, locationOfAction));
+    //to do: incorperate dateOfAction work/user
+    nodes.add(new Node(novel, author, published, dateOfAction, dateOfAction, locationOfAction));
     //println("added " + novel);
   }
 }

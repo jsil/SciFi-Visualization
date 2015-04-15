@@ -49,7 +49,7 @@ void loadWeb(boolean isWeb) {
   if (isWeb) {
     img=loadImage("img/world32k.jpg");
     bg=loadImage("img/starscape.jpg");
-    screenWidth = 1280  ;
+    screenWidth = 1280;
     screenHeight = 678;
     //bg.resize(800,600);
     nodes = new ArrayList<Node>();
@@ -59,7 +59,9 @@ void loadWeb(boolean isWeb) {
     screenWidth = displayWidth;
     screenHeight = displayHeight;
     bg.resize(screenWidth, screenHeight);
-    parseTable();
+    parseTable("pre1969.csv");
+    parseTable("post1969.csv");
+    parseTable("post1990.csv");
   }
   defaultFont = createFont("Facet", 18);
 }
@@ -72,7 +74,11 @@ void loadWeb(boolean isWeb) {
 
 
 void setup() {
-  loadWeb(true);
+  
+  nodes = new ArrayList<Node>();
+  
+  
+  loadWeb(false);
 
   //  println("bg width: " + bg.width + "; canvas width: " + screenWidth);
   size(screenWidth, screenHeight, P3D);
@@ -199,9 +205,8 @@ void addNode(String novel, String author, int published, String dateOfAction, St
     println("N: " + novel + " A: " + author + " P: " + published);
 }
 
-void parseTable() {
-  Table table = loadTable("testData.csv", "header");
-  nodes = new ArrayList<Node>();
+void parseTable(String tableName) {
+  Table table = loadTable(tableName, "header");
 
   for (TableRow row : table.rows ()) {
     String novel = row.getString(0);

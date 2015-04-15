@@ -8,7 +8,8 @@ class Node {
   String novel;
   String author;
   int published;
-  String dateOfAction;
+  String dateOfActionWork;
+  String dateOfActionUser;
   String locationOfAction;
 
 
@@ -17,11 +18,12 @@ class Node {
     angle = random(360);
   }
 
-  Node(String novelSet, String authorSet, int publishedSet, String dateOfActionSet, String locationOfActionSet) {
+  Node(String novelSet, String authorSet, int publishedSet, String dateOfActionWorkSet, String dateOfActionUserSet, String locationOfActionSet) {
     novel = novelSet;
     author = authorSet;
     published = publishedSet;
-    dateOfAction = dateOfActionSet;
+    dateOfActionWork = dateOfActionWorkSet;
+    dateOfActionUser = dateOfActionUserSet;
     locationOfAction = locationOfActionSet;
     distance = 200 + random(1000);
     angle = random(360);

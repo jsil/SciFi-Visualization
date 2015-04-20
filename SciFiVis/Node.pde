@@ -11,6 +11,8 @@ class Node {
   String dateOfActionWork;
   String dateOfActionUser;
   String locationOfAction;
+  
+  boolean earthNode = false;
 
 
   Node() {
@@ -18,7 +20,7 @@ class Node {
     angle = random(360);
   }
 
-  Node(String novelSet, String authorSet, int publishedSet, String dateOfActionWorkSet, String dateOfActionUserSet, String locationOfActionSet) {
+  Node(String novelSet, String authorSet, int publishedSet, String dateOfActionWorkSet, String dateOfActionUserSet, String locationOfActionSet, int[] tags) {
     novel = novelSet;
     author = authorSet;
     published = publishedSet;
@@ -27,6 +29,11 @@ class Node {
     locationOfAction = locationOfActionSet;
     distance = 200 + random(1000);
     angle = random(360);
+    for(int i=0;i<tags.length;i++) {
+       if(tags[i] == 1) {
+          earthNode = true;  
+       }
+    }
   }
 
   Node (String novelSet) {
@@ -36,19 +43,24 @@ class Node {
   }
 
   void draw() {
-    noStroke();
-    fill(255);
-    rotateY(radians(angle));
-
-    translate(distance, 0, 0);
-    sphere(25);
-
-    //rotateX(180);
-    rotateY(radians(360-angle));
-    translate(-40, -60, 40);
-    stroke(255);
-    textFont(defaultFont);
-    text(novel, 0, 0);
+    if(!earthNode) {
+      noStroke();
+      fill(255);
+      rotateY(radians(angle));
+  
+      translate(distance, 0, 0);
+      sphere(25);
+  
+      //rotateX(180);
+      rotateY(radians(360-angle));
+      translate(-40, -60, 40);
+      stroke(255);
+      textFont(defaultFont);
+      text(novel, 0, 0);
+    }
+    else {
+       //if earth is being hovered, draw.... 
+    }
   }
 
   String getNovel() {
@@ -61,6 +73,10 @@ class Node {
     } else {
       return false;
     }
+  }
+  
+  boolean isEarthNode() {
+     return earthNode; 
   }
 }
 

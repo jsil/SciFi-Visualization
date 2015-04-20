@@ -14,18 +14,19 @@
 //TODO:
 /*
   analytics percentage
-  make earth grow with number of earth-nodes
-  figure out toggle-able options
-    -fiction or non-fiction
-  novels with multiple locations (The Forever War)
-  
-  
-*/
+ figure out toggle-able options
+ -fiction or non-fiction
+ novels with multiple locations (The Forever War)
+ 
+ 
+ */
 
 
 // textureSphere code from: https://processing.org/examples/texturesphere.html
 // variables for texturing sphere:
 
+int earthCount;
+int novelCount;
 
 PImage bg;
 PImage img;
@@ -50,7 +51,7 @@ PFont defaultFont;
 
 UI ui;
 
-boolean DEBUG = false;
+boolean DEBUG = true;
 
 void setWeb() {
   web = false;
@@ -85,14 +86,16 @@ void loadWeb(boolean isWeb) {
 
 
 void setup() {
-  
+
   nodes = new ArrayList<Node>();
-  
-  
+
+
   loadWeb(false);
 
   //  println("bg width: " + bg.width + "; canvas width: " + screenWidth);
   size(screenWidth, screenHeight, P3D);
+  
+  novelCount = 0;
 
   //initialize variables
   // Parameters below are the number of vertices around the width and height
@@ -143,7 +146,7 @@ void draw() {
   pushMatrix();//2a
   rotateY(radians(yRot));
   noStroke();
-  textureSphere(200, 200, 200, img);
+  textureSphere(earthCount*4, earthCount*4, earthCount*4, img);
   popMatrix();//2a
 
   //draw ellipse
@@ -210,11 +213,13 @@ void mouseDragged() {
   camX = -1-((mouseX - dragX) * 5);
 }
 
-void addNode(String novel, String author, int published, String dateOfAction, String locationOfAction) {
+void addNode(String novel, String author, int published, String dateOfAction, String locationOfAction, int[] tags) {
   //to do: incorperate dateOfAction work/user
-  nodes.add(new Node(novel, author, published, dateOfAction, dateOfAction, locationOfAction));
-  if (DEBUG)
-    println("N: " + novel + " A: " + author + " P: " + published);
+  nodes.add(new Node(novel, author, published, dateOfAction, dateOfAction, locationOfAction, tags));
+  if (DEBUG) {
+    println("N: " + novel + " A: " + author + " P: " + published + " L: " + locationOfAction);
+  }
+  novelCount++;
 }
 
 void parseTable(String tableName) {
@@ -226,11 +231,20 @@ void parseTable(String tableName) {
     int published = row.getInt(2);
     String dateOfAction = row.getString(3);
     String locationOfAction = row.getString(4);
+    
+    String tagsString = row.getString(5);
+    int[] tags = new int[1];
+    if(tagsString.indexOf("1") != -1) {
+       tags[0] = 1;
+    }  
 
     //to do: incorperate dateOfAction work/user
-    nodes.add(new Node(novel, author, published, dateOfAction, dateOfAction, locationOfAction));
+    nodes.add(new Node(novel, author, published, dateOfAction, dateOfAction, locationOfAction, tags));
     //println("added " + novel);
+    novelCount++;
   }
+  
+  countEarthNodes();
 }
 
 String[] searchNodes(String search) {
@@ -248,3 +262,19 @@ String[] searchNodes(String search) {
   return convertedStrings;
 }
 
+float analyzeNodes() {
+  //  to do:
+  return 0;
+}
+
+int countEarthNodes() {
+  int count = 0;
+  for(int i=0;i<nodes.size();i++) {
+     if(nodes.get(i).isEarthNode()) {
+        count++; 
+     }
+  }
+  println(count);
+  earthCount = count;
+  return count;
+}

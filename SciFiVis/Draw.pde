@@ -1,13 +1,9 @@
 void draw() {
   bg.resize(screenWidth, screenHeight);
-  //  background(bg);
-  background(0);
-
-  //  camera(width/2+map(mouseX, 0, width, -2*width, 2*width), 
-  //         height/2+map(mouseY, 0, height, -height, height),
-  //         height/2/tan(PI*30.0 / 180.0), 
-  //         width, height/2.0, 0, 
-  //         0, 1, 0);
+  
+  //todo: implement background image on web
+  background(bg);
+  //background(0);
 
   beginCamera();
 
@@ -34,7 +30,7 @@ void draw() {
   pushMatrix();//2a
   rotateY(radians(yRot));
   noStroke();
-  textureSphere(earthCount*4, earthCount*4, earthCount*4, img);
+  textureSphere(nodeHandler.earthCount*4, nodeHandler.earthCount*4, nodeHandler.earthCount*4, img);
   popMatrix();//2a
 
   //draw ellipse
@@ -48,11 +44,7 @@ void draw() {
 
 
   //draw nodes
-  for (int i=0; i<nodes.size (); i++) {
-    pushMatrix();//2c
-    nodes.get(i).draw(); 
-    popMatrix();//2c
-  }
+  nodeHandler.drawNodes();
   
   popMatrix();
 

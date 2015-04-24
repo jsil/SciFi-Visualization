@@ -1,10 +1,3 @@
-// var processingCode1 = "../SciFiVis/SciFiVis.pde";
-// var processingCode2 = "../SciFiVis/Sphere.pde";
-// var jsCode = Processing.compile(processingCode1).sourceCode;
-// var jsCode2 = Processing.compile(processingCode2).sourceCode;
-
-
-
 var tId,pjs,cnt=0;
 $(document).ready(function() {
   pjs = Processing.getInstanceById("canvas1");
@@ -14,18 +7,17 @@ $(document).ready(function() {
     console.log(cnt+':'+pjs);
     if (pjs) {
      clearInterval(tId);
-  	pjs.setWeb();
-  	//pjs.setup();
+  	
+    //TODO: write javascript function overriding setup, so that size can be properly set
 
   	jQuery.get('pre1969.csv', function(data) {
     var array = CSVToArray(data);
     for (var i = 0; i < array.length; i++) {
         var tags = new Array(5);
-        // if(array[i][5].indexOf("1") != -1) {
-        //     tags.push(1);
-        // }
-        console.log(array[i]);
-    	pjs.addNode(array[i][0],array[i][1],array[i][2],array[i][3],array[i][4],tags);
+        if(array[i][5].indexOf("1") != -1) {
+            tags.push(1);
+        }
+    	// pjs.addNode(array[i][0],array[i][1],array[i][2],array[i][3],array[i][4],tags);
     };
     });
 
@@ -33,11 +25,10 @@ $(document).ready(function() {
     var array2 = CSVToArray(data);
     for (var i = 0; i < array2.length; i++) {
         var tags = new Array(5);
-        // if(array[i][5].indexOf("1") != -1) {
-        //     tags.push(1);
-        // }
-        // console.log(array2[i]);
-        pjs.addNode(array2[i][0],array2[i][1],array2[i][2],array2[i][3],array2[i][4],tags);
+        if(array2[i][5].indexOf("1") != -1) {
+            tags.push(1);
+        }
+        // pjs.addNode(array2[i][0],array2[i][1],array2[i][2],array2[i][3],array2[i][4],tags);
     };
     });
 
@@ -45,15 +36,15 @@ $(document).ready(function() {
     var array3 = CSVToArray(data);
     for (var i = 0; i < array3.length; i++) {
         var tags = new Array(5);
-        // if(array[i][5].indexOf("1") != -1) {
-        //     tags.push(1);
-        // }
-        // console.log(array3[i]);
-        pjs.addNode(array3[i][0],array3[i][1],array3[i][2],array3[i][3],array3[i][4],tags);
+        if(array3[i][5].indexOf("1") != -1) {
+            tags.push(1);
+        }
+        // pjs.addNode(array3[i][0],array3[i][1],array3[i][2],array3[i][3],array3[i][4],tags);
     };
     });
 
-    pjs.countEarthNodes();
+    //TODO: access nodeHandler object
+    // pjs.countEarthNodes();
 
 
 

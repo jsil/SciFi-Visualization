@@ -1,9 +1,9 @@
 void draw() {
   bg.resize(screenWidth, screenHeight);
-  
+
   //todo: implement background image on web
   background(bg);
-  //background(0);
+  //  background(0);
 
   beginCamera();
 
@@ -18,10 +18,10 @@ void draw() {
   translate(width/2, height/2, -2000);
 
   pushMatrix();//1
-  
+
   //pan
-  translate(panX,0,zoom);
-  
+  translate(panX, 0, zoom);
+
   pushMatrix();
 
   rotateX(radians(-20));
@@ -30,7 +30,11 @@ void draw() {
   pushMatrix();//2a
   rotateY(radians(yRot));
   noStroke();
+
+  //todo: fix earth "growing" on web
   textureSphere(nodeHandler.earthCount*4, nodeHandler.earthCount*4, nodeHandler.earthCount*4, img);
+  //textureSphere(200, 200, 200, img);
+
   popMatrix();//2a
 
   //draw ellipse
@@ -45,7 +49,7 @@ void draw() {
 
   //draw nodes
   nodeHandler.drawNodes();
-  
+
   popMatrix();
 
   endCamera();

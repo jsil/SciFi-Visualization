@@ -1,3 +1,14 @@
+//This is so processing can 'see' javascript. idk if we need it
+interface JavaScript {
+//  void showXYCoordinates(int x, int y);
+}
+
+void bindJavascript(JavaScript js) {
+  javascript = js;
+}
+
+JavaScript javascript;
+
 void loadWeb(boolean isWeb) {
   if (isWeb) {
     img=loadImage("img/world32k.jpg");
@@ -5,7 +16,6 @@ void loadWeb(boolean isWeb) {
     screenWidth = 1280;
     screenHeight = 678;
     //bg.resize(800,600);
-    
   } else {
     img=loadImage("world32k.jpg");
     bg=loadImage("starscape.jpg");
@@ -18,3 +28,4 @@ void loadWeb(boolean isWeb) {
   }
   defaultFont = createFont("Facet", 18);
 }
+

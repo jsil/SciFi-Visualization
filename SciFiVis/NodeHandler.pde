@@ -1,7 +1,15 @@
+//functions have to be outside of class for javascript to "see" it. todo: fix
+void addNode(String novel, String author, int published, String dateOfAction, String locationOfAction, int[] tags) {
+  nodeHandler.addNode(novel,author,published,dateOfAction,locationOfAction,tags);
+}
+
+String[] searchNodes(String search) {
+  return nodeHandler.searchNodes(search); 
+}
+
 class NodeHandler {
 
   ArrayList<Node> nodes = new ArrayList<Node>();
-
 
   int earthCount = 0;
   int novelCount = 0;

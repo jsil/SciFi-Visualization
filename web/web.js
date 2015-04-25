@@ -7,6 +7,10 @@ $(document).ready(function() {
     console.log(cnt+':'+pjs);
     if (pjs) {
      clearInterval(tId);
+
+     //letting processing "see" javascript
+     pjs.bindJavascript(this);
+
   	
     //TODO: write javascript function overriding setup, so that size can be properly set
 
@@ -17,7 +21,7 @@ $(document).ready(function() {
         if(array[i][5].indexOf("1") != -1) {
             tags.push(1);
         }
-    	// pjs.addNode(array[i][0],array[i][1],array[i][2],array[i][3],array[i][4],tags);
+    	pjs.addNode(array[i][0],array[i][1],array[i][2],array[i][3],array[i][4],tags);
     };
     });
 
@@ -28,7 +32,7 @@ $(document).ready(function() {
         if(array2[i][5].indexOf("1") != -1) {
             tags.push(1);
         }
-        // pjs.addNode(array2[i][0],array2[i][1],array2[i][2],array2[i][3],array2[i][4],tags);
+        pjs.addNode(array2[i][0],array2[i][1],array2[i][2],array2[i][3],array2[i][4],tags);
     };
     });
 
@@ -39,7 +43,7 @@ $(document).ready(function() {
         if(array3[i][5].indexOf("1") != -1) {
             tags.push(1);
         }
-        // pjs.addNode(array3[i][0],array3[i][1],array3[i][2],array3[i][3],array3[i][4],tags);
+        pjs.addNode(array3[i][0],array3[i][1],array3[i][2],array3[i][3],array3[i][4],tags);
     };
     });
 

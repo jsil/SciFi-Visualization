@@ -43,7 +43,7 @@ void draw() {
   noFill();
   stroke(255);
   ellipseMode(CENTER);
-  ellipse(0, 0, 1500, 1500);
+  ellipse(0, 0, 2400, 2400);
   popMatrix();//2b
 
 

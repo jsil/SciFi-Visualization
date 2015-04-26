@@ -57,10 +57,22 @@ class NodeHandler {
       String locationOfAction = row.getString(4);
 
       String tagsString = row.getString(5);
-      int[] tags = new int[1];
+      int[] tags = new int[5];
       if (tagsString.indexOf("1") != -1) {
         tags[0] = 1;
-      }  
+      }
+      if (tagsString.indexOf("2") != -1) {
+        tags[1] = 2;
+      } 
+      if (tagsString.indexOf("3") != -1) {
+        tags[2] = 3;
+      } 
+      if (tagsString.indexOf("4") != -1) {
+        tags[3] = 4;
+      } 
+      if (tagsString.indexOf("5") != -1) {
+        tags[4] = 5;
+      } 
 
       //to do: incorperate dateOfAction work/user
       nodes.add(new Node(novel, author, published, dateOfAction, dateOfAction, locationOfAction, tags));

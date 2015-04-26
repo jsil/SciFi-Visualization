@@ -13,6 +13,10 @@ class Node {
   String locationOfAction;
   
   boolean earthNode = false;
+  boolean marsNode = false;
+  boolean moonNode = false;
+  
+  boolean inSolarSystem = true;
 
 
   Node() {
@@ -27,13 +31,30 @@ class Node {
     dateOfActionWork = dateOfActionWorkSet;
     dateOfActionUser = dateOfActionUserSet;
     locationOfAction = locationOfActionSet;
-    distance = 200 + random(1000);
-    angle = random(360);
     for(int i=0;i<tags.length;i++) {
        if(tags[i] == 1) {
           earthNode = true;  
        }
+       if(tags[i] == 2) {
+          marsNode = true; 
+       }
+       if(tags[i] == 3) {
+          moonNode = true; 
+       }
+       if(tags[i] == 4) {
+          inSolarSystem = true; 
+       }
+       if(tags[i] == 5) {
+          inSolarSystem = false; 
+       }
     }
+    if(inSolarSystem) {
+      distance = 200 + random(950);
+    }
+    else {
+      distance = 1300+ random(1000);
+    }
+    angle = random(360);
   }
 
   Node (String novelSet) {
@@ -45,7 +66,10 @@ class Node {
   void draw() {
     if(!earthNode) {
       noStroke();
-      fill(255);
+      if(inSolarSystem)
+        fill(255);
+      else
+        fill(120);
       rotateY(radians(angle));
   
       translate(distance, 0, 0);

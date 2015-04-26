@@ -1,3 +1,15 @@
+/* TAGS:
+1 - Earth
+2 - Mars
+3 - Moon
+4 - solar system
+5 - OSS (outside solar system)
+6 - MWG (milky way galaxy)
+
+
+*/
+
+
 //functions have to be outside of class for javascript to "see" it. todo: fix
 void addNode(String novel, String author, int published, String dateOfAction, String locationOfAction, int[] tags) {
   nodeHandler.addNode(novel,author,published,dateOfAction,locationOfAction,tags);

@@ -30,6 +30,5 @@ void loadWeb(boolean isWeb) {
     nodeHandler.parseTable("post1969.csv");
     nodeHandler.parseTable("post1990.csv");
   }
-  defaultFont = createFont("Facet", 18);
 }
 

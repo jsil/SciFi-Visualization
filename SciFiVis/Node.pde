@@ -78,8 +78,8 @@ class Node {
       //rotateX(180);
       rotateY(radians(360-angle));
       translate(-40, -60, 40);
-      stroke(255);
-      textFont(defaultFont);
+      fill(255);
+      textFont(font,32);
       text(novel, 0, 0);
     }
     else {

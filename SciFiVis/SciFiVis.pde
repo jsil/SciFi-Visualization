@@ -26,40 +26,30 @@
 // variables for texturing sphere:
 
 
+UI ui;
+NodeHandler nodeHandler;
+
+Earth earth;
+Moon moon;
+Mars mars;
+
 PImage bg;
 PImage earthImg;
 PImage moonImg;
 PImage marsImg;
 
-
 int screenWidth;
 int screenHeight;
-
-boolean web;
-
-float zRot;
-float yRot;
-
-float camX;
-float camY;
 
 float dragX;
 float dragY;
 
-PFont defaultFont;
-
-UI ui;
-NodeHandler nodeHandler;
-
-float panX;
-float panY;
-float zoom;
+float panX = 0;
+float panY = 0;
+float zoom = 0;
 
 boolean DEBUG = true;
-
-Earth earth;
-Moon moon;
-Mars mars;
+boolean web = false;
 
 
 void setup() {
@@ -67,37 +57,24 @@ void setup() {
   ui = new UI();
   nodeHandler = new NodeHandler();
 
-  loadWeb(false);
+  loadWeb(web);
 
   size(screenWidth, screenHeight, P3D);
-  
+
   loadPlanets();
-
-
-  //initialize variables
-  // Parameters below are the number of vertices around the width and height
-  ptsW=30;
-  ptsH=30;
-  initializeSphere(ptsW, ptsH);
-
-  panX = 0;
-  panY = 0;
-  zoom = 0;
-
-  zRot = 0;
-  yRot = 0;
-
-  camX = width/2;
-  camY = height/2;
 }
 
 void loadPlanets() {
-    earth = new Earth(earthImg);
-    moon = new Moon(moonImg);
-    mars = new Mars(marsImg);
-    
-//    earth.say();
-//    moon.say();
-//    mars.say();
+
+  prepSphere();
+  earth = new Earth(earthImg);
+  moon = new Moon(moonImg);
+  mars = new Mars(marsImg);
+
+  if (DEBUG) {
+    earth.say();
+    moon.say();
+    mars.say();
+  }
 }
 

@@ -10,6 +10,14 @@ float[] coorZ;
 float[] multXZ;
 
 
+void prepSphere() {
+  //initialize variables
+  // Parameters below are the number of vertices around the width and height
+  ptsW=30;
+  ptsH=30;
+  initializeSphere(ptsW, ptsH);
+}
+
 void initializeSphere(int numPtsW, int numPtsH_2pi) {
 
   // The number of points around the width and height

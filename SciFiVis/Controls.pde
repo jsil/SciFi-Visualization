@@ -1,11 +1,14 @@
-
-// Use arrow keys to change detail settings
 void keyPressed() {
   //todo: smooth key controls
-  if (keyCode == RIGHT) {
+  if (keyCode == LEFT) {
     panX = panX + 35;
-  } else if (keyCode == LEFT) {
+  } else if (keyCode == RIGHT) {
     panX = panX - 35;
+  }
+  if (keyCode == UP) {
+    panY = panY + 35;
+  } else if (keyCode == DOWN) {
+    panY = panY - 35;
   }
 }
 
@@ -26,6 +29,14 @@ void mousePressed() {
 
 void mouseDragged() {
   panY = panY + (mouseY - dragY);
+  if(mouseY > dragY) {
+     panY = panY + (mouseY - dragY);
+    dragY = mouseY; 
+  }
+  else {
+    panY = panY - (dragY - mouseY);
+    dragY = mouseY;
+  }
   if (mouseX > dragX) {
     panX = panX + (mouseX - dragX);
     dragX = mouseX;

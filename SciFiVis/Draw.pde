@@ -1,41 +1,32 @@
 void draw() {
-  bg.resize(screenWidth, screenHeight);
 
   //todo: implement background image on web
-  background(bg);
-  //  background(0);
+  if(!web)
+    background(bg);
+  else
+    background(0);
 
   beginCamera();
 
-  camera(camX, camY, 0, 
-  camX, height/2, -2000, 
+  camera(width/2, height/2, 0, 
+  width/2, height/2, -2000, 
   0.0, 1.0, 0.0);
 
 
-  //translate to center
+  //start drawing model
   pushMatrix();//0
-
+  
+  //translate to center of screen, and a far away perspective
   translate(width/2, height/2, -2000);
 
-  pushMatrix();//1
-
-  //pan
+  //pan horizontal
   translate(panX, 0, zoom);
 
-  pushMatrix();
-
+  //pan vertical 
   rotateX(radians(-20));
-
-  //draw center
-  pushMatrix();//2a
-
-  //draw planets
+  translate(0,0,panY);
 
   drawPlanets();
-
-
-
-  popMatrix();//2a
 
   //draw ellipse
   pushMatrix();//2b
@@ -50,24 +41,14 @@ void draw() {
   //draw nodes
   nodeHandler.drawNodes();
 
-  popMatrix();
-
+  //stop drawing model
   endCamera();
-
-  popMatrix();//1
-
-  popMatrix();//0
-
-  //  camera();//reset camera so UI can be drawn accurately
-
-  pushMatrix();
-  ui.draw();
   popMatrix();
+ 
+  camera();//reset camera so UI can be drawn accurately
 
-
-
-
-  yRot = yRot + 0.5;
+  //draw UI
+  ui.draw();
 }
 
 void drawPlanets() {

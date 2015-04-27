@@ -28,8 +28,6 @@ void draw() {
 
   //draw center
   pushMatrix();//2a
-  rotateY(radians(yRot));
-  noStroke();
 
   //draw planets
 
@@ -74,10 +72,11 @@ void draw() {
 
 void drawPlanets() {
   pushMatrix();
+  
   earth.draw();
-  translate(0, 300, 0);
+  
+//  translate(0, 300, 0);
   moon.draw();
-  translate(300, 0, 0);
   mars.draw();
   popMatrix();
 }

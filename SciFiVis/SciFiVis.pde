@@ -58,9 +58,7 @@ float zoom;
 boolean DEBUG = true;
 
 Earth earth;
-
 Moon moon;
-
 Mars mars;
 
 
@@ -98,8 +96,8 @@ void loadPlanets() {
     moon = new Moon(moonImg);
     mars = new Mars(marsImg);
     
-    earth.say();
-    moon.say();
-    mars.say();
+//    earth.say();
+//    moon.say();
+//    mars.say();
 }
 

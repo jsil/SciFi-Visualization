@@ -33,6 +33,11 @@ canvas { display:block; } /* To remove the scrollbars */
 
 }
 
+#searchSpace {
+	overflow-y: scroll;
+	height:88%;
+}
+
 #searchTop {
 	margin-bottom: 10px;
 }

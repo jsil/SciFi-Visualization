@@ -17,6 +17,8 @@ class Node {
   boolean moonNode = false;
 
   boolean inSolarSystem = true;
+  
+  boolean fictionalLocation = false;
 
 
   Node() {
@@ -46,6 +48,9 @@ class Node {
       }
       if (tags[i] == 5) {
         inSolarSystem = false;
+      }
+      if (tags[i] == 10) {
+        fictionalLocation = true;
       }
     }
     if (inSolarSystem) {
@@ -115,6 +120,10 @@ class Node {
   
   boolean isOutsideSS() {
      return !inSolarSystem; 
+  }
+  
+  boolean isFictionalLocation() {
+     return fictionalLocation; 
   }
 }
 

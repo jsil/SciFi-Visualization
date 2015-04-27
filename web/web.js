@@ -17,34 +17,26 @@ $(document).ready(function() {
   	jQuery.get('pre1969.csv', function(data) {
     var array = CSVToArray(data);
     for (var i = 0; i < array.length; i++) {
-        var tags = new Array(5);
-        if(array[i][5].indexOf("1") != -1) {
-            tags.push(1);
-        }
+        var tags = getTags(array[i][5]);
     	pjs.addNode(array[i][0],array[i][1],array[i][2],array[i][3],array[i][4],tags);
     };
+    pjs.analyzeNodes();
     });
 
     jQuery.get('post1969.csv', function(data) {
     var array2 = CSVToArray(data);
     for (var i = 0; i < array2.length; i++) {
-        var tags = new Array(5);
-        if(array2[i][5].indexOf("1") != -1) {
-            tags.push(1);
-        }
-        pjs.addNode(array2[i][0],array2[i][1],array2[i][2],array2[i][3],array2[i][4],tags);
+        pjs.addNode(array2[i][0],array2[i][1],array2[i][2],array2[i][3],array2[i][4],getTags(array2[i][5]));
     };
+    pjs.analyzeNodes();
     });
 
     jQuery.get('post1990.csv', function(data) {
     var array3 = CSVToArray(data);
     for (var i = 0; i < array3.length; i++) {
-        var tags = new Array(5);
-        if(array3[i][5].indexOf("1") != -1) {
-            tags.push(1);
-        }
-        pjs.addNode(array3[i][0],array3[i][1],array3[i][2],array3[i][3],array3[i][4],tags);
+        pjs.addNode(array3[i][0],array3[i][1],array3[i][2],array3[i][3],array3[i][4],getTags(array3[i][5]));
     };
+    pjs.analyzeNodes();
     });
 
     //TODO: access nodeHandler object
@@ -78,7 +70,53 @@ $(document).ready(function() {
   },500);
 
 
+    $("#earthButton").click(function() {
+        var nodes = pjs.getEarthNodes();
+        $("#searchSpace").empty();
+        for (var i = 0; i < nodes.length; i++) {
+                $("#searchSpace").append(nodes[i].novel + "<br>");
+        };
+    });
 
+    $("#moonButton").click(function() {
+        var nodes = pjs.getMoonNodes();
+        $("#searchSpace").empty();
+        for (var i = 0; i < nodes.length; i++) {
+                $("#searchSpace").append(nodes[i].novel + "<br>");
+        };
+    });
+
+    $("#marsButton").click(function() {
+        var nodes = pjs.getMarsNodes();
+        $("#searchSpace").empty();
+        for (var i = 0; i < nodes.length; i++) {
+                $("#searchSpace").append(nodes[i].novel + "<br>");
+        };
+    });
+
+
+    function getTags(tagString) {
+        var tags = new Array();
+        if(tagString.indexOf("01") != -1) {
+            tags.push(1);
+        }
+        if(tagString.indexOf("02") != -1) {
+            tags.push(2);
+        }
+        if(tagString.indexOf("03") != -1) {
+            tags.push(3);
+        }
+        if(tagString.indexOf("04") != -1) {
+            tags.push(4);
+        }
+        if(tagString.indexOf("05") != -1) {
+            tags.push(5);
+        }
+        if(tagString.indexOf("10") != -1) {
+            tags.push(10);
+        }
+        return tags;
+    }
 
 
 

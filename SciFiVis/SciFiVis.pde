@@ -48,7 +48,7 @@ float panX = 0;
 float panY = 0;
 float zoom = 0;
 
-boolean DEBUG = true;
+boolean DEBUG = false;
 boolean web = false;
 
 

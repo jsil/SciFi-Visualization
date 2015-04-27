@@ -27,7 +27,10 @@
 
 
 PImage bg;
-PImage img;
+PImage earthImg;
+PImage moonImg;
+PImage marsImg;
+
 
 int screenWidth;
 int screenHeight;
@@ -54,6 +57,12 @@ float zoom;
 
 boolean DEBUG = true;
 
+Earth earth;
+
+Moon moon;
+
+Mars mars;
+
 
 void setup() {
 
@@ -63,6 +72,8 @@ void setup() {
   loadWeb(false);
 
   size(screenWidth, screenHeight, P3D);
+  
+  loadPlanets();
 
 
   //initialize variables
@@ -80,5 +91,15 @@ void setup() {
 
   camX = width/2;
   camY = height/2;
+}
+
+void loadPlanets() {
+    earth = new Earth(earthImg);
+    moon = new Moon(moonImg);
+    mars = new Mars(marsImg);
+    
+    earth.say();
+    moon.say();
+    mars.say();
 }
 

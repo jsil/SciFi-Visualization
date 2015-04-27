@@ -31,9 +31,11 @@ void draw() {
   rotateY(radians(yRot));
   noStroke();
 
-  //todo: fix earth "growing" on web
-  textureSphere(nodeHandler.earthCount*4, nodeHandler.earthCount*4, nodeHandler.earthCount*4, img);
-  //textureSphere(200, 200, 200, img);
+  //draw planets
+
+  drawPlanets();
+
+
 
   popMatrix();//2a
 
@@ -68,5 +70,15 @@ void draw() {
 
 
   yRot = yRot + 0.5;
+}
+
+void drawPlanets() {
+  pushMatrix();
+  earth.draw();
+  translate(0, 300, 0);
+  moon.draw();
+  translate(300, 0, 0);
+  mars.draw();
+  popMatrix();
 }
 

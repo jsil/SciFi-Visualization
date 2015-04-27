@@ -1,6 +1,6 @@
 //This is so processing can 'see' javascript. idk if we need it
 interface JavaScript {
-//  void showXYCoordinates(int x, int y);
+  //  void showXYCoordinates(int x, int y);
 }
 
 void bindJavascript(JavaScript js) {
@@ -11,13 +11,17 @@ JavaScript javascript;
 
 void loadWeb(boolean isWeb) {
   if (isWeb) {
-    img=loadImage("img/world32k.jpg");
+    earthImg=loadImage("img/world32k.jpg");
+    moonImg=loadImage("img/moon.jpg");
+    marsImg=loadImage("img/marsmap2k.jpg");
     bg=loadImage("img/starscape.jpg");
     screenWidth = 1280;
     screenHeight = 678;
     //bg.resize(800,600);
   } else {
-    img=loadImage("world32k.jpg");
+    earthImg=loadImage("world32k.jpg");
+    moonImg=loadImage("moon.jpg");
+    marsImg=loadImage("marsmap2k.jpg");
     bg=loadImage("starscape.jpg");
     screenWidth = displayWidth;
     screenHeight = displayHeight;

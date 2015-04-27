@@ -6,7 +6,6 @@ float panY = 0;
 float zoom = 0;
 
 void keyPressed() {
-  //todo: smooth key controls
   if (keyCode == LEFT) {
     panX = panX + 35;
   } else if (keyCode == RIGHT) {

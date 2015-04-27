@@ -1,6 +1,6 @@
 //This is so processing can 'see' javascript. idk if we need it
 interface JavaScript {
-  //  void showXYCoordinates(int x, int y);
+  //list functions here
 }
 
 void bindJavascript(JavaScript js) {

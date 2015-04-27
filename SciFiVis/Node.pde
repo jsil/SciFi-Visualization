@@ -15,11 +15,8 @@ class Node {
   boolean earthNode = false;
   boolean marsNode = false;
   boolean moonNode = false;
-
   boolean inSolarSystem = true;
-  
   boolean fictionalLocation = false;
-
 
   Node() {
     distance = 450;
@@ -68,7 +65,7 @@ class Node {
   }
 
   void draw() {
-    if (!earthNode) {
+    if (!earthNode && !moonNode && !marsNode) {
       noStroke();
       if (inSolarSystem)
         fill(255);
@@ -79,14 +76,13 @@ class Node {
       translate(distance, 0, 0);
       sphere(25);
 
-      //rotateX(180);
       rotateY(radians(360-angle));
       translate(-40, -60, 40);
       fill(255);
       textFont(font, 32);
       text(novel, 0, 0);
     } else {
-      //if earth is being hovered, draw....
+      //if earth,moon,mars is being hovered, draw....
     }
   }
 

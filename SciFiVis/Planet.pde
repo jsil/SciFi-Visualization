@@ -1,14 +1,9 @@
-//todo: fix earth "growing" on web
-
 class Planet {
 
   PImage image;
-
   float radius = 200;
-
   float rotation = 0;
   float rotationSpeed = .5;
-  
   int nodeCount = 0;
 
   Planet() {
@@ -38,7 +33,7 @@ class Planet {
       rotation = 0;
     }
   }
-  
+
   void countNodes() {
     //unimplemented in default Planet
   }
@@ -75,9 +70,7 @@ class OrbitingPlanet extends Planet {
   }
 }
 
-
 class Earth extends Planet {
-
 
   Earth() {
     countNodes();
@@ -89,14 +82,10 @@ class Earth extends Planet {
   }
 
   void draw() {
-//    countNodes();
-    
     pushMatrix();
     rotateY(radians(rotation));
     noStroke();
-    
     radius = (nodeCount * 4) + 100;
-    
     textureSphere(radius, radius, radius, image); 
     popMatrix();
 
@@ -113,7 +102,6 @@ class Earth extends Planet {
 }
 
 class Moon extends OrbitingPlanet {
-
 
   Moon() {
     radius = 55;
@@ -138,8 +126,6 @@ class Moon extends OrbitingPlanet {
 
   void draw() {
     pushMatrix();
-
-
     pushMatrix();
 
     rotateX(radians(90));
@@ -164,13 +150,14 @@ class Moon extends OrbitingPlanet {
     incrementOrbit();
     rotatePlanet();
   }
-  
+
   void countNodes() {
     nodeCount = nodeHandler.getMoonCount();
   }
 }
 
 class Mars extends OrbitingPlanet {
+
   Mars() {
     radius = 107;
     rotationSpeed = 0.4;
@@ -189,19 +176,15 @@ class Mars extends OrbitingPlanet {
   }
 
   void draw() {
-
     pushMatrix();
     translate(2500, 0, 2000);
 
     pushMatrix();
-
     rotateX(radians(90));
-
     ellipseMode(CENTER);
     noFill();
     stroke(255);
     ellipse(0, 0, orbitHeight*2, orbitHeight*2);
-
     popMatrix();
 
     rotateY(radians(orbitAngle));
@@ -220,7 +203,7 @@ class Mars extends OrbitingPlanet {
   void say() {
     println("I'm Mars! In about 300 years, I'll be the best planet ever!");
   }
-  
+
   void countNodes() {
     nodeCount = nodeHandler.getMarsCount();
   }

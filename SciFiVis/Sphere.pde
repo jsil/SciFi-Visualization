@@ -1,14 +1,12 @@
+// textureSphere code from: https://processing.org/examples/texturesphere.html
 int ptsW, ptsH;
-
 int numPointsW;
 int numPointsH_2pi; 
-int numPointsH;
-
+int numPointsH
 float[] coorX;
 float[] coorY;
 float[] coorZ;
 float[] multXZ;
-
 
 void prepSphere() {
   //initialize variables
@@ -81,4 +79,3 @@ void textureSphere(float rx, float ry, float rz, PImage t) {
   }
   endShape();
 }
-

@@ -1,7 +1,6 @@
 class UI {
 
   PFont font;
-  
   boolean showStats = true;
   boolean showControls = true;
 
@@ -11,11 +10,9 @@ class UI {
 
   void draw() {
     pushMatrix();
-
     textFont(font,20);
     fill(255);
     text("Science Fiction Novel Visualization", 10, 30);
-
     if(showStats) {
       pushMatrix();
       translate(0,50,0);
@@ -26,7 +23,6 @@ class UI {
       }
       popMatrix();
     }
-    
     if(showControls) {
       pushMatrix();
       translate(width/2.4,20,0);
@@ -38,7 +34,6 @@ class UI {
       text("Show/Hide Controls : C", 0, 60);
       popMatrix();
     }
-
     popMatrix();
   }
   

@@ -4,17 +4,12 @@
  03 - Moon
  04 - solar system
  05 - OSS (outside solar system)
- 06 - MWG (milky way galaxy)
+ 06 - MWG (milky way galaxy) *unimplemented*
  
  10 - Fictional Location
- 11 - Non-Fiction
- 
- 
- 
  */
 
-
-//functions have to be outside of class for javascript to "see" it. todo: fix
+//functions have to be outside of class for javascript to "see" it.
 void addNode(String novel, String author, int published, String dateOfAction, String locationOfAction, int[] tags) {
   nodeHandler.addNode(novel, author, published, dateOfAction, locationOfAction, tags);
 }
@@ -42,6 +37,8 @@ Node[] getMarsNodes() {
 class NodeHandler {
 
   ArrayList<Node> nodes = new ArrayList<Node>();
+  Filter theFilter = new Filter();
+  boolean[] published = new boolean[3];//0 - pre-1969; 1 - 1969-1990; 2 - post-1990
 
   int novelCount = 0;
   int earthCount = 0;
@@ -49,13 +46,7 @@ class NodeHandler {
   int marsCount = 0;
   int insideSSCount = 0;
   int outsideSSCount = 0;
-
   int fictionCount = 0;
-
-  Filter theFilter = new Filter();
-
-  boolean[] published = new boolean[3];//0 - pre-1969; 1 - 1969-1990; 2 - post-1990
-
 
   NodeHandler() {
     published[0] = true;
@@ -76,15 +67,11 @@ class NodeHandler {
   }
 
   void addNode(String novel, String author, int published, String dateOfAction, String locationOfAction, int[] tags) {
-    //to do: incorperate dateOfAction work/user
     nodes.add(new Node(novel, author, published, dateOfAction, dateOfAction, locationOfAction, tags));
     if (DEBUG) {
       println("N: " + novel + " A: " + author + " P: " + published + " L: " + locationOfAction);
     }
     novelCount++;
-
-    //dont keep this:
-    //    analyzeNodes();
   }
 
   void parseTable(String tableName) {
@@ -118,9 +105,10 @@ class NodeHandler {
         tags[5] = 10;
       } 
 
-      //to do: incorperate dateOfAction work/user
       nodes.add(new Node(novel, author, published, dateOfAction, dateOfAction, locationOfAction, tags));
-      //println("added " + novel);
+      if (DEBUG) {
+        println("added " + novel);
+      }
       novelCount++;
     }
 

@@ -1,3 +1,10 @@
+float dragX;
+float dragY;
+
+float panX = 0;
+float panY = 0;
+float zoom = 0;
+
 void keyPressed() {
   //todo: smooth key controls
   if (keyCode == LEFT) {
@@ -9,6 +16,30 @@ void keyPressed() {
     panY = panY + 35;
   } else if (keyCode == DOWN) {
     panY = panY - 35;
+  }
+  if(key == '1') {
+     nodeHandler.togglePublished(0); 
+     earth.countNodes();
+     moon.countNodes();
+     mars.countNodes();
+  }
+  if(key == '2') {
+     nodeHandler.togglePublished(1); 
+     earth.countNodes();
+     moon.countNodes();
+     mars.countNodes();
+  }
+  if(key == '3') {
+     nodeHandler.togglePublished(2); 
+     earth.countNodes();
+     moon.countNodes();
+     mars.countNodes();
+  }
+  if(key == 's') {
+     ui.toggleStats(); 
+  }
+  if(key == 'c') {
+     ui.toggleControls(); 
   }
 }
 

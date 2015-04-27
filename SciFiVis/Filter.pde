@@ -5,11 +5,11 @@ class Filter {
   //publication date
   int filterPublished(Node node) {
     if (node.published <= 1969) {
-      return 1;
+      return 0;
     } else if ((node.published > 1969) & (node.published <= 1990)) {
-      return 2;
+      return 1;
     } else {
-      return 3;
+      return 2;
     }
   }
   //Time categories relevant to the work itself

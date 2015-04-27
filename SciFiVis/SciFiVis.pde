@@ -13,9 +13,9 @@
 
 //TODO:
 /*
-  analytics percentage
+ implement filtering
+ space nodes more appropriately
  figure out toggle-able options
- -fiction or non-fiction
  novels with multiple locations (The Forever War)
  
  
@@ -40,13 +40,6 @@ PImage marsImg;
 
 int screenWidth;
 int screenHeight;
-
-float dragX;
-float dragY;
-
-float panX = 0;
-float panY = 0;
-float zoom = 0;
 
 boolean DEBUG = false;
 boolean web = false;

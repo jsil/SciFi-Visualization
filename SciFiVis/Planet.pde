@@ -7,7 +7,9 @@ class Planet {
   float radius = 200;
 
   float rotation = 0;
-  float rotationSpeed = 1;
+  float rotationSpeed = .5;
+  
+  int nodeCount = 0;
 
   Planet() {
   }
@@ -35,6 +37,10 @@ class Planet {
     if (rotation >= 360) {
       rotation = 0;
     }
+  }
+  
+  void countNodes() {
+    //unimplemented in default Planet
   }
 }
 
@@ -72,19 +78,37 @@ class OrbitingPlanet extends Planet {
 
 class Earth extends Planet {
 
-  int nodeCount;
-
-  //radius?
 
   Earth() {
+    countNodes();
   }
 
   Earth(PImage image) {
     this.image = image;
+    countNodes();
+  }
+
+  void draw() {
+//    countNodes();
+    
+    pushMatrix();
+    rotateY(radians(rotation));
+    noStroke();
+    
+    radius = (nodeCount * 4) + 100;
+    
+    textureSphere(radius, radius, radius, image); 
+    popMatrix();
+
+    rotatePlanet();
   }
 
   void say() {
     println("I'm the Earth, the best planet ever!");
+  }
+
+  void countNodes() {
+    nodeCount = nodeHandler.getEarthCount();
   }
 }
 
@@ -96,7 +120,7 @@ class Moon extends OrbitingPlanet {
     rotationSpeed = 0;
     orbitAngle = 150;
     orbitHeight = 1200;
-    orbitSpeed = .25;
+    orbitSpeed = .02;
   }
 
   Moon(PImage image) {
@@ -133,13 +157,17 @@ class Moon extends OrbitingPlanet {
     rotateY(radians(60));
 
     noStroke();
+    radius = (nodeCount * 25) + 50;
     textureSphere(radius, radius, radius, image); 
     popMatrix();
 
     incrementOrbit();
     rotatePlanet();
   }
-
+  
+  void countNodes() {
+    nodeCount = nodeHandler.getMoonCount();
+  }
 }
 
 class Mars extends OrbitingPlanet {
@@ -175,12 +203,13 @@ class Mars extends OrbitingPlanet {
     ellipse(0, 0, orbitHeight*2, orbitHeight*2);
 
     popMatrix();
-    
+
     rotateY(radians(orbitAngle));
-    translate(orbitHeight,0,0);
+    translate(orbitHeight, 0, 0);
 
     rotateY(radians(rotation));
     noStroke();
+    radius = (nodeCount * 15) + 200;
     textureSphere(radius, radius, radius, image); 
     popMatrix();
 
@@ -190,6 +219,10 @@ class Mars extends OrbitingPlanet {
 
   void say() {
     println("I'm Mars! In about 300 years, I'll be the best planet ever!");
+  }
+  
+  void countNodes() {
+    nodeCount = nodeHandler.getMarsCount();
   }
 }
 

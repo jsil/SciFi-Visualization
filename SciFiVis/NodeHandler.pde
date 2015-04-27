@@ -1,30 +1,35 @@
 /* TAGS:
-1 - Earth
-2 - Mars
-3 - Moon
-4 - solar system
-5 - OSS (outside solar system)
-6 - MWG (milky way galaxy)
-
-
-*/
+ 1 - Earth
+ 2 - Mars
+ 3 - Moon
+ 4 - solar system
+ 5 - OSS (outside solar system)
+ 6 - MWG (milky way galaxy)
+ 
+ 
+ */
 
 
 //functions have to be outside of class for javascript to "see" it. todo: fix
 void addNode(String novel, String author, int published, String dateOfAction, String locationOfAction, int[] tags) {
-  nodeHandler.addNode(novel,author,published,dateOfAction,locationOfAction,tags);
+  nodeHandler.addNode(novel, author, published, dateOfAction, locationOfAction, tags);
 }
 
 String[] searchNodes(String search) {
-  return nodeHandler.searchNodes(search); 
+  return nodeHandler.searchNodes(search);
 }
 
 class NodeHandler {
 
   ArrayList<Node> nodes = new ArrayList<Node>();
 
-  int earthCount = 0;
   int novelCount = 0;
+  int earthCount = 0;
+  int moonCount = 0;
+  int marsCount = 0;
+  int insideSSCount = 0;
+  int outsideSSCount = 0;
+
 
   NodeHandler() {
   }
@@ -80,7 +85,7 @@ class NodeHandler {
       novelCount++;
     }
 
-    countEarthNodes();
+    analyzeNodes();
   }
 
   String[] searchNodes(String search) {
@@ -98,21 +103,36 @@ class NodeHandler {
     return convertedStrings;
   }
 
-  float analyzeNodes() {
-    //  to do:
-    return 0;
+  String[] getStatistics() {
+    String[] stats = new String[6];
+    stats[0] = "Novels: " + novelCount;
+    stats[1] = "Earth: " + earthCount;
+    stats[2] = "Moon: " + moonCount;
+    stats[3] = "Mars: " + marsCount;
+    stats[4] = "Inside Solar System: " + insideSSCount;
+    stats[5] = "Outside Solar System: " + outsideSSCount;
+    return stats;
   }
 
-  int countEarthNodes() {
-    int count = 0;
+  void analyzeNodes() {
+    earthCount = 0;
+    moonCount = 0;
+    marsCount = 0;
+    insideSSCount = 0;
+    outsideSSCount = 0;
     for (int i=0; i<nodes.size (); i++) {
       if (nodes.get(i).isEarthNode()) {
-        count++;
+        earthCount++;
+      } else if (nodes.get(i).isMoonNode()) {
+        moonCount++;
+      } else if (nodes.get(i).isMarsNode()) {
+        marsCount++;
+      } else if (nodes.get(i).isInsideSS()) {
+        insideSSCount++;
+      } else if (nodes.get(i).isOutsideSS()) {
+        outsideSSCount++;
       }
     }
-    println(count);
-    earthCount = count;
-    return count;
   }
 }
 

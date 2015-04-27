@@ -11,11 +11,11 @@ class Node {
   String dateOfActionWork;
   String dateOfActionUser;
   String locationOfAction;
-  
+
   boolean earthNode = false;
   boolean marsNode = false;
   boolean moonNode = false;
-  
+
   boolean inSolarSystem = true;
 
 
@@ -31,27 +31,26 @@ class Node {
     dateOfActionWork = dateOfActionWorkSet;
     dateOfActionUser = dateOfActionUserSet;
     locationOfAction = locationOfActionSet;
-    for(int i=0;i<tags.length;i++) {
-       if(tags[i] == 1) {
-          earthNode = true;  
-       }
-       if(tags[i] == 2) {
-          marsNode = true; 
-       }
-       if(tags[i] == 3) {
-          moonNode = true; 
-       }
-       if(tags[i] == 4) {
-          inSolarSystem = true; 
-       }
-       if(tags[i] == 5) {
-          inSolarSystem = false; 
-       }
+    for (int i=0; i<tags.length; i++) {
+      if (tags[i] == 1) {
+        earthNode = true;
+      }
+      if (tags[i] == 2) {
+        marsNode = true;
+      }
+      if (tags[i] == 3) {
+        moonNode = true;
+      }
+      if (tags[i] == 4) {
+        inSolarSystem = true;
+      }
+      if (tags[i] == 5) {
+        inSolarSystem = false;
+      }
     }
-    if(inSolarSystem) {
+    if (inSolarSystem) {
       distance = 200 + random(950);
-    }
-    else {
+    } else {
       distance = 1300+ random(1000);
     }
     angle = random(360);
@@ -64,26 +63,25 @@ class Node {
   }
 
   void draw() {
-    if(!earthNode) {
+    if (!earthNode) {
       noStroke();
-      if(inSolarSystem)
+      if (inSolarSystem)
         fill(255);
       else
         fill(120);
       rotateY(radians(angle));
-  
+
       translate(distance, 0, 0);
       sphere(25);
-  
+
       //rotateX(180);
       rotateY(radians(360-angle));
       translate(-40, -60, 40);
       fill(255);
-      textFont(font,32);
+      textFont(font, 32);
       text(novel, 0, 0);
-    }
-    else {
-       //if earth is being hovered, draw.... 
+    } else {
+      //if earth is being hovered, draw....
     }
   }
 
@@ -98,9 +96,25 @@ class Node {
       return false;
     }
   }
-  
+
   boolean isEarthNode() {
-     return earthNode; 
+    return earthNode;
+  }
+
+  boolean isMoonNode() {
+    return moonNode;
+  }
+
+  boolean isMarsNode() {
+    return marsNode;
+  }
+  
+  boolean isInsideSS() {
+     return inSolarSystem; 
+  }
+  
+  boolean isOutsideSS() {
+     return !inSolarSystem; 
   }
 }
 

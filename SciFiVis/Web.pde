@@ -16,7 +16,7 @@ void loadWeb(boolean isWeb) {
     marsImg=loadImage("img/marsmap2k.jpg");
     bg=loadImage("img/starscape.jpg");
     screenWidth = 1280;
-    screenHeight = 678;
+    screenHeight = 800;
     //bg.resize(800,600);
   } else {
     earthImg=loadImage("world32k.jpg");

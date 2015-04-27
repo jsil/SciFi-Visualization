@@ -50,7 +50,6 @@ void mouseWheel(MouseEvent event) {
     zoom = 1500;
   else if (zoom < -2500)
     zoom = -2500;
-  println("zoom: " + zoom);
 }
 
 void mousePressed() {

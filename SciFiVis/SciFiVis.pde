@@ -13,12 +13,16 @@
 
 //TODO:
 /*
- implement filtering
  space nodes more appropriately
- figure out toggle-able options
  novels with multiple locations (The Forever War)
- 
- 
+ */
+
+
+//BUGS:
+/*
+ web-
+   novel count on web is 3 higher than actual
+   earth texture wrap is buggy
  */
 
 
@@ -42,7 +46,7 @@ int screenWidth;
 int screenHeight;
 
 boolean DEBUG = false;
-boolean web = false;
+boolean web = true;
 
 
 void setup() {

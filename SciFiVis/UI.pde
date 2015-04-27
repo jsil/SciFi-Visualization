@@ -12,13 +12,13 @@ class UI {
   void draw() {
     pushMatrix();
 
-    textFont(font);
+    textFont(font,20);
     fill(255);
     text("Science Fiction Novel Visualization", 10, 30);
 
     if(showStats) {
       pushMatrix();
-      translate(0,30,0);
+      translate(0,50,0);
       textFont(font,18);
       for (String stat : nodeHandler.getStatistics ()) {
         translate(0, 20, 0);

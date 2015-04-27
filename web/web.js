@@ -53,10 +53,10 @@ $(document).ready(function() {
         var searchSpace = document.getElementById("searchSpace");
         searchSpace.innerHTML = "";
         if(input.value != "") {
-            for (var i = nodes.length - 1; i >= 0; i--) {
+            for (var i = 0; i < nodes.length; i++) {
                 var tempElement = document.createElement('div');
                 tempElement.className = "searchResult";
-                tempElement.innerHTML = nodes[i];
+                tempElement.innerHTML = i+1 + ") " + nodes[i];
                 searchSpace.appendChild(tempElement);
             };
         }
@@ -74,7 +74,7 @@ $(document).ready(function() {
         var nodes = pjs.getEarthNodes();
         $("#searchSpace").empty();
         for (var i = 0; i < nodes.length; i++) {
-                $("#searchSpace").append(nodes[i].novel + "<br>");
+                $("#searchSpace").append(i+1 + ") " + nodes[i].novel + "<br>");
         };
     });
 
@@ -82,7 +82,7 @@ $(document).ready(function() {
         var nodes = pjs.getMoonNodes();
         $("#searchSpace").empty();
         for (var i = 0; i < nodes.length; i++) {
-                $("#searchSpace").append(nodes[i].novel + "<br>");
+                $("#searchSpace").append(i+1 + ") " + nodes[i].novel + "<br>");
         };
     });
 
@@ -90,7 +90,7 @@ $(document).ready(function() {
         var nodes = pjs.getMarsNodes();
         $("#searchSpace").empty();
         for (var i = 0; i < nodes.length; i++) {
-                $("#searchSpace").append(nodes[i].novel + "<br>");
+                $("#searchSpace").append(i+1 + ") " + nodes[i].novel + "<br>");
         };
     });
 

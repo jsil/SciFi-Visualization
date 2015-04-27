@@ -144,18 +144,18 @@ class NodeHandler {
 
   String[] getStatistics() {
     float novelCountFixed = novelCount;
-    if(novelCountFixed == 0) {
-       novelCountFixed = 1; 
+    if (novelCountFixed == 0) {
+      novelCountFixed = 1;
     }
-    
+
     String[] stats = new String[7];
     stats[0] = "Novels: " + novelCount;
-    stats[1] = "Earth: " + earthCount + " (" + nf((((float)earthCount / novelCountFixed) * 100), 0, 2) + "%)";
-    stats[2] = "Moon: " + moonCount + " (" + nf((((float)moonCount / novelCountFixed) * 100), 0, 2) + "%)";
-    stats[3] = "Mars: " + marsCount + " (" + nf((((float)marsCount / novelCountFixed) * 100), 0, 2) + "%)";
-    stats[4] = "Inside Solar System: " + insideSSCount + " (" + nf((((float)insideSSCount / novelCountFixed) * 100), 0, 2) + "%)";
-    stats[5] = "Outside Solar System: " + outsideSSCount + " (" + nf((((float)outsideSSCount / novelCountFixed) * 100), 0, 2) + "%)";
-    stats[6] = "Occurs in Fictional Location: " + fictionCount + " (" + nf((((float)fictionCount / novelCountFixed) * 100), 0, 2) + "%)";
+    stats[1] = "Earth: " + earthCount + " (" + nf((((float)earthCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[2] = "Moon: " + moonCount + " (" + nf((((float)moonCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[3] = "Mars: " + marsCount + " (" + nf((((float)marsCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[4] = "Inside Solar System: " + insideSSCount + " (" + nf((((float)insideSSCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[5] = "Outside Solar System: " + outsideSSCount + " (" + nf((((float)outsideSSCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[6] = "Occurs in Fictional Location: " + fictionCount + " (" + nf((((float)fictionCount / novelCountFixed) * 100), 1, 2) + "%)";
     return stats;
   }
 
@@ -203,9 +203,13 @@ class NodeHandler {
     Node[] earthNodes = new Node[earthCount];
     int count = 0;
     for (int i=0; i<nodes.size (); i++) {
-      if (nodes.get(i).isEarthNode()) {
-        earthNodes[count] = nodes.get(i);
-        count++;
+      if ((published[0] && theFilter.filterPublished(nodes.get(i)) == 0) ||
+        (published[1] && theFilter.filterPublished(nodes.get(i)) == 1) ||
+        (published[2] && theFilter.filterPublished(nodes.get(i)) == 2)) {
+        if (nodes.get(i).isEarthNode()) {
+          earthNodes[count] = nodes.get(i);
+          count++;
+        }
       }
     }
     return earthNodes;
@@ -215,9 +219,13 @@ class NodeHandler {
     Node[] moonNodes = new Node[moonCount];
     int count = 0;
     for (int i=0; i<nodes.size (); i++) {
-      if (nodes.get(i).isMoonNode()) {
-        moonNodes[count] = nodes.get(i);
-        count++;
+      if ((published[0] && theFilter.filterPublished(nodes.get(i)) == 0) ||
+        (published[1] && theFilter.filterPublished(nodes.get(i)) == 1) ||
+        (published[2] && theFilter.filterPublished(nodes.get(i)) == 2)) {
+        if (nodes.get(i).isMoonNode()) {
+          moonNodes[count] = nodes.get(i);
+          count++;
+        }
       }
     }
     return moonNodes;
@@ -227,9 +235,13 @@ class NodeHandler {
     Node[] marsNodes = new Node[marsCount];
     int count = 0;
     for (int i=0; i<nodes.size (); i++) {
-      if (nodes.get(i).isMarsNode()) {
-        marsNodes[count] = nodes.get(i);
-        count++;
+      if ((published[0] && theFilter.filterPublished(nodes.get(i)) == 0) ||
+        (published[1] && theFilter.filterPublished(nodes.get(i)) == 1) ||
+        (published[2] && theFilter.filterPublished(nodes.get(i)) == 2)) {
+        if (nodes.get(i).isMarsNode()) {
+          marsNodes[count] = nodes.get(i);
+          count++;
+        }
       }
     }
     return marsNodes;

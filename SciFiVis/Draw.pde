@@ -1,3 +1,5 @@
+//todo: fix random flickering
+
 void draw() {
 
   //todo: implement background image on web
@@ -27,16 +29,6 @@ void draw() {
   translate(0,0,panY);
 
   drawPlanets();
-
-  //draw ellipse
-  pushMatrix();//2b
-  rotateX(radians(90));
-  noFill();
-  stroke(255);
-  ellipseMode(CENTER);
-  ellipse(0, 0, 2400, 2400);
-  popMatrix();//2b
-
 
   //draw nodes
   nodeHandler.drawNodes();

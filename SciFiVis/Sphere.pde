@@ -2,7 +2,7 @@
 int ptsW, ptsH;
 int numPointsW;
 int numPointsH_2pi; 
-int numPointsH
+int numPointsH;
 float[] coorX;
 float[] coorY;
 float[] coorZ;

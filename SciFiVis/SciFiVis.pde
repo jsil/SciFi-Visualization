@@ -46,7 +46,7 @@ int screenWidth;
 int screenHeight;
 
 boolean DEBUG = false;
-boolean web = true;
+boolean web = false;
 
 
 void setup() {

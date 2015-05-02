@@ -3,6 +3,7 @@ class UI {
   PFont font;
   boolean showStats = true;
   boolean showControls = true;
+  boolean showInfo = true;
 
   color textColor = color(255);
   color bgColor = color(145);
@@ -18,11 +19,10 @@ class UI {
     rect(-1, 0, width+1, 30);
     textFont(font, 20);
     fill(255);
-    text("Science Fiction Novel Visualization", 10, 20);
+    text("Visualizing our Imaginative Universe", 10, 20);
     line(400, 0, 400, 30);
     line(550, 0, 550, 30);
     line(700, 0, 700, 30);
-    text("Info [+]", 710, 20);
     if (showStats) {
       textFont(font, 20);
       text("Statistics [-]", 410, 20);
@@ -74,6 +74,14 @@ class UI {
       textFont(font, 20);
       text("Controls [+]", 560, 20);
     }
+    if (showInfo) {
+      text("Info [+]", 710, 20);
+      pushMatrix();
+
+      popMatrix();
+    } else {
+      text("Info [-]", 710, 20);
+    }
     popMatrix();
   }
 
@@ -83,6 +91,10 @@ class UI {
 
   void toggleControls() {
     showControls = !showControls;
+  }
+
+  void toggleInfo() {
+    showInfo = !showInfo;
   }
 }
 

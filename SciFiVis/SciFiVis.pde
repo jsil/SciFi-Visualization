@@ -49,6 +49,7 @@ boolean DEBUG = false;
 boolean web = false;
 
 void setup() {
+  frame.setTitle("Visualizing Our Imaginative Universe - Haley Hiers, Kali Rupert, & Jordan Silver");
   ui = new UI();
   nodeHandler = new NodeHandler();
 

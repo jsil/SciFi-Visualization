@@ -40,6 +40,9 @@ void keyPressed() {
   if(key == 'c') {
      ui.toggleControls(); 
   }
+  if(key == 'i') {
+     ui.toggleInfo(); 
+  }
 }
 
 void mouseWheel(MouseEvent event) {

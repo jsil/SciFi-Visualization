@@ -17,6 +17,7 @@ class Node {
   boolean moonNode = false;
   boolean inSolarSystem = true;
   boolean fictionalLocation = false;
+  boolean gender;//false - female; true - male
 
   Node() {
     distance = 450;
@@ -49,6 +50,12 @@ class Node {
       if (tags[i] == 10) {
         fictionalLocation = true;
       }
+      if (tags[i] == 20) {
+         gender = false; 
+      }
+      if (tags[i] == 21) {
+         gender = true; 
+      }
     }
     if (inSolarSystem) {
       distance = 200 + random(950);
@@ -80,7 +87,7 @@ class Node {
       translate(-40, -60, 40);
       fill(255);
       textFont(font, 32);
-      text(novel, 0, 0);
+      text(novel + " (" + gender + ")", 0, 0);
     } else {
       //if earth,moon,mars is being hovered, draw....
     }
@@ -120,6 +127,10 @@ class Node {
   
   boolean isFictionalLocation() {
      return fictionalLocation; 
+  }
+  
+  boolean getGender() {
+     return gender; 
   }
 }
 

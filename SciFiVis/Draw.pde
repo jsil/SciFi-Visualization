@@ -20,7 +20,7 @@ void draw() {
   translate(0,0,panY);
 
   drawPlanets();
-  nodeHandler.drawNodes();
+//  nodeHandler.drawNodes();
 
   //stop drawing model
   endCamera();

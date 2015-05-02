@@ -47,6 +47,8 @@ class NodeHandler {
   int insideSSCount = 0;
   int outsideSSCount = 0;
   int fictionCount = 0;
+  int femaleCount = 0;
+  int maleCount = 0;
 
   NodeHandler() {
     published[0] = true;
@@ -85,7 +87,7 @@ class NodeHandler {
       String locationOfAction = row.getString(4);
 
       String tagsString = row.getString(5);
-      int[] tags = new int[6];
+      int[] tags = new int[7];
       if (tagsString.indexOf("01") != -1) {
         tags[0] = 1;
       }
@@ -104,6 +106,12 @@ class NodeHandler {
       if (tagsString.indexOf("10") != -1) {
         tags[5] = 10;
       } 
+      if (tagsString.indexOf("F") != -1) {
+        tags[6] = 20; 
+      }
+      else if (tagsString.indexOf("M") != -1) {
+        tags[6] = 21;
+      }
 
       nodes.add(new Node(novel, author, published, dateOfAction, dateOfAction, locationOfAction, tags));
       if (DEBUG) {
@@ -136,14 +144,16 @@ class NodeHandler {
       novelCountFixed = 1;
     }
 
-    String[] stats = new String[7];
+    String[] stats = new String[9];
     stats[0] = "Novels: " + novelCount;
     stats[1] = "Earth: " + earthCount + " (" + nf((((float)earthCount / novelCountFixed) * 100), 1, 2) + "%)";
     stats[2] = "Moon: " + moonCount + " (" + nf((((float)moonCount / novelCountFixed) * 100), 1, 2) + "%)";
     stats[3] = "Mars: " + marsCount + " (" + nf((((float)marsCount / novelCountFixed) * 100), 1, 2) + "%)";
     stats[4] = "Inside Solar System: " + insideSSCount + " (" + nf((((float)insideSSCount / novelCountFixed) * 100), 1, 2) + "%)";
     stats[5] = "Outside Solar System: " + outsideSSCount + " (" + nf((((float)outsideSSCount / novelCountFixed) * 100), 1, 2) + "%)";
-    stats[6] = "Occurs in Fictional Location: " + fictionCount + " (" + nf((((float)fictionCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[6] = "Fictional Location: " + fictionCount + " (" + nf((((float)fictionCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[7] = "Female Author: " + femaleCount + " (" + nf((((float)femaleCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[8] = "Male Author: " + maleCount + " (" + nf((((float)maleCount / novelCountFixed) * 100), 1, 2) + "%)";
     return stats;
   }
 
@@ -155,6 +165,8 @@ class NodeHandler {
     insideSSCount = 0;
     outsideSSCount = 0;
     fictionCount = 0;
+    femaleCount = 0;
+    maleCount = 0;
     for (int i=0; i<nodes.size (); i++) {
       if ((published[0] && theFilter.filterPublished(nodes.get(i)) == 0) ||
         (published[1] && theFilter.filterPublished(nodes.get(i)) == 1) ||
@@ -177,6 +189,12 @@ class NodeHandler {
         }  
         if (nodes.get(i).isFictionalLocation()) {
           fictionCount++;
+        }
+        if(nodes.get(i).getGender()) {
+          maleCount++;
+        }
+        else {
+          femaleCount++; 
         }
         novelCount++;
       }

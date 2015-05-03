@@ -13,29 +13,23 @@ class Filter {
     }
   }
   //Time categories relevant to the work itself
-  int filterTimeForWork(Node node) {
-    if (node.tags[7] == 30) {
-      return 30;
-    } else if (node.tags[8] == 31) {
-      return 31;
-    } else if (node.tags[9] == 32) {
-      return 32;
-    }else if (node.tags[10] == 33) {
-      return 33; 
-    }else if (node.tags[11] == 34) {
-      return 34;
+  boolean filterPastWork(Node node) {
+    if (node.isPastWork()) {
+      return true;
     }
+    else
+      return false;
   }
 
   //Time categories relevant to the user
-  int filterTimeForUser(Node node) {
-    if (node.tags[12] == 40) {
-      return 40;
-    } else if (node.tags[13] == 41) {
-      return 41;
-    } else if (node.tags[14] == 42) {
-      return 42;
-    }
-  }
+//  int filterTimeForUser(Node node) {
+//    if (node.tags[12] == 40) {
+//      return 40;
+//    } else if (node.tags[13] == 41) {
+//      return 41;
+//    } else if (node.tags[14] == 42) {
+//      return 42;
+//    }
+//  }
 }
 

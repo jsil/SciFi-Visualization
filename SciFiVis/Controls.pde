@@ -17,13 +17,25 @@ void keyPressed() {
     panY = panY - 35;
   }
   if (key == '1') {
-    nodeHandler.toggleFilter(0);
+    //    nodeHandler.toggleFilter(0);
+    nodeHandler.toggleDateofActionUser(0);
+    earth.countNodes();
+    moon.countNodes();
+    mars.countNodes();
   }
   if (key == '2') {
-    nodeHandler.toggleFilter(1);
+    //    nodeHandler.toggleFilter(1);
+    nodeHandler.toggleDateofActionUser(1);
+    earth.countNodes();
+    moon.countNodes();
+    mars.countNodes();
   }
   if (key == '3') {
-    nodeHandler.toggleFilter(2);
+    //    nodeHandler.toggleFilter(2);
+    nodeHandler.toggleDateofActionUser(2);
+    earth.countNodes();
+    moon.countNodes();
+    mars.countNodes();
   }
   if (key == '4') {
     nodeHandler.togglePublished(0); 
@@ -38,7 +50,7 @@ void keyPressed() {
     mars.countNodes();
   }
   if (key == '6') {
-    nodeHandler.togglePublished(2); 
+    nodeHandler.togglePublished(2);
     earth.countNodes();
     moon.countNodes();
     mars.countNodes();
@@ -55,6 +67,36 @@ void keyPressed() {
   if (key == 'f') {
     ui.toggleFilters();
   }
+  if (key == 'q') {
+    nodeHandler.toggleDateofActionWork(0);
+    earth.countNodes();
+    moon.countNodes();
+    mars.countNodes();
+  }
+  if (key == 'w') {
+    nodeHandler.toggleDateofActionWork(1);
+    earth.countNodes();
+    moon.countNodes();
+    mars.countNodes();
+  }
+  if (key == 'e') {
+    nodeHandler.toggleDateofActionWork(2);
+    earth.countNodes();
+    moon.countNodes();
+    mars.countNodes();
+  }
+  if (key == 'r') {
+    nodeHandler.toggleDateofActionWork(3);
+    earth.countNodes();
+    moon.countNodes();
+    mars.countNodes();
+  }
+  if (key == 't') {
+    nodeHandler.toggleDateofActionWork(4);
+    earth.countNodes();
+    moon.countNodes();
+    mars.countNodes();
+  }
 }
 
 void mouseWheel(MouseEvent event) {
@@ -67,8 +109,11 @@ void mouseWheel(MouseEvent event) {
 }
 
 void mousePressed() {
-  dragY = mouseY;
-  dragX = mouseY;
+  if (ui.clickFilters(mouseX, mouseY)) {
+  } else {
+    dragY = mouseY;
+    dragX = mouseX;
+  }
 }
 
 void mouseDragged() {

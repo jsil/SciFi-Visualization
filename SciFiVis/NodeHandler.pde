@@ -59,7 +59,7 @@ class NodeHandler {
   boolean[] published = new boolean[3];//0 - pre-1969; 1 - 1969-1990; 2 - post-1990
   boolean[] dateOfActionWork = new boolean[5]; //0 - Past, 1 - Contemporary, 2 - Near Future, 3 - Distant Future, 4 - N/A
   boolean[] dateOfActionUser = new boolean[3]; //0 - 20th Century & earlier, 1 - Present, 2 - 22nd Century and Beyond
-  boolean[] filter = new boolean[3]; //0 - filter by published, 1 - filter by date for work, 2 - filter by date for user
+  //  boolean[] filter = new boolean[3]; //0 - filter by published, 1 - filter by date for work, 2 - filter by date for user
 
   int novelCount = 0;
   int earthCount = 0;
@@ -85,35 +85,47 @@ class NodeHandler {
     published[0] = true;
     published[1] = true;
     published[2] = true;
-    filter[0] = true;
-    filter[1] = false;
-    filter[2] = false;
+    //    filter[0] = false;
+    //    filter[1] = false;
+    //    filter[2] = false;
+    dateOfActionWork[0] = true;
+    dateOfActionWork[1] = true;
+    dateOfActionWork[2] = true;
+    dateOfActionWork[3] = true;
+    dateOfActionWork[4] = true;
+
+    dateOfActionUser[0] = true;
+    dateOfActionUser[1] = true;
+    dateOfActionUser[2] = true;
   }
 
   void drawNodes() {
     for (int i=0; i<nodes.size (); i++) {
       pushMatrix();
-      if (filter[0] == true) {
-        if ((published[0] && theFilter.filterPublished(nodes.get(i)) == 0) ||
-          (published[1] && theFilter.filterPublished(nodes.get(i)) == 1) ||
-          (published[2] && theFilter.filterPublished(nodes.get(i)) == 2)) {
-          nodes.get(i).draw();
-        }
-      } else if (filter[1] == true) {
-        if ((dateOfActionWork[0] && theFilter.filterTimeForWork(nodes.get(i)) == 30) ||
-          (dateOfActionWork[1] && theFilter.filterTimeForWork(nodes.get(i)) == 31) ||
-          (dateOfActionWork[2] && theFilter.filterTimeForWork(nodes.get(i)) == 32) ||
-          (dateOfActionWork[3] && theFilter.filterTimeForWork(nodes.get(i)) == 33))|| 
-          (dateOfActionWork[4] && theFilter.filterTimeForWork(nodes.get(i)) == 34)) {
-          nodes.get(i).draw();
-        }
-      } else if (filter[2] == true) {
-        if ((dateOfActionUser[0] && theFilter.filterTimeForUser(nodes.get(i)) == 40) ||
-          (dateOfActionUser[1] && theFilter.filterTimeForUser(nodes.get(i)) == 41) ||
-          (dateOfActionUser[2] && theFilter.filterTimeForUser(nodes.get(i)) == 42){
-          nodes.get(i).draw();
-        }
+      //      if (filter[0] == true) {
+      //        if ((published[0] && theFilter.filterPublished(nodes.get(i)) == 0) ||
+      //          (published[1] && theFilter.filterPublished(nodes.get(i)) == 1) ||
+      //          (published[2] && theFilter.filterPublished(nodes.get(i)) == 2)) {
+      //          nodes.get(i).draw();
+      //        }
+      if (checkFilters(nodes.get(i))) {
+        nodes.get(i).draw();
       }
+      //      } else if (filter[1] == true) {
+      //        if ((dateOfActionWork[0] && theFilter.filterTimeForWork(nodes.get(i)) == 30) ||
+      //          (dateOfActionWork[1] && theFilter.filterTimeForWork(nodes.get(i)) == 31) ||
+      //          (dateOfActionWork[2] && theFilter.filterTimeForWork(nodes.get(i)) == 32) ||
+      //          (dateOfActionWork[3] && theFilter.filterTimeForWork(nodes.get(i)) == 33)|| 
+      //          (dateOfActionWork[4] && theFilter.filterTimeForWork(nodes.get(i)) == 34)) {
+      //          nodes.get(i).draw();
+      //        }
+      //      } else if (filter[2] == true) {
+      //        if ((dateOfActionUser[0] && theFilter.filterTimeForUser(nodes.get(i)) == 40) ||
+      //          (dateOfActionUser[1] && theFilter.filterTimeForUser(nodes.get(i)) == 41) ||
+      //          (dateOfActionUser[2] && theFilter.filterTimeForUser(nodes.get(i)) == 42)){
+      //          nodes.get(i).draw();
+      //        }
+      //    }
       popMatrix();
     }
   }
@@ -385,36 +397,54 @@ class NodeHandler {
     return marsCount;
   }
 
-  void toggleFilter (int selection) {
-    filter[selection] = !filter[selection];
-  }
+  //void toggleFilter (int selection) {
+  //  filter[selection] = !filter[selection];
+  //}
   void togglePublished(int selection) {
     published[selection] = !published[selection];
     analyzeNodes();
   }
 
-  void toggleTimeWork(int selection) {
+  void toggleDateofActionWork(int selection) {
     dateOfActionWork[selection] = !dateOfActionWork[selection];
     analyzeNodes();
   }
 
-  void toggleTimeUser(int selection) {
+  void toggleDateofActionUser(int selection) {
     dateOfActionUser[selection] = !dateOfActionUser[selection];
     analyzeNodes();
   }
 
+  boolean getPublished(int selection) {
+    return published[selection];
+  }
+  
+  boolean getDateOfActionWork(int selection) {
+    return dateOfActionWork[selection];
+  }
+  
+  boolean getDateOfActionUser(int selection) {
+    return dateOfActionUser[selection];
+  }
+  
+  
   boolean checkFilters(Node node) {
     if ((published[0] && theFilter.filterPublished(node) == 0) ||
       (published[1] && theFilter.filterPublished(node) == 1) ||
       (published[2] && theFilter.filterPublished(node) == 2)) { 
-      if ((published[0] && theFilter.filterPublished(node) == 0) ||
-        (published[1] && theFilter.filterPublished(node) == 1) ||
-        (published[2] && theFilter.filterPublished(node) == 2)) {
+      if ((dateOfActionWork[0] &&  node.isPastWork()) ||
+        (dateOfActionWork[1] && node.isContemporaryWork()) ||
+        (dateOfActionWork[2] && node.isNearFutureWork()) ||
+        (dateOfActionWork[3] && node.isDistantFutureWork()) ||
+        (dateOfActionWork[4] && node.isNAWork())) {
+        if ((dateOfActionUser[0] && node.isPastUser()) ||
+          (dateOfActionUser[1] && node.isPresentUser()) ||
+          (dateOfActionUser[2] && node.isFutureUser()) ||
+          (dateOfActionWork[4] && node.isNAWork())) {
           return true;
-      }
-      else return false;
-    }
-    else return false;
+        } else return false;
+      } else return false;
+    } else return false;
   }
-
 }
+

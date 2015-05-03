@@ -29,6 +29,7 @@
  web-
    novel count on web is 3 higher than actual (you can see nodes named "Novel")
    earth texture wrap is buggy
+   UI rectangles being drawn over text
  */
 
 UI ui;
@@ -49,7 +50,6 @@ boolean DEBUG = false;
 boolean web = false;
 
 void setup() {
-  frame.setTitle("Visualizing Our Imaginative Universe - Haley Hiers, Kali Rupert, & Jordan Silver");
   ui = new UI();
   nodeHandler = new NodeHandler();
 

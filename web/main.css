@@ -9,7 +9,7 @@ canvas { display:block; } /* To remove the scrollbars */
 	position:fixed;
 	width:200px;
 	height:100%;
-	top:0px;
+	top:30px;
 	right:0px;
 	background:#A8A8A8;
 	border: solid 2px white;
@@ -22,7 +22,7 @@ canvas { display:block; } /* To remove the scrollbars */
 	position:fixed;
 	width:200px;
 	height:100%;
-	top:0px;
+	top:30px;
 	right:0px;
 	border: solid 2px white;
 	color:white;

@@ -19,6 +19,7 @@ void loadWeb(boolean isWeb) {
     screenHeight = 800;
     //bg.resize(800,600);
   } else {
+    frame.setTitle("Visualizing Our Imaginative Universe - Haley Hiers, Kali Rupert, & Jordan Silver");
     earthImg=loadImage("world32k.jpg");
     moonImg=loadImage("moon.jpg");
     marsImg=loadImage("marsmap2k.jpg");

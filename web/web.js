@@ -115,6 +115,12 @@ $(document).ready(function() {
         if(tagString.indexOf("10") != -1) {
             tags.push(10);
         }
+        if(tagString.indexOf("F") != -1) {
+            tags.push(20);
+        }
+        if(tagString.indexOf("M") != -1) {
+            tags.push(21);
+        }
         return tags;
     }
 

@@ -121,6 +121,30 @@ $(document).ready(function() {
         if(tagString.indexOf("M") != -1) {
             tags.push(21);
         }
+        if(tagString.indexOf("30") != -1) {
+            tags.push(30);
+        }
+        if(tagString.indexOf("31") != -1) {
+            tags.push(31);
+        }
+        if(tagString.indexOf("32") != -1) {
+            tags.push(32);
+        }
+        if(tagString.indexOf("33") != -1) {
+            tags.push(33);
+        }
+        if(tagString.indexOf("34") != -1) {
+            tags.push(34);
+        }
+        if(tagString.indexOf("40") != -1) {
+            tags.push(40);
+        }
+        if(tagString.indexOf("41") != -1) {
+            tags.push(41);
+        }
+        if(tagString.indexOf("42") != -1) {
+            tags.push(42);
+        }
         return tags;
     }
 

@@ -52,6 +52,9 @@ void keyPressed() {
   if (key == 'i') {
     ui.toggleInfo();
   }
+  if (key == 'f') {
+    ui.toggleFilters();
+  }
 }
 
 void mouseWheel(MouseEvent event) {

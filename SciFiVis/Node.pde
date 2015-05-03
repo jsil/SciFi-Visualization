@@ -18,6 +18,16 @@ class Node {
   boolean inSolarSystem = true;
   boolean fictionalLocation = false;
   boolean gender;//false - female; true - male
+  
+  boolean dateWork1 = false;//past
+  boolean dateWork2 = false;//contemporary
+  boolean dateWork3 = false;//near future
+  boolean dateWork4 = false;//distant future
+  boolean dateWork5 = false;//n/a
+  
+  boolean dateUser1 = false;//20th century and before
+  boolean dateUser2 = false;//21st century
+  boolean dateUser3 = false;//22nd century and beyond
 
   Node() {
     distance = 450;
@@ -56,6 +66,30 @@ class Node {
       if (tags[i] == 21) {
          gender = true; 
       }
+      if (tags[i] == 30) {
+         dateWork1 = true; 
+      }
+      if (tags[i] == 31) {
+         dateWork2 = true; 
+      }
+      if (tags[i] == 32) {
+         dateWork3 = true; 
+      }
+      if (tags[i] == 33) {
+         dateWork4 = true; 
+      }
+      if (tags[i] == 34) {
+         dateWork5 = true; 
+      }
+      if (tags[i] == 40) {
+         dateUser1 = true; 
+      }
+      if (tags[i] == 41) {
+         dateUser2 = true; 
+      }
+      if (tags[i] == 42) {
+         dateUser3 = true; 
+      }
     }
     if (inSolarSystem) {
       distance = 200 + random(950);
@@ -87,7 +121,7 @@ class Node {
       translate(-40, -60, 40);
       fill(255);
       textFont(font, 32);
-      text(novel + " (" + gender + ")", 0, 0);
+      text(novel, 0, 0);
     } else {
       //if earth,moon,mars is being hovered, draw....
     }
@@ -132,5 +166,38 @@ class Node {
   boolean getGender() {
      return gender; 
   }
+  
+  boolean isPastWork() {
+    return dateWork1;
+  }
+  
+  boolean isContemporaryWork() {
+    return dateWork2;
+  }
+  
+  boolean isNearFutureWork() {
+    return dateWork3;
+  }
+  
+  boolean isDistantFutureWork() {
+    return dateWork4;
+  }
+  
+  boolean isNAWork() {
+    return dateWork5;
+  }
+  
+  boolean isPastUser() {
+    return dateUser1;
+  }
+  
+  boolean isPresentUser() {
+    return dateUser2;
+  }
+  
+  boolean isFutureUser() {
+    return dateUser3;
+  }
+  
 }
 

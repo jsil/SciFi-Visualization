@@ -7,6 +7,19 @@
  06 - MWG (milky way galaxy) *unimplemented*
  
  10 - Fictional Location
+ 
+ M (21)- Male
+ F (20)- Female
+ 
+ 30 - Past
+ 31 - Contemporary
+ 32 - Near Future
+ 33 - Distant Future
+ 34 - N/A
+ 
+ 40 - 20th Century & Earlier
+ 41 - Present (21st Century)
+ 42 - 22nd Century & Beyond
  */
 
 //functions have to be outside of class for javascript to "see" it.
@@ -34,6 +47,11 @@ Node[] getMarsNodes() {
   return nodeHandler.getMarsNodes();
 }
 
+void published1() {
+  println("hellooo");
+  nodeHandler.togglePublished(1);
+}
+
 class NodeHandler {
 
   ArrayList<Node> nodes = new ArrayList<Node>();
@@ -52,6 +70,16 @@ class NodeHandler {
   int fictionCount = 0;
   int femaleCount = 0;
   int maleCount = 0;
+
+  int pastCount = 0;
+  int contemporaryCount = 0;
+  int nearFutureCount = 0;
+  int distantFutureCount = 0;
+  int naCount = 0;
+
+  int userPastCount = 0;
+  int userPresentCount = 0;
+  int userFutureCount = 0;
 
   NodeHandler() {
     published[0] = true;
@@ -109,7 +137,7 @@ class NodeHandler {
       String locationOfAction = row.getString(4);
 
       String tagsString = row.getString(5);
-      int[] tags = new int[7];
+      int[] tags = new int[15];
       if (tagsString.indexOf("01") != -1) {
         tags[0] = 1;
       }
@@ -132,6 +160,30 @@ class NodeHandler {
         tags[6] = 20;
       } else if (tagsString.indexOf("M") != -1) {
         tags[6] = 21;
+      }
+      if (tagsString.indexOf("30") != -1) {
+        tags[7] = 30;
+      }
+      if (tagsString.indexOf("31") != -1) {
+        tags[8] = 31;
+      }
+      if (tagsString.indexOf("32") != -1) {
+        tags[9] = 32;
+      }
+      if (tagsString.indexOf("33") != -1) {
+        tags[10] = 33;
+      }
+      if (tagsString.indexOf("34") != -1) {
+        tags[11] = 34;
+      }
+      if (tagsString.indexOf("40") != -1) {
+        tags[12] = 40;
+      }
+      if (tagsString.indexOf("41") != -1) {
+        tags[13] = 41;
+      }
+      if (tagsString.indexOf("42") != -1) {
+        tags[14] = 42;
       }
 
       nodes.add(new Node(novel, author, published, dateOfAction, dateOfAction, locationOfAction, tags));
@@ -165,7 +217,7 @@ class NodeHandler {
       novelCountFixed = 1;
     }
 
-    String[] stats = new String[9];
+    String[] stats = new String[17];
     stats[0] = "Novels: " + novelCount;
     stats[1] = "Earth: " + earthCount + " (" + nf((((float)earthCount / novelCountFixed) * 100), 1, 2) + "%)";
     stats[2] = "Moon: " + moonCount + " (" + nf((((float)moonCount / novelCountFixed) * 100), 1, 2) + "%)";
@@ -175,6 +227,14 @@ class NodeHandler {
     stats[6] = "Fictional Location: " + fictionCount + " (" + nf((((float)fictionCount / novelCountFixed) * 100), 1, 2) + "%)";
     stats[7] = "Female Author: " + femaleCount + " (" + nf((((float)femaleCount / novelCountFixed) * 100), 1, 2) + "%)";
     stats[8] = "Male Author: " + maleCount + " (" + nf((((float)maleCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[9] = "Past Work: " + pastCount + " (" + nf((((float)pastCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[10] = "Contemporary Work: " + contemporaryCount + " (" + nf((((float)contemporaryCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[11] = "Near Future Work: " + nearFutureCount + " (" + nf((((float)nearFutureCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[12] = "Distant Future Work: " + distantFutureCount + " (" + nf((((float)distantFutureCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[13] = "N/A Work: " + naCount + " (" + nf((((float)naCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[14] = "20th Century & Before: " + userPastCount + " (" + nf((((float)userPastCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[15] = "21st Century: " + userPresentCount + " (" + nf((((float)userPresentCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[16] = "22nd Century & Beyond: " + userFutureCount + " (" + nf((((float)userFutureCount / novelCountFixed) * 100), 1, 2) + "%)";
     return stats;
   }
 
@@ -188,10 +248,17 @@ class NodeHandler {
     fictionCount = 0;
     femaleCount = 0;
     maleCount = 0;
+    pastCount = 0;
+    contemporaryCount = 0;
+    nearFutureCount = 0;
+    distantFutureCount = 0;
+    naCount = 0;
+    userPastCount = 0;
+    userPresentCount = 0;
+    userFutureCount = 0;
+
     for (int i=0; i<nodes.size (); i++) {
-      if ((published[0] && theFilter.filterPublished(nodes.get(i)) == 0) ||
-        (published[1] && theFilter.filterPublished(nodes.get(i)) == 1) ||
-        (published[2] && theFilter.filterPublished(nodes.get(i)) == 2)) {
+      if (checkFilters(nodes.get(i))) {
 
         if (nodes.get(i).isEarthNode()) {
           earthCount++;
@@ -215,6 +282,30 @@ class NodeHandler {
           maleCount++;
         } else {
           femaleCount++;
+        }
+        if (nodes.get(i).isPastWork()) {
+          pastCount++;
+        }
+        if (nodes.get(i).isContemporaryWork()) {
+          contemporaryCount++;
+        }
+        if (nodes.get(i).isNearFutureWork()) {
+          nearFutureCount++;
+        }
+        if (nodes.get(i).isDistantFutureWork()) {
+          distantFutureCount++;
+        }
+        if (nodes.get(i).isNAWork()) {
+          naCount++;
+        }
+        if (nodes.get(i).isPastUser()) {
+          userPastCount++;
+        }
+        if (nodes.get(i).isPresentUser()) {
+          userPresentCount++;
+        }
+        if (nodes.get(i).isFutureUser()) {
+          userFutureCount++;
         }
         novelCount++;
       }
@@ -311,5 +402,19 @@ class NodeHandler {
     dateOfActionUser[selection] = !dateOfActionUser[selection];
     analyzeNodes();
   }
-}
 
+  boolean checkFilters(Node node) {
+    if ((published[0] && theFilter.filterPublished(node) == 0) ||
+      (published[1] && theFilter.filterPublished(node) == 1) ||
+      (published[2] && theFilter.filterPublished(node) == 2)) { 
+      if ((published[0] && theFilter.filterPublished(node) == 0) ||
+        (published[1] && theFilter.filterPublished(node) == 1) ||
+        (published[2] && theFilter.filterPublished(node) == 2)) {
+          return true;
+      }
+      else return false;
+    }
+    else return false;
+  }
+
+}

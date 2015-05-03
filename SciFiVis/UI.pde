@@ -5,7 +5,7 @@ class UI {
   boolean showControls = true;
   boolean showFilters = true;
   boolean showInfo = true;
-  
+
 
   color textColor = color(255);
   color bgColor = color(145);
@@ -17,7 +17,10 @@ class UI {
   void draw() {
     pushMatrix();
     stroke(textColor);
-    fill(bgColor);
+    if (!web)
+      fill(bgColor);
+    else 
+      noFill();
     rect(-1, 0, width+1, 30);
     textFont(font, 20);
     fill(255);
@@ -31,15 +34,26 @@ class UI {
       pushMatrix();
       if (!web) {
         if (!showControls) {
-          translate(width-300, 30, 0);
+          if (!showFilters) {
+            translate(width-300, 30, 0);
+          } else {
+            translate(width-600, 30, 0);
+          }
         } else {
-          translate(width-600, 30, 0);
+          if (!showFilters) {
+            translate(width-600, 30, 0);
+          } else {
+            translate(width-900, 30, 0);
+          }
         }
       } else {
         translate(width-500, 30, 0);
       }
-      fill(bgColor);
-      rect(0, 0, 300, 150);
+      if (!web)
+        fill(bgColor);
+      else 
+        noFill();
+      rect(0, 0, 300, 280);
       fill(textColor);
       textFont(font, 16);
       translate(0, 3, 0);
@@ -57,11 +71,18 @@ class UI {
       text("Controls [-]", 560, 20);
       pushMatrix();
       if (!web) {
-        translate(width-300, 30, 0);
+        if (!showFilters) {
+          translate(width-300, 30, 0);
+        } else {
+          translate(width-600, 30, 0);
+        }
       } else {
         translate(width-500, 30, 0);
       }
-      fill(bgColor);
+      if (!web)
+        fill(bgColor);
+      else 
+        noFill();
       rect(0, 0, 300, 100);
       fill(textColor);
       textFont(font, 16);
@@ -85,7 +106,10 @@ class UI {
       } else {
         translate(width-500, 30, 0);
       }
-      fill(bgColor);
+      if (!web)
+        fill(bgColor);
+      else 
+        noFill();
       rect(0, 0, 300, 100);
       fill(textColor);
       textFont(font, 16);
@@ -120,7 +144,7 @@ class UI {
   void toggleFilters() {
     showFilters = !showFilters;
   }
-  
+
   void toggleInfo() {
     showInfo = !showInfo;
   }

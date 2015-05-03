@@ -3,7 +3,9 @@ class UI {
   PFont font;
   boolean showStats = true;
   boolean showControls = true;
+  boolean showFilters = true;
   boolean showInfo = true;
+  
 
   color textColor = color(255);
   color bgColor = color(145);
@@ -74,13 +76,35 @@ class UI {
       textFont(font, 20);
       text("Controls [+]", 560, 20);
     }
+    if (showFilters) {
+      textFont(font, 20);
+      text("Filters [-]", 710, 20);
+      pushMatrix();
+      if (!web) {
+        translate(width-300, 30, 0);
+      } else {
+        translate(width-500, 30, 0);
+      }
+      fill(bgColor);
+      rect(0, 0, 300, 100);
+      fill(textColor);
+      textFont(font, 16);
+      translate(8, 18, 0);
+      text("Filter by Published Date : 1, 2, 3", 0, 0);
+      text("Filter by Time Relative to Work : 4, 5, 6, 7", 0, 15); //different keys?
+      text("Filter by Time Relative to User : 8, 9, F, B", 0, 30); //different keys?
+      popMatrix();
+    } else {
+      textFont(font, 20);
+      text("Filters [+]", 710, 20);
+    }
     if (showInfo) {
-      text("Info [+]", 710, 20);
+      text("Info [+]", 860, 20);
       pushMatrix();
 
       popMatrix();
     } else {
-      text("Info [-]", 710, 20);
+      text("Info [-]", 860, 20);
     }
     popMatrix();
   }
@@ -93,6 +117,10 @@ class UI {
     showControls = !showControls;
   }
 
+  void toggleFilters() {
+    showFilters = !showFilters;
+  }
+  
   void toggleInfo() {
     showInfo = !showInfo;
   }

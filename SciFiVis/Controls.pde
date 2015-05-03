@@ -16,32 +16,41 @@ void keyPressed() {
   } else if (keyCode == DOWN) {
     panY = panY - 35;
   }
-  if(key == '1') {
-     nodeHandler.togglePublished(0); 
-     earth.countNodes();
-     moon.countNodes();
-     mars.countNodes();
+  if (key == '1') {
+    nodeHandler.toggleFilter(0);
   }
-  if(key == '2') {
-     nodeHandler.togglePublished(1); 
-     earth.countNodes();
-     moon.countNodes();
-     mars.countNodes();
+  if (key == '2') {
+    nodeHandler.toggleFilter(1);
   }
-  if(key == '3') {
-     nodeHandler.togglePublished(2); 
-     earth.countNodes();
-     moon.countNodes();
-     mars.countNodes();
+  if (key == '3') {
+    nodeHandler.toggleFilter(2);
   }
-  if(key == 's') {
-     ui.toggleStats(); 
+  if (key == '4') {
+    nodeHandler.togglePublished(0); 
+    earth.countNodes();
+    moon.countNodes();
+    mars.countNodes();
   }
-  if(key == 'c') {
-     ui.toggleControls(); 
+  if (key == '5') {
+    nodeHandler.togglePublished(1); 
+    earth.countNodes();
+    moon.countNodes();
+    mars.countNodes();
   }
-  if(key == 'i') {
-     ui.toggleInfo(); 
+  if (key == '6') {
+    nodeHandler.togglePublished(2); 
+    earth.countNodes();
+    moon.countNodes();
+    mars.countNodes();
+  }
+  if (key == 's') {
+    ui.toggleStats();
+  }
+  if (key == 'c') {
+    ui.toggleControls();
+  }
+  if (key == 'i') {
+    ui.toggleInfo();
   }
 }
 
@@ -61,11 +70,10 @@ void mousePressed() {
 
 void mouseDragged() {
   panY = panY + (mouseY - dragY);
-  if(mouseY > dragY) {
-     panY = panY + (mouseY - dragY);
-    dragY = mouseY; 
-  }
-  else {
+  if (mouseY > dragY) {
+    panY = panY + (mouseY - dragY);
+    dragY = mouseY;
+  } else {
     panY = panY - (dragY - mouseY);
     dragY = mouseY;
   }

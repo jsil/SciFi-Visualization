@@ -39,6 +39,9 @@ class NodeHandler {
   ArrayList<Node> nodes = new ArrayList<Node>();
   Filter theFilter = new Filter();
   boolean[] published = new boolean[3];//0 - pre-1969; 1 - 1969-1990; 2 - post-1990
+  boolean[] dateOfActionWork = new boolean[4]; //0 - Contemporary, 1 - Near Future, 2 - Distant Future, 3 - Very Distant Future
+  boolean[] dateOfActionUser = new boolean[4]; //0 - 20th Century, 1 - Present, 2 - 22nd Century and Beyond, 3 - Beyond the Next Millenium
+  Boolean[] filter = new boolean[3]; //0 - filter by published, 1 - filter by date for work, 2 - filter by date for user
 
   int novelCount = 0;
   int earthCount = 0;
@@ -51,18 +54,37 @@ class NodeHandler {
   int maleCount = 0;
 
   NodeHandler() {
-    published[0] = true;
-    published[1] = true;
-    published[2] = true;
+    //published[0] = true;
+    //published[1] = true;
+    //published[2] = true;
+    filter[0] = true;
+    filter[1] = false;
+    filter[2] = false;
   }
 
   void drawNodes() {
     for (int i=0; i<nodes.size (); i++) {
       pushMatrix();
-      if ((published[0] && theFilter.filterPublished(nodes.get(i)) == 0) ||
-        (published[1] && theFilter.filterPublished(nodes.get(i)) == 1) ||
-        (published[2] && theFilter.filterPublished(nodes.get(i)) == 2)) {
-        nodes.get(i).draw();
+      if (filter[0] == true) {
+        if ((published[0] && theFilter.filterPublished(nodes.get(i)) == 0) ||
+          (published[1] && theFilter.filterPublished(nodes.get(i)) == 1) ||
+          (published[2] && theFilter.filterPublished(nodes.get(i)) == 2)) {
+          nodes.get(i).draw();
+        }
+      } else if (filter[1] == true) {
+        if ((dateOfActionWork[0] && theFilter.filterTimeForWork(nodes.get(i)) == "C") ||
+          (dateOfActionWork[1] && theFilter.filterTimeForWork(nodes.get(i)) == "NF") ||
+          (dateOfActionWork[2] && theFilter.filterTimeForWork(nodes.get(i)) == "DF")) ||
+          (dateOfActionWork[3] && theFilter.filterTimeForWork(nodes.get(i)) == "VDF")) {
+          nodes.get(i).draw();
+        }
+      } else if (filter[2] == true) {
+        if ((dateOfActionUser[0] && theFilter.filterTimeForUer(nodes.get(i)) == "20C") ||
+          (dateOfActionUSer[1] && theFilter.filterTimeForUser(nodes.get(i)) == "P") ||
+          (dateOfActionUser[2] && theFilter.filterTimeForUser(nodes.get(i)) == "22C")) ||
+          (dateOfActionUser[3] && theFilter.filterTimeForUser(nodes.get(i)) == "BNM")) {
+          nodes.get(i).draw();
+        }
       }
       popMatrix();
     }
@@ -107,9 +129,8 @@ class NodeHandler {
         tags[5] = 10;
       } 
       if (tagsString.indexOf("F") != -1) {
-        tags[6] = 20; 
-      }
-      else if (tagsString.indexOf("M") != -1) {
+        tags[6] = 20;
+      } else if (tagsString.indexOf("M") != -1) {
         tags[6] = 21;
       }
 
@@ -190,11 +211,10 @@ class NodeHandler {
         if (nodes.get(i).isFictionalLocation()) {
           fictionCount++;
         }
-        if(nodes.get(i).getGender()) {
+        if (nodes.get(i).getGender()) {
           maleCount++;
-        }
-        else {
-          femaleCount++; 
+        } else {
+          femaleCount++;
         }
         novelCount++;
       }
@@ -274,8 +294,21 @@ class NodeHandler {
     return marsCount;
   }
 
+  void toggleFilter () {
+    filter[selection] = !filter[selection];
+  }
   void togglePublished(int selection) {
     published[selection] = !published[selection];
+    analyzeNodes();
+  }
+
+  void toggleTimeWork(int selection) {
+    dateOfActionWork[selection] = !dateOfActionWork[selection];
+    analyzeNodes();
+  }
+
+  void toggleTimeUser(int selection) {
+    dateOfActionUser[selection] = !dateOfActionUser[selection];
     analyzeNodes();
   }
 }

@@ -41,7 +41,7 @@ class NodeHandler {
   boolean[] published = new boolean[3];//0 - pre-1969; 1 - 1969-1990; 2 - post-1990
   boolean[] dateOfActionWork = new boolean[4]; //0 - Contemporary, 1 - Near Future, 2 - Distant Future, 3 - Very Distant Future
   boolean[] dateOfActionUser = new boolean[4]; //0 - 20th Century, 1 - Present, 2 - 22nd Century and Beyond, 3 - Beyond the Next Millenium
-  Boolean[] filter = new boolean[3]; //0 - filter by published, 1 - filter by date for work, 2 - filter by date for user
+  boolean[] filter = new boolean[3]; //0 - filter by published, 1 - filter by date for work, 2 - filter by date for user
 
   int novelCount = 0;
   int earthCount = 0;
@@ -54,9 +54,9 @@ class NodeHandler {
   int maleCount = 0;
 
   NodeHandler() {
-    //published[0] = true;
-    //published[1] = true;
-    //published[2] = true;
+    published[0] = true;
+    published[1] = true;
+    published[2] = true;
     filter[0] = true;
     filter[1] = false;
     filter[2] = false;
@@ -74,14 +74,14 @@ class NodeHandler {
       } else if (filter[1] == true) {
         if ((dateOfActionWork[0] && theFilter.filterTimeForWork(nodes.get(i)) == "C") ||
           (dateOfActionWork[1] && theFilter.filterTimeForWork(nodes.get(i)) == "NF") ||
-          (dateOfActionWork[2] && theFilter.filterTimeForWork(nodes.get(i)) == "DF")) ||
+          (dateOfActionWork[2] && theFilter.filterTimeForWork(nodes.get(i)) == "DF") ||
           (dateOfActionWork[3] && theFilter.filterTimeForWork(nodes.get(i)) == "VDF")) {
           nodes.get(i).draw();
         }
       } else if (filter[2] == true) {
-        if ((dateOfActionUser[0] && theFilter.filterTimeForUer(nodes.get(i)) == "20C") ||
-          (dateOfActionUSer[1] && theFilter.filterTimeForUser(nodes.get(i)) == "P") ||
-          (dateOfActionUser[2] && theFilter.filterTimeForUser(nodes.get(i)) == "22C")) ||
+        if ((dateOfActionUser[0] && theFilter.filterTimeForUser(nodes.get(i)) == "20C") ||
+          (dateOfActionUser[1] && theFilter.filterTimeForUser(nodes.get(i)) == "P") ||
+          (dateOfActionUser[2] && theFilter.filterTimeForUser(nodes.get(i)) == "22C") ||
           (dateOfActionUser[3] && theFilter.filterTimeForUser(nodes.get(i)) == "BNM")) {
           nodes.get(i).draw();
         }
@@ -294,7 +294,7 @@ class NodeHandler {
     return marsCount;
   }
 
-  void toggleFilter () {
+  void toggleFilter (int selection) {
     filter[selection] = !filter[selection];
   }
   void togglePublished(int selection) {

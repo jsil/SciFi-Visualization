@@ -57,8 +57,8 @@ class NodeHandler {
   ArrayList<Node> nodes = new ArrayList<Node>();
   Filter theFilter = new Filter();
   boolean[] published = new boolean[3];//0 - pre-1969; 1 - 1969-1990; 2 - post-1990
-  boolean[] dateOfActionWork = new boolean[4]; //0 - Contemporary, 1 - Near Future, 2 - Distant Future, 3 - Very Distant Future
-  boolean[] dateOfActionUser = new boolean[4]; //0 - 20th Century, 1 - Present, 2 - 22nd Century and Beyond, 3 - Beyond the Next Millenium
+  boolean[] dateOfActionWork = new boolean[5]; //0 - Past, 1 - Contemporary, 2 - Near Future, 3 - Distant Future, 4 - N/A
+  boolean[] dateOfActionUser = new boolean[3]; //0 - 20th Century & earlier, 1 - Present, 2 - 22nd Century and Beyond
   boolean[] filter = new boolean[3]; //0 - filter by published, 1 - filter by date for work, 2 - filter by date for user
 
   int novelCount = 0;
@@ -100,17 +100,17 @@ class NodeHandler {
           nodes.get(i).draw();
         }
       } else if (filter[1] == true) {
-        if ((dateOfActionWork[0] && theFilter.filterTimeForWork(nodes.get(i)) == "C") ||
-          (dateOfActionWork[1] && theFilter.filterTimeForWork(nodes.get(i)) == "NF") ||
-          (dateOfActionWork[2] && theFilter.filterTimeForWork(nodes.get(i)) == "DF") ||
-          (dateOfActionWork[3] && theFilter.filterTimeForWork(nodes.get(i)) == "VDF")) {
+        if ((dateOfActionWork[0] && theFilter.filterTimeForWork(nodes.get(i)) == 30) ||
+          (dateOfActionWork[1] && theFilter.filterTimeForWork(nodes.get(i)) == 31) ||
+          (dateOfActionWork[2] && theFilter.filterTimeForWork(nodes.get(i)) == 32) ||
+          (dateOfActionWork[3] && theFilter.filterTimeForWork(nodes.get(i)) == 33))|| 
+          (dateOfActionWork[4] && theFilter.filterTimeForWork(nodes.get(i)) == 34)) {
           nodes.get(i).draw();
         }
       } else if (filter[2] == true) {
-        if ((dateOfActionUser[0] && theFilter.filterTimeForUser(nodes.get(i)) == "20C") ||
-          (dateOfActionUser[1] && theFilter.filterTimeForUser(nodes.get(i)) == "P") ||
-          (dateOfActionUser[2] && theFilter.filterTimeForUser(nodes.get(i)) == "22C") ||
-          (dateOfActionUser[3] && theFilter.filterTimeForUser(nodes.get(i)) == "BNM")) {
+        if ((dateOfActionUser[0] && theFilter.filterTimeForUser(nodes.get(i)) == 40) ||
+          (dateOfActionUser[1] && theFilter.filterTimeForUser(nodes.get(i)) == 41) ||
+          (dateOfActionUser[2] && theFilter.filterTimeForUser(nodes.get(i)) == 42){
           nodes.get(i).draw();
         }
       }

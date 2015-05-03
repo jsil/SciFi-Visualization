@@ -89,9 +89,8 @@ class UI {
       translate(8, 18, 0);
       text("Arrow Keys (Mouse Drag) : Pan", 0, 0);
       text("Mouse Wheel : Zoom", 0, 15);
-      text("Filter by Published Date : 1, 2, 3", 0, 30);
-      text("Show/Hide Statistics : S", 0, 45);
-      text("Show/Hide Controls : C", 0, 60);
+      text("Show/Hide Statistics : S", 0, 30);
+      text("Show/Hide Controls : C", 0, 45);
       popMatrix();
     } else {
       textFont(font, 20);
@@ -114,9 +113,9 @@ class UI {
       fill(textColor);
       textFont(font, 16);
       translate(8, 18, 0);
-      text("Filter by Published Date : 1, 2, 3", 0, 0);
-      text("Filter by Time Relative to Work : 4, 5, 6, 7", 0, 15); //different keys?
-      text("Filter by Time Relative to User : 8, 9, F, B", 0, 30); //different keys?
+      text("Filter by Published Date : 4, 5, 6", 0, 0);
+      text("Filter by Time Relative to Work : P, T, F, D, A", 0, 15); //past, contemporary, near future, distant future, not applicable
+      text("Filter by Time Relative to User : E, N, L", 0, 30); //early, now, later
       popMatrix();
     } else {
       textFont(font, 20);

@@ -13,28 +13,28 @@ class Filter {
     }
   }
   //Time categories relevant to the work itself
-  String filterTimeForWork(Node node) {
-    if (node.dateOfActionWork == "Contemporary") {
-      return "C";
-    } else if (node.dateOfActionWork == "Near Future") {
-      return "NF";
-    } else if (node.dateOfActionWork == "Distant Future") {
-      return "DF";
-    } else {
-      return "VDF";
+  int filterTimeForWork(Node node) {
+    if (node.tags[7] == 30) {
+      return 30;
+    } else if (node.tags[8] == 31) {
+      return 31;
+    } else if (node.tags[9] == 32) {
+      return 32;
+    }else if (node.tags[10] == 33) {
+      return 33; 
+    }else if (node.tags[11] == 34) {
+      return 34;
     }
   }
 
   //Time categories relevant to the user
-  String filterTimeForUser(Node node) {
-    if (node.dateOfActionUser == "20th Century") {
-      return "20C";
-    } else if (node.dateOfActionUser == "Present") {
-      return "P";
-    } else if (node.dateOfActionUser == "22nd Century and Beyond") {
-      return "22C";
-    } else {
-      return "BNM"; 
+  int filterTimeForUser(Node node) {
+    if (node.tags[12] == 40) {
+      return 40;
+    } else if (node.tags[13] == 41) {
+      return 41;
+    } else if (node.tags[14] == 42) {
+      return 42;
     }
   }
 }

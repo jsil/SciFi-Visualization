@@ -69,7 +69,7 @@ class UI {
       textFont(font, 20);
       text("Filters [+]", 310, 20);
     }
-    if (showFilters) {
+    if (showControls) {
       textFont(font, 20);
       text("Controls [-]", 710, 20);
       pushMatrix();
@@ -87,7 +87,7 @@ class UI {
         fill(bgColor);
       else 
         noFill();
-      rect(700, 0, 1000, 100);
+      rect(700, 0, 700, 100);
       fill(textColor);
       textFont(font, 16);
       translate(0, 18, 0);

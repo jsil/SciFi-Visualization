@@ -58,7 +58,7 @@ void drawGalaxy() {
     image(mwgImg, 0, 0, 2400, 2400);
     noTint();
   } else {
-    image(mwgImg, -1200,-1200, 1200, 1200);
+    
   }
 
 

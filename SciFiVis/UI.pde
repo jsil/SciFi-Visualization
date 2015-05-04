@@ -8,7 +8,7 @@ class UI {
 
 
   color textColor = color(255);
-  color bgColor = color(145);
+  color bgColor = color(90, 90, 90);
 
   UI() {
     font = createFont("Facet", 24);
@@ -24,14 +24,14 @@ class UI {
     rect(-1, 0, width+1, 30);
     textFont(font, 20);
     fill(255);
-    text("Visualizing our Imaginative Universe", 10, 20);
-    line(400, 0, 400, 30);
-    line(550, 0, 550, 30);
+    //text("Visualizing our Imaginative Universe", 10, 20);
+    line(300, 0, 300, 30);
     line(700, 0, 700, 30);
-    line(850, 0, 850, 30);
+    line(1000, 0, 1000, 30);
+    //line(850, 0, 850, 30);
     if (showStats) {
       textFont(font, 20);
-      text("Statistics [-]", 410, 20);
+      text("Statistics [-]", 10, 20);
       pushMatrix();
       translate(0, 30, 0);
 
@@ -50,70 +50,72 @@ class UI {
       popMatrix();
     } else {
       textFont(font, 20);
-      text("Statistics [+]", 410, 20);
-    }
-    if (showControls) {
-      textFont(font, 20);
-      text("Controls [-]", 560, 20);
-      pushMatrix();
-      translate(0, 30, 0);
-      if (!showStats) {
-        translate(-300, 0, 0);
-      } else {
-        translate(0, 0, 0);
-      }
-
-      if (!web)
-        fill(bgColor);
-      else 
-        noFill();
-      rect(300, 0, 300, 100);
-      fill(textColor);
-      textFont(font, 16);
-      translate(0, 18, 0);
-      text("Arrow Keys (Mouse Drag) : Pan", 308, 0);
-      text("Mouse Wheel : Zoom", 308, 15);
-      text("Show/Hide Statistics : S", 308, 30);
-      text("Show/Hide Controls : C", 308, 45);
-      text("Show/Hide Filters : F", 308, 60);
-      popMatrix();
-    } else {
-      textFont(font, 20);
-      text("Controls [+]", 560, 20);
+      text("Statistics [+]", 10, 20);
     }
     if (showFilters) {
       textFont(font, 20);
-      text("Filters [-]", 710, 20);
+      text("Filters [-]", 310, 20);
       pushMatrix();
-      if (!showStats) {
-        if (!showControls) {
-          translate(-600, 0, 0);
-        } else {
-          translate(-300, 0, 0);
-        }
+      /*if (!showStats) {
+        translate(-300, 0, 0);
       } else {
         translate(0, 0, 0);
-      }
+      }*/
+
+     
       drawFilterBox();
       popMatrix();
     } else {
       textFont(font, 20);
-      text("Filters [+]", 710, 20);
+      text("Filters [+]", 310, 20);
+    }
+    if (showFilters) {
+      textFont(font, 20);
+      text("Controls [-]", 710, 20);
+      pushMatrix();
+      translate(0, 30, 0);
+      /*if (!showStats) {
+        if (!showFilters) {
+          translate(-700, 0, 0);
+        } else {
+          translate(-400, 0, 0);
+        }
+      } else {
+        translate(0, 0, 0);
+      }*/
+       if (!web)
+        fill(bgColor);
+      else 
+        noFill();
+      rect(700, 0, 700, 100);
+      fill(textColor);
+      textFont(font, 16);
+      translate(0, 18, 0);
+      text("Arrow Keys (Mouse Drag) : Pan", 708, 0);
+      text("Mouse Wheel : Zoom", 708, 15);
+      text("Show/Hide Statistics : S", 708, 30);
+      text("Show/Hide Controls : C", 708, 45);
+      text("Show/Hide Filters : F", 708, 60);
+      popMatrix();
+    } else {
+      textFont(font, 20);
+      text("Controls [-]", 710, 20);
     }
     if (showInfo) {
-      text("Info [+]", 860, 20);
+      text("Info [+]", 1010, 20);
       pushMatrix();
 
       popMatrix();
     } else {
-      text("Info [-]", 860, 20);
+      text("Info [-]", 1010, 20);
     }
     popMatrix();
+    
   }
 
   void drawFilterBox() {
     pushMatrix(); 
-    translate(600, 30, 0);
+    translate(300, 30, 0);
     fill(bgColor);
     rect(0, 0, 400, 150);
     fill(textColor);

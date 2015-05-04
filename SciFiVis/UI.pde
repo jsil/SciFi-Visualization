@@ -16,9 +16,8 @@ class UI {
 
   void draw() {
     pushMatrix();
-    drawFilterBox();
     stroke(textColor);
-    if (!web)
+    if (!web) 
       fill(bgColor);
     else 
       noFill();
@@ -29,27 +28,13 @@ class UI {
     line(400, 0, 400, 30);
     line(550, 0, 550, 30);
     line(700, 0, 700, 30);
+    line(850, 0, 850, 30);
     if (showStats) {
       textFont(font, 20);
       text("Statistics [-]", 410, 20);
       pushMatrix();
-      if (!web) {
-        if (!showControls) {
-          if (!showFilters) {
-            translate(width-300, 30, 0);
-          } else {
-            translate(width-600, 30, 0);
-          }
-        } else {
-          if (!showFilters) {
-            translate(width-600, 30, 0);
-          } else {
-            translate(width-900, 30, 0);
-          }
-        }
-      } else {
-        translate(width-500, 30, 0);
-      }
+      translate(0, 30, 0);
+
       if (!web)
         fill(bgColor);
       else 
@@ -71,27 +56,26 @@ class UI {
       textFont(font, 20);
       text("Controls [-]", 560, 20);
       pushMatrix();
-      if (!web) {
-        if (!showFilters) {
-          translate(width-300, 30, 0);
-        } else {
-          translate(width-600, 30, 0);
-        }
+      translate(0, 30, 0);
+      if (!showStats) {
+        translate(-300, 0, 0);
       } else {
-        translate(width-500, 30, 0);
+        translate(0, 0, 0);
       }
+
       if (!web)
         fill(bgColor);
       else 
         noFill();
-      rect(0, 0, 300, 100);
+      rect(300, 0, 300, 100);
       fill(textColor);
       textFont(font, 16);
-      translate(8, 18, 0);
-      text("Arrow Keys (Mouse Drag) : Pan", 0, 0);
-      text("Mouse Wheel : Zoom", 0, 15);
-      text("Show/Hide Statistics : S", 0, 30);
-      text("Show/Hide Controls : C", 0, 45);
+      translate(0, 18, 0);
+      text("Arrow Keys (Mouse Drag) : Pan", 308, 0);
+      text("Mouse Wheel : Zoom", 308, 15);
+      text("Show/Hide Statistics : S", 308, 30);
+      text("Show/Hide Controls : C", 308, 45);
+      text("Show/Hide Filters : F", 308, 60);
       popMatrix();
     } else {
       textFont(font, 20);
@@ -101,22 +85,16 @@ class UI {
       textFont(font, 20);
       text("Filters [-]", 710, 20);
       pushMatrix();
-      if (!web) {
-        translate(width-300, 30, 0);
+      if (!showStats) {
+        if (!showControls) {
+          translate(-600, 0, 0);
+        } else {
+          translate(-300, 0, 0);
+        }
       } else {
-        translate(width-500, 30, 0);
+        translate(0, 0, 0);
       }
-      if (!web)
-        fill(bgColor);
-      else 
-        noFill();
-      rect(0, 0, 300, 100);
-      fill(textColor);
-      textFont(font, 16);
-      translate(8, 18, 0);
-      text("Filter by Published Date : 4, 5, 6", 0, 0);
-      text("Filter by Time Relative to Work : P, T, F, D, A", 0, 15); //past, contemporary, near future, distant future, not applicable
-      text("Filter by Time Relative to User : E, N, L", 0, 30); //early, now, later
+      drawFilterBox();
       popMatrix();
     } else {
       textFont(font, 20);
@@ -135,7 +113,7 @@ class UI {
 
   void drawFilterBox() {
     pushMatrix(); 
-    translate(10, 50, 0);
+    translate(600, 30, 0);
     fill(bgColor);
     rect(0, 0, 400, 150);
     fill(textColor);

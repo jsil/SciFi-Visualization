@@ -1,3 +1,9 @@
+function getDimensions() {
+
+    var dimensions = [window.innerWidth, window.innerHeight];
+    return dimensions;
+}
+
 function hideBar() {
     $("#searchBg").css("display", "none");
     $("#search").css("display", "none");

@@ -4,6 +4,7 @@ interface JavaScript {
   void hideBar();
   void showBar();
   void refreshResults();
+  float[] getDimensions();
 }
 
 void bindJavascript(JavaScript js) {
@@ -17,8 +18,9 @@ JavaScript javascript;void loadWeb(boolean isWeb) {
     marsImg=loadImage("img/marsmap2k.jpg");
     mwgImg=loadImage("img/mwg.png");
     bg=loadImage("img/starscape.jpg");
-    screenWidth = 1280;
-    screenHeight = 800;
+    float[] dimensions = getDimensions();
+    screenWidth = dimensions[0];
+    screenHeight = dimensions[1];
     //bg.resize(800,600);
   } else {
     frame.setTitle("Visualizing Our Imaginative Universe - Haley Hiers, Kali Rupert, & Jordan Silver");

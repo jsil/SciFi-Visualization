@@ -3,7 +3,7 @@ float dragY;
 
 float panX = 0;
 float panY = 0;
-float zoom = 0;
+float zoom = -800;
 
 void keyPressed() {
   if (ui.getShowInfo()) {
@@ -100,16 +100,39 @@ void keyPressed() {
       moon.countNodes();
       mars.countNodes();
     }
+    if (key == ' ') {
+      ui.toggleSolar();
+      if (ui.isSolar()) {
+        zoom = -800;
+      } else {
+        zoom = -100;
+      }
+    }
   }
 }
 
 void mouseWheel(MouseEvent event) {
   float e = event.getCount();
   zoom += 3.5*e;
-  if (zoom > 1500)
-    zoom = 1500;
-  else if (zoom < -2500)
-    zoom = -2500;
+  if (zoom > 1200) {
+    if (!ui.isSolar()) {
+      zoom = -800;
+      ui.toggleSolar();
+    }
+  } else if (zoom < -1300) {
+    if (ui.isSolar()) {
+      zoom = -100;
+      ui.toggleSolar();
+    }
+  }
+  if (ui.isSolar()) {
+    if (zoom > 666)
+      zoom = 666;
+  }
+  if(!ui.isSolar()) {
+    if(zoom < -1000)
+        zoom = -1000;
+  }
 }
 
 void mousePressed() {

@@ -6,6 +6,8 @@ class UI {
   boolean showFilters = true;
   boolean showInfo = true;
 
+  boolean solarMode = true;
+
 
   color textColor = color(255);
   color bgColor = color(90, 90, 90);
@@ -130,6 +132,8 @@ class UI {
       text("Visualizing Our Imaginative Universe", (width/2), 90);
       textFont(font, 20);
       text("Created by Haley Hiers, Kali Ruppert, & Jordan Silver", width/2, 180);
+      
+      text("To do: add description", width/2, 240);
 
       text("Press any key to close", width/2, height-180);
 
@@ -309,6 +313,14 @@ class UI {
 
   boolean getShowInfo() {
     return showInfo;
+  }
+
+  boolean isSolar() {
+    return solarMode;
+  }
+  
+  void toggleSolar() {
+     solarMode = !solarMode; 
   }
 }
 

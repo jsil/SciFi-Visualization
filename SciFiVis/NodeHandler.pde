@@ -4,7 +4,7 @@
  03 - Moon
  04 - solar system
  05 - OSS (outside solar system)
- 06 - MWG (milky way galaxy) *unimplemented*
+ 06 - OMWG (outside milky way galaxy)
  
  10 - Fictional Location
  
@@ -65,8 +65,11 @@ class NodeHandler {
   int earthCount = 0;
   int moonCount = 0;
   int marsCount = 0;
+
   int insideSSCount = 0;
   int outsideSSCount = 0;
+  int outsideMWGCount = 0;
+
   int fictionCount = 0;
   int femaleCount = 0;
   int maleCount = 0;
@@ -85,9 +88,7 @@ class NodeHandler {
     published[0] = true;
     published[1] = true;
     published[2] = true;
-    //    filter[0] = false;
-    //    filter[1] = false;
-    //    filter[2] = false;
+
     dateOfActionWork[0] = true;
     dateOfActionWork[1] = true;
     dateOfActionWork[2] = true;
@@ -102,30 +103,14 @@ class NodeHandler {
   void drawNodes() {
     for (int i=0; i<nodes.size (); i++) {
       pushMatrix();
-      //      if (filter[0] == true) {
-      //        if ((published[0] && theFilter.filterPublished(nodes.get(i)) == 0) ||
-      //          (published[1] && theFilter.filterPublished(nodes.get(i)) == 1) ||
-      //          (published[2] && theFilter.filterPublished(nodes.get(i)) == 2)) {
-      //          nodes.get(i).draw();
-      //        }
+
       if (checkFilters(nodes.get(i))) {
-        nodes.get(i).draw();
+        if (ui.isSolar() && nodes.get(i).isInsideSS()) {
+          nodes.get(i).draw();
+        } else if (!ui.isSolar() && nodes.get(i).isOutsideSS()) {
+          nodes.get(i).draw();
+        }
       }
-      //      } else if (filter[1] == true) {
-      //        if ((dateOfActionWork[0] && theFilter.filterTimeForWork(nodes.get(i)) == 30) ||
-      //          (dateOfActionWork[1] && theFilter.filterTimeForWork(nodes.get(i)) == 31) ||
-      //          (dateOfActionWork[2] && theFilter.filterTimeForWork(nodes.get(i)) == 32) ||
-      //          (dateOfActionWork[3] && theFilter.filterTimeForWork(nodes.get(i)) == 33)|| 
-      //          (dateOfActionWork[4] && theFilter.filterTimeForWork(nodes.get(i)) == 34)) {
-      //          nodes.get(i).draw();
-      //        }
-      //      } else if (filter[2] == true) {
-      //        if ((dateOfActionUser[0] && theFilter.filterTimeForUser(nodes.get(i)) == 40) ||
-      //          (dateOfActionUser[1] && theFilter.filterTimeForUser(nodes.get(i)) == 41) ||
-      //          (dateOfActionUser[2] && theFilter.filterTimeForUser(nodes.get(i)) == 42)){
-      //          nodes.get(i).draw();
-      //        }
-      //    }
       popMatrix();
     }
   }
@@ -149,7 +134,7 @@ class NodeHandler {
       String locationOfAction = row.getString(4);
 
       String tagsString = row.getString(5);
-      int[] tags = new int[15];
+      int[] tags = new int[16];
       if (tagsString.indexOf("01") != -1) {
         tags[0] = 1;
       }
@@ -197,6 +182,9 @@ class NodeHandler {
       if (tagsString.indexOf("42") != -1) {
         tags[14] = 42;
       }
+      if (tagsString.indexOf("06") != -1) {
+        tags[15] = 6;
+      } 
 
       nodes.add(new Node(novel, author, published, dateOfAction, dateOfAction, locationOfAction, tags));
       if (DEBUG) {
@@ -257,6 +245,7 @@ class NodeHandler {
     marsCount = 0;
     insideSSCount = 0;
     outsideSSCount = 0;
+    outsideMWGCount = 0;
     fictionCount = 0;
     femaleCount = 0;
     maleCount = 0;
@@ -287,6 +276,9 @@ class NodeHandler {
         if (nodes.get(i).isOutsideSS()) {
           outsideSSCount++;
         }  
+        if (nodes.get(i).isOutsideMWG()) {
+          outsideMWGCount++;
+        }
         if (nodes.get(i).isFictionalLocation()) {
           fictionCount++;
         }
@@ -418,16 +410,16 @@ class NodeHandler {
   boolean getPublished(int selection) {
     return published[selection];
   }
-  
+
   boolean getDateOfActionWork(int selection) {
     return dateOfActionWork[selection];
   }
-  
+
   boolean getDateOfActionUser(int selection) {
     return dateOfActionUser[selection];
   }
-  
-  
+
+
   boolean checkFilters(Node node) {
     if ((published[0] && theFilter.filterPublished(node) == 0) ||
       (published[1] && theFilter.filterPublished(node) == 1) ||
@@ -445,6 +437,37 @@ class NodeHandler {
         } else return false;
       } else return false;
     } else return false;
+  }
+
+  boolean isNear(Node node) {
+    boolean check = false;
+    if (node.isInsideSS()) {
+      for (int i=0; i<nodes.size (); i++) {
+        if (nodes.get(i).isInsideSS()) {
+          if (node.intersect(nodes.get(i))) {
+//            println("too close: " + node.angle + " : " + nodes.get(i).angle + ", " + node.distance + " : " + nodes.get(i).distance);
+            check = true;
+          }
+        }
+      }
+    } else if (node.isOutsideSS()) {
+      for (int i=0; i<nodes.size (); i++) {
+        if (nodes.get(i).isOutsideSS()) {
+          if (node.intersect(nodes.get(i))) {
+            check = true;
+          }
+        }
+      }
+    } else if (node.isOutsideMWG()) {
+      for (int i=0; i<nodes.size (); i++) {
+        if (nodes.get(i).isOutsideMWG()) {
+          if (node.intersect(nodes.get(i))) {
+            check = true;
+          }
+        }
+      }
+    }
+    return check;
   }
 }
 

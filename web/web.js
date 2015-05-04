@@ -19,7 +19,7 @@ $(document).ready(function() {
 
   	jQuery.get('pre1969.csv', function(data) {
     var array = CSVToArray(data);
-    for (var i = 0; i < array.length; i++) {
+    for (var i = 1; i < array.length; i++) {
         var tags = getTags(array[i][5]);
     	pjs.addNode(array[i][0],array[i][1],array[i][2],array[i][3],array[i][4],tags);
     };
@@ -28,7 +28,7 @@ $(document).ready(function() {
 
     jQuery.get('post1969.csv', function(data) {
     var array2 = CSVToArray(data);
-    for (var i = 0; i < array2.length; i++) {
+    for (var i = 1; i < array2.length; i++) {
         pjs.addNode(array2[i][0],array2[i][1],array2[i][2],array2[i][3],array2[i][4],getTags(array2[i][5]));
     };
     pjs.analyzeNodes();
@@ -36,7 +36,7 @@ $(document).ready(function() {
 
     jQuery.get('post1990.csv', function(data) {
     var array3 = CSVToArray(data);
-    for (var i = 0; i < array3.length; i++) {
+    for (var i = 1; i < array3.length; i++) {
         pjs.addNode(array3[i][0],array3[i][1],array3[i][2],array3[i][3],array3[i][4],getTags(array3[i][5]));
     };
     pjs.analyzeNodes();
@@ -59,7 +59,6 @@ $(document).ready(function() {
             for (var i = 0; i < nodes.length; i++) {
                 var tempElement = document.createElement('div');
                 tempElement.className = "searchResult";
-                // tempElement.innerHTML = i+1 + ") " + nodes[i];
                 console.log(nodes[i]);
                 tempElement.innerHTML = "<div class='result'>" + nodes[i].getInfo() + "</div>";
                 searchSpace.appendChild(tempElement);
@@ -78,27 +77,42 @@ $(document).ready(function() {
     $("#earthLink").click(function() {
         pjs.analyzeNodes();
         var nodes = pjs.getEarthNodes();
-        $("#earthSpace").empty();
+        var earthSpace = document.getElementById("earthSpace");
+        earthSpace.innerHTML = "";
         for (var i = 0; i < nodes.length; i++) {
-                $("#earthSpace").append(i+1 + ") " + nodes[i].novel + "<br>");
+            var tempElement = document.createElement('div');
+            tempElement.className = "searchResult";
+            console.log(nodes[i]);
+            tempElement.innerHTML = "<div class='result'>" + nodes[i].getInfo() + "</div>";
+            earthSpace.appendChild(tempElement);
         };
     });
 
     $("#moonLink").click(function() {
         pjs.analyzeNodes();
         var nodes = pjs.getMoonNodes();
-        $("#moonSpace").empty();
+        var moonSpace = document.getElementById("moonSpace");
+        moonSpace.innerHTML = "";
         for (var i = 0; i < nodes.length; i++) {
-                $("#moonSpace").append(i+1 + ") " + nodes[i].novel + "<br>");
+            var tempElement = document.createElement('div');
+            tempElement.className = "searchResult";
+            console.log(nodes[i]);
+            tempElement.innerHTML = "<div class='result'>" + nodes[i].getInfo() + "</div>";
+            moonSpace.appendChild(tempElement);
         };
     });
 
     $("#marsButton").click(function() {
         pjs.analyzeNodes();
         var nodes = pjs.getMarsNodes();
-        $("#marsSpace").empty();
+        var marsSpace = document.getElementById("marsSpace");
+        marsSpace.innerHTML = "";
         for (var i = 0; i < nodes.length; i++) {
-                $("#marsSpace").append(i+1 + ") " + nodes[i].novel + "<br>");
+            var tempElement = document.createElement('div');
+            tempElement.className = "searchResult";
+            console.log(nodes[i]);
+            tempElement.innerHTML = "<div class='result'>" + nodes[i].getInfo() + "</div>";
+            marsSpace.appendChild(tempElement);
         };
     });
 

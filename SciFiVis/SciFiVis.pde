@@ -7,18 +7,13 @@
 /* @pjs font="Facet.ttf"; */
 
 /* Pre-loading images for Processing.js
- @pjs preload="img/world32k.jpg,img/moon.jpg,img/marsmap2k.jpg,img/starscape.jpg";
+ @pjs preload="img/world32k.jpg,img/moon.jpg,img/marsmap2k.jpg,img/starscape.jpg,img/mwg.png";
  */
 
 
 /*TODO:
- add "outside solar system" view
- add sun?
- space nodes more appropriately
- novels with multiple locations (The Forever War)
+ add description
  smooth keyboard controls
- incorperate dateOfAction work/user into node creation
- improve menu interaction(stacking to the side)
  web-
  implement zoom
  implement background image
@@ -26,11 +21,7 @@
  */
 
 /*BUGS:
- random flickering
  web-
- novel count on web is 3 higher than actual (you can see nodes named "Novel")
- earth texture wrap is buggy
- UI rectangles being drawn over text
  */
 
 UI ui;
@@ -43,6 +34,7 @@ PImage bg;
 PImage earthImg;
 PImage moonImg;
 PImage marsImg;
+PImage mwgImg;
 
 int screenWidth;
 int screenHeight;

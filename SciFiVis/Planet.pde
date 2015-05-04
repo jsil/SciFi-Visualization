@@ -163,7 +163,7 @@ class Mars extends OrbitingPlanet {
     rotationSpeed = 0.4;
     orbitAngle = 85;
     orbitHeight = 6000;
-    orbitSpeed = .03;
+    orbitSpeed = .003;
   }
 
   Mars(PImage image) {

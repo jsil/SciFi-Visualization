@@ -14,6 +14,7 @@ void loadWeb(boolean isWeb) {
     earthImg=loadImage("img/world32k.jpg");
     moonImg=loadImage("img/moon.jpg");
     marsImg=loadImage("img/marsmap2k.jpg");
+    mwgImg=loadImage("img/mwg.png");
     bg=loadImage("img/starscape.jpg");
     screenWidth = 1280;
     screenHeight = 800;
@@ -23,6 +24,7 @@ void loadWeb(boolean isWeb) {
     earthImg=loadImage("world32k.jpg");
     moonImg=loadImage("moon.jpg");
     marsImg=loadImage("marsmap2k.jpg");
+    mwgImg=loadImage("mwg.png");
     bg=loadImage("starscape.jpg");
     screenWidth = displayWidth;
     screenHeight = displayHeight;

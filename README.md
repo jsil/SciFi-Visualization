@@ -9,6 +9,8 @@ Kali Ruppert
 
 Jordan Silver
 
+View Online: [http://jsil.github.io/SciFi-Visualization/](http://jsil.github.io/SciFi-Visualization/)
+
 # Downloads:
 
 [Windows](https://github.com/jsil/SciFi-Visualization/blob/master/releases/SciFiVis.windows32.zip?raw=true) 

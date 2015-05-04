@@ -199,5 +199,45 @@ class Node {
     return dateUser3;
   }
   
+  String getInfo() {
+     String returnString = novel + " (" + published + ")<br>  " + author;
+     boolean listStarted = false;
+     if(gender) {
+        returnString = returnString + " (M)"; 
+     }
+     else {
+       returnString = returnString + " (F)"; 
+     }
+     returnString = returnString + "<br>  Date Of Action: " + dateOfActionWork + "<br>  Location: " + locationOfAction + "<br> Tags: "; 
+     if(isFictionalLocation()) {
+       if(listStarted) {
+         returnString = returnString + ", ";
+       }
+       else {
+         listStarted = true; 
+       }
+       returnString = returnString + "Fictional Location";
+     }
+     if(isNAWork()) {
+       if(listStarted) {
+         returnString = returnString + ", ";
+       }
+       else {
+         listStarted = true; 
+       }
+       returnString = returnString + "Outside of Time";
+     }
+     if(isContemporaryWork()) {
+       if(listStarted) {
+         returnString = returnString + ", ";
+       }
+       else {
+         listStarted = true; 
+       }
+       returnString = returnString + "Contemporary";
+     }
+     return returnString;  
+}
+  
 }
 

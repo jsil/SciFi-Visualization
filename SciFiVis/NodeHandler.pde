@@ -27,7 +27,7 @@ void addNode(String novel, String author, int published, String dateOfAction, St
   nodeHandler.addNode(novel, author, published, dateOfAction, locationOfAction, tags);
 }
 
-String[] searchNodes(String search) {
+Node[] searchNodes(String search) {
   return nodeHandler.searchNodes(search);
 }
 
@@ -208,19 +208,19 @@ class NodeHandler {
     analyzeNodes();
   }
 
-  String[] searchNodes(String search) {
-    ArrayList<String> returnedStrings = new ArrayList<String>();
+  Node[] searchNodes(String search) {
+    ArrayList<Node> returnedNodes = new ArrayList<Node>();
     for (int i=0; i<nodes.size (); i++) {
       if (nodes.get(i).contains(search)) {
-        returnedStrings.add(nodes.get(i).getNovel());
+        returnedNodes.add(nodes.get(i));
       }
     }
-    String[] convertedStrings = new String[returnedStrings.size()];
-    for (int i=0; i<returnedStrings.size (); i++) {
-      convertedStrings[i] = returnedStrings.get(i);
+    Node[] convertedNodes = new Node[returnedNodes.size()];
+    for (int i=0; i<returnedNodes.size (); i++) {
+      convertedNodes[i] = returnedNodes.get(i);
     }
 
-    return convertedStrings;
+    return convertedNodes;
   }
 
   String[] getStatistics() {

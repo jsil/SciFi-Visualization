@@ -15,6 +15,12 @@ class UI {
   }
 
   void draw() {
+    float webSpace;
+    if (!web) {
+      webSpace = 20;
+    } else {
+      webSpace = 12;
+    }
     pushMatrix();
     stroke(textColor);
     if (!web) 
@@ -31,7 +37,7 @@ class UI {
     //line(850, 0, 850, 30);
     if (showStats) {
       textFont(font, 20);
-      text("Statistics [-]", 10, 20);
+      text("Statistics [-]", 10, webSpace);
       pushMatrix();
       translate(0, 30, 0);
 
@@ -50,11 +56,11 @@ class UI {
       popMatrix();
     } else {
       textFont(font, 20);
-      text("Statistics [+]", 10, 20);
+      text("Statistics [+]", 10, webSpace);
     }
     if (showFilters) {
       textFont(font, 20);
-      text("Filters [-]", 310, 20);
+      text("Filters [-]", 310, webSpace);
       pushMatrix();
       /*if (!showStats) {
        translate(-300, 0, 0);
@@ -67,11 +73,11 @@ class UI {
       popMatrix();
     } else {
       textFont(font, 20);
-      text("Filters [+]", 310, 20);
+      text("Filters [+]", 310, webSpace);
     }
     if (showControls) {
       textFont(font, 20);
-      text("Controls [-]", 710, 20);
+      text("Controls [-]", 710, webSpace);
       pushMatrix();
       translate(0, 30, 0);
       /*if (!showStats) {
@@ -87,7 +93,8 @@ class UI {
         fill(bgColor);
       else 
         noFill();
-      rect(700, 0, 700, 100);
+      stroke(textColor);
+      rect(700, 0, 300, 100);
       fill(textColor);
       textFont(font, 16);
       translate(0, 18, 0);
@@ -99,15 +106,39 @@ class UI {
       popMatrix();
     } else {
       textFont(font, 20);
-      text("Controls [-]", 710, 20);
+      text("Controls [+]", 710, webSpace);
     }
     if (showInfo) {
-      text("Info [+]", 1010, 20);
+      textFont(font, 20);
+      text("Info [-]", 1010, webSpace);
       pushMatrix();
+      translate(0, 0, 1);
+      noStroke();
+      if (!web) {
+        fill(bgColor);
+      } else {
+        noFill();
+      }
+      rect(0, 31, width, height-30);
+      tint(255);
+
+      fill(textColor);
+      translate(0, 31, 0);
+
+      textAlign(CENTER);
+      textFont(font, 36);
+      text("Visualizing Our Imaginative Universe", (width/2), 90);
+      textFont(font, 20);
+      text("Created by Haley Hiers, Kali Ruppert, & Jordan Silver", width/2, 180);
+
+      text("Press any key to close", width/2, height-180);
+
+      textAlign(LEFT);
 
       popMatrix();
     } else {
-      text("Info [-]", 1010, 20);
+      textFont(font, 20);
+      text("Info [+]", 1010, webSpace);
     }
     popMatrix();
   }
@@ -115,7 +146,11 @@ class UI {
   void drawFilterBox() {
     pushMatrix(); 
     translate(300, 30, 0);
-    fill(bgColor);
+    if (!web) {
+      fill(bgColor);
+    } else {
+      noFill();
+    }
     rect(0, 0, 400, 150);
     fill(textColor);
     textFont(font, 12);
@@ -186,9 +221,7 @@ class UI {
   }
 
   boolean clickFilters(float x, float y) {
-    println("x: " + x +  " y: " + y);
     if (x >= 310 && x <= 325) {
-      println("1");
       if (y >= 58 && y <= 73) {
         nodeHandler.togglePublished(0);
         return true;
@@ -202,7 +235,6 @@ class UI {
         return false;
       }
     } else if (x >= 410 && x <= 425) {
-      println("2");
       if (y >= 58 && y <= 73) {
         nodeHandler.toggleDateofActionWork(0);
         return true;
@@ -222,7 +254,6 @@ class UI {
         return false;
       }
     } else if (x >= 530 && x <= 545) {
-      println("3");
       if (y >= 58 && y <= 73) {
         nodeHandler. toggleDateofActionUser(0);
         return true;
@@ -238,7 +269,26 @@ class UI {
     } else {
       return false;
     }
+  }
 
+  boolean clickToggles(float x, float y) {
+    if (y <= 30) {
+      if (x <= 300) {
+        toggleStats();
+        return true;
+      } else if (x <= 700) {
+        toggleFilters();
+        return true;
+      } else if (x <= 1000) {
+        toggleControls();
+        return true;
+      } else {
+        toggleInfo();
+        return true;
+      }
+    } else {
+      return false;
+    }
   }
 
   void toggleStats() {
@@ -255,6 +305,10 @@ class UI {
 
   void toggleInfo() {
     showInfo = !showInfo;
+  }
+
+  boolean getShowInfo() {
+    return showInfo;
   }
 }
 

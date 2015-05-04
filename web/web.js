@@ -1,5 +1,8 @@
 var tId,pjs,cnt=0;
 $(document).ready(function() {
+  $('#tab-container').easytabs({
+     animate: false,
+  });
   pjs = Processing.getInstanceById("canvas1");
   console.log(cnt+':'+pjs);
   if (!pjs) tId=setInterval(function() {
@@ -56,7 +59,9 @@ $(document).ready(function() {
             for (var i = 0; i < nodes.length; i++) {
                 var tempElement = document.createElement('div');
                 tempElement.className = "searchResult";
-                tempElement.innerHTML = i+1 + ") " + nodes[i];
+                // tempElement.innerHTML = i+1 + ") " + nodes[i];
+                console.log(nodes[i]);
+                tempElement.innerHTML = "<div class='result'>" + nodes[i].getInfo() + "</div>";
                 searchSpace.appendChild(tempElement);
             };
         }
@@ -70,27 +75,30 @@ $(document).ready(function() {
   },500);
 
 
-    $("#earthButton").click(function() {
+    $("#earthLink").click(function() {
+        pjs.analyzeNodes();
         var nodes = pjs.getEarthNodes();
-        $("#searchSpace").empty();
+        $("#earthSpace").empty();
         for (var i = 0; i < nodes.length; i++) {
-                $("#searchSpace").append(i+1 + ") " + nodes[i].novel + "<br>");
+                $("#earthSpace").append(i+1 + ") " + nodes[i].novel + "<br>");
         };
     });
 
-    $("#moonButton").click(function() {
+    $("#moonLink").click(function() {
+        pjs.analyzeNodes();
         var nodes = pjs.getMoonNodes();
-        $("#searchSpace").empty();
+        $("#moonSpace").empty();
         for (var i = 0; i < nodes.length; i++) {
-                $("#searchSpace").append(i+1 + ") " + nodes[i].novel + "<br>");
+                $("#moonSpace").append(i+1 + ") " + nodes[i].novel + "<br>");
         };
     });
 
     $("#marsButton").click(function() {
+        pjs.analyzeNodes();
         var nodes = pjs.getMarsNodes();
-        $("#searchSpace").empty();
+        $("#marsSpace").empty();
         for (var i = 0; i < nodes.length; i++) {
-                $("#searchSpace").append(i+1 + ") " + nodes[i].novel + "<br>");
+                $("#marsSpace").append(i+1 + ") " + nodes[i].novel + "<br>");
         };
     });
 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="jquery-1.9.1.min.js"></script>
+        <script src="processing.min.js"></script>
+        <script src="web.js" type="text/javascript"></script>
+        <script src="jquery.easytabs.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+     <link rel="shortcut icon" type="image/x-icon" href="img/mwgsmall.png" />
+    <title>Our Imaginative Universe</title>
+    <body> 
+
+
+    <canvas data-processing-sources="SciFiVis/SciFiVis.pde SciFiVis/Sphere.pde SciFiVis/UI.pde SciFiVis/Filter.pde SciFiVis/Node.pde SciFiVis/Draw.pde SciFiVis/Controls.pde SciFiVis/NodeHandler.pde SciFiVis/Web.pde SciFiVis/Planet.pde" id="canvas1"></canvas>
+    <div id="searchBg"></div>
+    <div id="search">
+        <div id="searchTop">
+        <div id="tab-container" class="tab-container">
+          <ul class='etabs'>
+            <li class='tab'><a id="searchLink" href="#tabs1">Search</a></li>
+            <li class='tab'><a id="earthLink" href="#tabs2">Earth</a></li>
+            <li class='tab'><a id="moonLink" href="#tabs3">Moon</a></li>
+            <li class='tab'><a id="marsLink" href="#tabs4">Mars</a></li>
+          </ul>
+          <div id="tabs1">
+            <!-- <h2>Search</h2> -->
+            <input id="nodeSearch" name="Node Search" placeholder="Node Search">
+            <div id="searchSpace"></div>
+          </div>
+          <div id="tabs2">
+            <!-- <h2>JS for these tabs</h2> -->
+            <!-- content -->
+            <div id="earthSpace"></div>
+          </div>
+          <div id="tabs3">
+           <!--  <h2>CSS Styles for these tabs</h2> -->
+            <!-- content -->
+            <div id="moonSpace"></div>
+          </div>
+          <div id="tabs4">
+            <div id="marsSpace"></div>
+          </div>
+        </div>
+<!--             Node List<br>
+            <button id="earthButton">Earth</button> <button id="moonButton">Moon</button> <button id="marsButton">Mars</button>
+            <input id="nodeSearch" name="Node Search" placeholder="Node Search"> -->
+        </div>
+    </div>
+     </body>    
+</html>

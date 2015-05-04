@@ -57,12 +57,12 @@ class UI {
       text("Filters [-]", 310, 20);
       pushMatrix();
       /*if (!showStats) {
-        translate(-300, 0, 0);
-      } else {
-        translate(0, 0, 0);
-      }*/
+       translate(-300, 0, 0);
+       } else {
+       translate(0, 0, 0);
+       }*/
 
-     
+
       drawFilterBox();
       popMatrix();
     } else {
@@ -75,19 +75,19 @@ class UI {
       pushMatrix();
       translate(0, 30, 0);
       /*if (!showStats) {
-        if (!showFilters) {
-          translate(-700, 0, 0);
-        } else {
-          translate(-400, 0, 0);
-        }
-      } else {
-        translate(0, 0, 0);
-      }*/
-       if (!web)
+       if (!showFilters) {
+       translate(-700, 0, 0);
+       } else {
+       translate(-400, 0, 0);
+       }
+       } else {
+       translate(0, 0, 0);
+       }*/
+      if (!web)
         fill(bgColor);
       else 
         noFill();
-      rect(700, 0, 700, 100);
+      rect(700, 0, 1000, 100);
       fill(textColor);
       textFont(font, 16);
       translate(0, 18, 0);
@@ -110,7 +110,6 @@ class UI {
       text("Info [-]", 1010, 20);
     }
     popMatrix();
-    
   }
 
   void drawFilterBox() {
@@ -188,49 +187,49 @@ class UI {
 
   boolean clickFilters(float x, float y) {
     println("x: " + x +  " y: " + y);
-    if (x >= 20 && x <= 35) {
+    if (x >= 300 && x <= 335) {
       println("1");
-      if (y >= 75 && y <= 90) {
+      if (y >= 40 && y <= 75) {
         nodeHandler.togglePublished(0);
         return true;
-      } else if (y >= 100 && y <= 115) {
+      } else if (y >= 80 && y <= 99) {
         nodeHandler.togglePublished(1);
         return true;
-      } else if (y >= 125 && y <= 140) {
+      } else if (y >= 100 && y <= 125) {
         nodeHandler.togglePublished(2);
         return true;
       } else {
         return false;
       }
-    } else if (x >= 120 && x <= 135) {
+    } else if (x >= 400 && x <= 435) {
       println("2");
-      if (y >= 75 && y <= 90) {
+      if (y >= 40 && y <= 75) {
         nodeHandler.toggleDateofActionWork(0);
         return true;
-      } else if (y >= 100 && y <= 115) {
+      } else if (y >= 80 && y <= 99) {
         nodeHandler.toggleDateofActionWork(1);
         return true;
-      } else if (y >= 125 && y <= 140) {
+      } else if (y >= 100 && y <= 125) {
         nodeHandler.toggleDateofActionWork(2);
         return true;
-      } else if (y >= 150 && y <= 165) {
+      } else if (y >= 130 && y <= 150) {
         nodeHandler.toggleDateofActionWork(3);
         return true;
-      } else if (y >= 175 && y <= 190) {
+      } else if (y >= 155 && y <= 190) {
         nodeHandler.toggleDateofActionWork(4);
         return true;
       } else {
         return false;
       }
-    } else if (x >= 240 && x <= 255) {
+    } else if (x >= 520 && x <= 555) {
       println("3");
-      if (y >= 75 && y <= 90) {
+      if (y >= 40 && y <= 75) {
         nodeHandler. toggleDateofActionUser(0);
         return true;
-      } else if (y >= 100 && y <= 115) {
+      } else if (y >= 80 && y <= 99) {
         nodeHandler. toggleDateofActionUser(1);
         return true;
-      } else if (y >= 125 && y <= 140) {
+      } else if (y >= 100 && y <= 125) {
         nodeHandler. toggleDateofActionUser(2);
         return true;
       } else {
@@ -239,6 +238,7 @@ class UI {
     } else {
       return false;
     }
+
   }
 
   void toggleStats() {

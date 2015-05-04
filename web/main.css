@@ -28,6 +28,8 @@ canvas { display:block; } /* To remove the scrollbars */
 
 	padding: 0px;
 
+	overflow-y: scroll;
+
 
 
 }
@@ -45,7 +47,19 @@ canvas { display:block; } /* To remove the scrollbars */
 	display:block;
 	border:solid 1px white;
 	padding:3px;
+	padding-left: 8px;
 
+}
+
+#nodeSearch {
+    margin:10px;
+	padding:8px;
+	width:85%;
+}
+
+h4 {
+	margin-top: 5px;
+	margin-bottom:-12px;
 }
 
 

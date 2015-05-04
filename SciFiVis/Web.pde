@@ -3,6 +3,7 @@ interface JavaScript {
   //list functions here
   void hideBar();
   void showBar();
+  void refreshResults();
 }
 
 void bindJavascript(JavaScript js) {

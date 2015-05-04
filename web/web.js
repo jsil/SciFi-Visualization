@@ -9,6 +9,52 @@ function showBar() {
     $("#search").show();
 }
 
+function refreshResults() {
+    refreshEarth();
+    refreshMoon();
+    refreshMars();
+}
+
+function refreshEarth() {
+        pjs.analyzeNodes();
+        var nodes = pjs.getEarthNodes();
+        var earthSpace = document.getElementById("earthSpace");
+        earthSpace.innerHTML = "";
+        for (var i = 0; i < nodes.length; i++) {
+            var tempElement = document.createElement('div');
+            tempElement.className = "searchResult";
+            tempElement.innerHTML = "<div class='result'>" + nodes[i].getInfo() + "</div>";
+            earthSpace.appendChild(tempElement);
+        };
+
+    }
+
+function refreshMoon() {
+     pjs.analyzeNodes();
+        var nodes = pjs.getMoonNodes();
+        var moonSpace = document.getElementById("moonSpace");
+        moonSpace.innerHTML = "";
+        for (var i = 0; i < nodes.length; i++) {
+            var tempElement = document.createElement('div');
+            tempElement.className = "searchResult";
+            tempElement.innerHTML = "<div class='result'>" + nodes[i].getInfo() + "</div>";
+            moonSpace.appendChild(tempElement);
+        };
+}
+
+function refreshMars() {
+     pjs.analyzeNodes();
+        var nodes = pjs.getMarsNodes();
+        var marsSpace = document.getElementById("marsSpace");
+        marsSpace.innerHTML = "";
+        for (var i = 0; i < nodes.length; i++) {
+            var tempElement = document.createElement('div');
+            tempElement.className = "searchResult";
+            tempElement.innerHTML = "<div class='result'>" + nodes[i].getInfo() + "</div>";
+            marsSpace.appendChild(tempElement);
+        };
+}
+
 var tId,pjs,cnt=0;
 $(document).ready(function() {
   $('#tab-container').easytabs({
@@ -87,45 +133,15 @@ $(document).ready(function() {
 
 
     $("#earthLink").click(function() {
-        pjs.analyzeNodes();
-        var nodes = pjs.getEarthNodes();
-        var earthSpace = document.getElementById("earthSpace");
-        earthSpace.innerHTML = "";
-        for (var i = 0; i < nodes.length; i++) {
-            var tempElement = document.createElement('div');
-            tempElement.className = "searchResult";
-            console.log(nodes[i]);
-            tempElement.innerHTML = "<div class='result'>" + nodes[i].getInfo() + "</div>";
-            earthSpace.appendChild(tempElement);
-        };
+        refreshEarth();
     });
 
     $("#moonLink").click(function() {
-        pjs.analyzeNodes();
-        var nodes = pjs.getMoonNodes();
-        var moonSpace = document.getElementById("moonSpace");
-        moonSpace.innerHTML = "";
-        for (var i = 0; i < nodes.length; i++) {
-            var tempElement = document.createElement('div');
-            tempElement.className = "searchResult";
-            console.log(nodes[i]);
-            tempElement.innerHTML = "<div class='result'>" + nodes[i].getInfo() + "</div>";
-            moonSpace.appendChild(tempElement);
-        };
+       refreshMoon();
     });
 
-    $("#marsButton").click(function() {
-        pjs.analyzeNodes();
-        var nodes = pjs.getMarsNodes();
-        var marsSpace = document.getElementById("marsSpace");
-        marsSpace.innerHTML = "";
-        for (var i = 0; i < nodes.length; i++) {
-            var tempElement = document.createElement('div');
-            tempElement.className = "searchResult";
-            console.log(nodes[i]);
-            tempElement.innerHTML = "<div class='result'>" + nodes[i].getInfo() + "</div>";
-            marsSpace.appendChild(tempElement);
-        };
+    $("#marsLink").click(function() {
+       refreshMars();
     });
 
 

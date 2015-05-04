@@ -233,7 +233,7 @@ class Node {
   }
 
   String getInfo() {
-    String returnString = novel + " (" + published + ")<br>  " + author;
+    String returnString = "<h4>" + novel + " (" + published + ")</h4><br>  " + author;
     boolean listStarted = false;
     if (gender) {
       returnString = returnString + " (M)";

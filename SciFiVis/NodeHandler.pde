@@ -324,9 +324,7 @@ class NodeHandler {
     Node[] earthNodes = new Node[earthCount];
     int count = 0;
     for (int i=0; i<nodes.size (); i++) {
-      if ((published[0] && theFilter.filterPublished(nodes.get(i)) == 0) ||
-        (published[1] && theFilter.filterPublished(nodes.get(i)) == 1) ||
-        (published[2] && theFilter.filterPublished(nodes.get(i)) == 2)) {
+      if (checkFilters(nodes.get(i))) {
         if (nodes.get(i).isEarthNode()) {
           earthNodes[count] = nodes.get(i);
           count++;
@@ -340,9 +338,7 @@ class NodeHandler {
     Node[] moonNodes = new Node[moonCount];
     int count = 0;
     for (int i=0; i<nodes.size (); i++) {
-      if ((published[0] && theFilter.filterPublished(nodes.get(i)) == 0) ||
-        (published[1] && theFilter.filterPublished(nodes.get(i)) == 1) ||
-        (published[2] && theFilter.filterPublished(nodes.get(i)) == 2)) {
+      if (checkFilters(nodes.get(i))) {
         if (nodes.get(i).isMoonNode()) {
           moonNodes[count] = nodes.get(i);
           count++;
@@ -356,9 +352,7 @@ class NodeHandler {
     Node[] marsNodes = new Node[marsCount];
     int count = 0;
     for (int i=0; i<nodes.size (); i++) {
-      if ((published[0] && theFilter.filterPublished(nodes.get(i)) == 0) ||
-        (published[1] && theFilter.filterPublished(nodes.get(i)) == 1) ||
-        (published[2] && theFilter.filterPublished(nodes.get(i)) == 2)) {
+      if (checkFilters(nodes.get(i))) {
         if (nodes.get(i).isMarsNode()) {
           marsNodes[count] = nodes.get(i);
           count++;

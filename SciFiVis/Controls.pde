@@ -143,6 +143,7 @@ void mousePressed() {
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      javascript.refreshResults();
     } else {
       dragY = mouseY;
       dragX = mouseX;

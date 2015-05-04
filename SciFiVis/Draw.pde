@@ -44,20 +44,22 @@ void drawPlanets() {
 }
 
 void drawGalaxy() {
-  imageMode(CENTER);
   pushMatrix();
   rotateX(radians(90));
   ellipseMode(CENTER);
   noFill();
   stroke(255);
-  translate(0,-35,-35);
-  
+  translate(0, -35, -35);
+
   ellipse(0, 0, 2400, 2400);
-  if(!web)
-  tint(255,210);
-  image(mwgImg, 0, 0, 2400, 2400);
-  if(!web)
-  noTint();
+  if (!web) {
+    imageMode(CENTER);
+    tint(255, 210);
+    image(mwgImg, 0, 0, 2400, 2400);
+    noTint();
+  } else {
+    image(mwgImg, -1200,-1200, 1200, 1200);
+  }
 
 
   imageMode(CORNER);

@@ -25,11 +25,15 @@ class UI {
     }
     pushMatrix();
     stroke(textColor);
-    if (!web) 
-      fill(bgColor);
-    else 
-      noFill();
-    rect(-1, 0, width+1, 30);
+        if (!web) {
+          fill(bgColor);
+          rect(-1, 0, width+1, 30);
+        } else {
+//          translate(0, 0, 30);
+          noFill();
+          rect(-1, 0, width+1, 30);
+//          translate(0,0,5);
+        }
     textFont(font, 20);
     fill(255);
     //text("Visualizing our Imaginative Universe", 10, 20);
@@ -43,11 +47,12 @@ class UI {
       pushMatrix();
       translate(0, 30, 0);
 
-      if (!web)
-        fill(bgColor);
-      else 
-        noFill();
+      fill(bgColor);
       rect(0, 0, 300, 280);
+      if (!web) {
+      } else {
+        translate(5, 0, 15);
+      }
       fill(textColor);
       textFont(font, 16);
       translate(0, 3, 0);
@@ -91,12 +96,15 @@ class UI {
        } else {
        translate(0, 0, 0);
        }*/
-      if (!web)
-        fill(bgColor);
-      else 
-        noFill();
+
       stroke(textColor);
+      fill(bgColor);
       rect(700, 0, 300, 100);
+      if (!web) {
+      } else {
+        translate(5, 0, 15);
+      }
+
       fill(textColor);
       textFont(font, 16);
       translate(0, 18, 0);
@@ -114,14 +122,15 @@ class UI {
       textFont(font, 20);
       text("Info [-]", 1010, webSpace);
       pushMatrix();
-      translate(0, 0, 1);
+      translate(0, 8, 16);
       noStroke();
+      fill(bgColor);
+      rect(0, 31, width, height);
       if (!web) {
-        fill(bgColor);
       } else {
-        noFill();
+        translate(0, 0, 25);
       }
-      rect(0, 31, width, height-30);
+
       tint(255);
 
       fill(textColor);
@@ -132,10 +141,10 @@ class UI {
       text("Visualizing Our Imaginative Universe", (width/2), 90);
       textFont(font, 20);
       text("Created by Haley Hiers, Kali Ruppert, & Jordan Silver", width/2, 180);
-      
-      text("To do: add description", width/2, 240);
 
-      text("Press any key to close", width/2, height-180);
+      text("    Hugo and Nebula award-winning novels have been analyzed to reveal several\ncrucial pieces of information:  date of publication, date of action, and place of action.  In\ncapturing and visualizing this data, we can reveal how the literary imagination shapes the\nuniverse in three time periods.  Before the Moon Landing (1969), in the period following\nthe moon landing and preceding the launching of the Hubble telescope (1969-1989),\nand after the launching of the Hubble to the present day, looking at where (and when)\nfictional representations situate humanity generates valuable insight into the hopes\nand fears of English-speaking society about the future of our world.", width/2, 240);
+
+      text("Press any key to close", width/2, 560);
 
       textAlign(LEFT);
 
@@ -150,31 +159,33 @@ class UI {
   void drawFilterBox() {
     pushMatrix(); 
     translate(300, 30, 0);
-    if (!web) {
-      fill(bgColor);
-    } else {
-      noFill();
-    }
+    fill(bgColor);
     rect(0, 0, 400, 150);
+    if (!web) {
+    } else {
+      translate(5, 0, 15);
+    }
     fill(textColor);
-    textFont(font, 12);
+    textFont(font, 13);
     text("Published", 8, 18);
     for (int i=0; i<3; i++) {
       float x = 10;
       float y = 25 + 25*i;
       float l = 15;
       stroke(0);
+      fill(255);
       rect(x, y, l, l);
       if (nodeHandler.getPublished(i)) {
         line(x, y, x+l, y+l);
         line(x+l, y, x, y+l);
       }
+      fill(255);
       if (i == 0) {
-        text("Pre-1969", x+l+10, y+10);
+        text("Pre-1969", x+l+5, y+10);
       } else if (i == 1) {
-        text("1969-1990", x+l+10, y+10);
+        text("1969-1990", x+l+5, y+10);
       } else if (i == 2) {
-        text("Post-1990", x+l+10, y+10);
+        text("Post-1990", x+l+5, y+10);
       }
     }
 
@@ -190,15 +201,15 @@ class UI {
         line(x+l, y, x, y+l);
       }
       if (i == 0) {
-        text("Past", x+l+10, y+10);
+        text("Past", x+l+5, y+10);
       } else if (i == 1) {
-        text("Contemporary", x+l+10, y+10);
+        text("Contemporary", x+l+5, y+10);
       } else if (i == 2) {
-        text("Near Future", x+l+10, y+10);
+        text("Near Future", x+l+5, y+10);
       } else if (i == 3) {
-        text("Distant Future", x+l+10, y+10);
+        text("Distant Future", x+l+5, y+10);
       } else if (i == 4) {
-        text("N/A", x+l+10, y+10);
+        text("N/A", x+l+5, y+10);
       }
     }
 
@@ -214,11 +225,11 @@ class UI {
         line(x+l, y, x, y+l);
       }
       if (i == 0) {
-        text("20th Century & Before", x+l+10, y+10);
+        text("20th Century & Before", x+l+5, y+10);
       } else if (i == 1) {
-        text("21st Century", x+l+10, y+10);
+        text("21st Century", x+l+5, y+10);
       } else if (i == 2) {
-        text("22nd Century & Beyond", x+l+10, y+10);
+        text("22nd Century & Beyond", x+l+5, y+10);
       }
     }
     popMatrix();
@@ -318,9 +329,9 @@ class UI {
   boolean isSolar() {
     return solarMode;
   }
-  
+
   void toggleSolar() {
-     solarMode = !solarMode; 
+    solarMode = !solarMode;
   }
 }
 

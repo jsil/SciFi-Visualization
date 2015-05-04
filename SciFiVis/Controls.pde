@@ -139,7 +139,10 @@ void mousePressed() {
   if (ui.getShowInfo()) {
     ui.toggleInfo();
   } else {
-    if (ui.clickFilters(mouseX, mouseY) || ui.clickToggles(mouseX, mouseY)) {
+    if (ui.clickFilters(mouseX, mouseY)) {
+      earth.countNodes();
+      moon.countNodes();
+      mars.countNodes();
     } else {
       dragY = mouseY;
       dragX = mouseX;

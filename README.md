@@ -11,4 +11,4 @@ Jordan Silver
 
 Downloads:
 
-[Mac](releases/application.macosx/SciFiVis.macosx.zip) 
+[Mac](releases/SciFiVis.macosx.zip) 

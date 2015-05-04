@@ -25,15 +25,15 @@ class UI {
     }
     pushMatrix();
     stroke(textColor);
-        if (!web) {
-          fill(bgColor);
-          rect(-1, 0, width+1, 30);
-        } else {
-//          translate(0, 0, 30);
-          noFill();
-          rect(-1, 0, width+1, 30);
-//          translate(0,0,5);
-        }
+    if (!web) {
+      fill(bgColor);
+      rect(-1, 0, width+1, 30);
+    } else {
+      //          translate(0, 0, 30);
+      noFill();
+      rect(-1, 0, width+1, 30);
+      //          translate(0,0,5);
+    }
     textFont(font, 20);
     fill(255);
     //text("Visualizing our Imaginative Universe", 10, 20);
@@ -320,6 +320,13 @@ class UI {
 
   void toggleInfo() {
     showInfo = !showInfo;
+    if(javascript!=null) {
+      if (showInfo)
+        javascript.hideBar();
+      else {
+        javascript.showBar();
+      }
+    }
   }
 
   boolean getShowInfo() {

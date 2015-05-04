@@ -1,15 +1,15 @@
 //This is so processing can 'see' javascript. idk if we need it
 interface JavaScript {
   //list functions here
+  void hideBar();
+  void showBar();
 }
 
 void bindJavascript(JavaScript js) {
   javascript = js;
 }
 
-JavaScript javascript;
-
-void loadWeb(boolean isWeb) {
+JavaScript javascript;void loadWeb(boolean isWeb) {
   if (isWeb) {
     earthImg=loadImage("img/world32k.jpg");
     moonImg=loadImage("img/moon.jpg");

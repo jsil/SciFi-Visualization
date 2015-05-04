@@ -1,8 +1,20 @@
+function hideBar() {
+    $("#searchBg").css("display", "none");
+    $("#search").css("display", "none");
+    console.log("1");
+}
+
+function showBar() {
+    $("#searchBg").show();
+    $("#search").show();
+}
+
 var tId,pjs,cnt=0;
 $(document).ready(function() {
   $('#tab-container').easytabs({
      animate: false,
   });
+  hideBar();
   pjs = Processing.getInstanceById("canvas1");
   console.log(cnt+':'+pjs);
   if (!pjs) tId=setInterval(function() {

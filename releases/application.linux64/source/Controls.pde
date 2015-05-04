@@ -25,6 +25,8 @@ void keyPressed() {
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == '2') {
       //    nodeHandler.toggleFilter(1);
@@ -32,6 +34,8 @@ void keyPressed() {
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == '3') {
       //    nodeHandler.toggleFilter(2);
@@ -39,24 +43,32 @@ void keyPressed() {
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == '4') {
       nodeHandler.togglePublished(0); 
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == '5') {
       nodeHandler.togglePublished(1); 
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == '6') {
       nodeHandler.togglePublished(2);
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == 's') {
       ui.toggleStats();
@@ -75,30 +87,40 @@ void keyPressed() {
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == 'w') {
       nodeHandler.toggleDateofActionWork(1);
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == 'e') {
       nodeHandler.toggleDateofActionWork(2);
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == 'r') {
       nodeHandler.toggleDateofActionWork(3);
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == 't') {
       nodeHandler.toggleDateofActionWork(4);
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == ' ') {
       ui.toggleSolar();
@@ -143,7 +165,8 @@ void mousePressed() {
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
-      javascript.refreshResults();
+      if(web)
+        javascript.refreshResults();
     } else {
       dragY = mouseY;
       dragX = mouseX;

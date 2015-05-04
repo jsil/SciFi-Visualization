@@ -106,6 +106,8 @@ public void keyPressed() {
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == '2') {
       //    nodeHandler.toggleFilter(1);
@@ -113,6 +115,8 @@ public void keyPressed() {
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == '3') {
       //    nodeHandler.toggleFilter(2);
@@ -120,24 +124,32 @@ public void keyPressed() {
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == '4') {
       nodeHandler.togglePublished(0); 
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == '5') {
       nodeHandler.togglePublished(1); 
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == '6') {
       nodeHandler.togglePublished(2);
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == 's') {
       ui.toggleStats();
@@ -156,30 +168,40 @@ public void keyPressed() {
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == 'w') {
       nodeHandler.toggleDateofActionWork(1);
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == 'e') {
       nodeHandler.toggleDateofActionWork(2);
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == 'r') {
       nodeHandler.toggleDateofActionWork(3);
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == 't') {
       nodeHandler.toggleDateofActionWork(4);
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
+      if(web)
+        javascript.refreshResults();
     }
     if (key == ' ') {
       ui.toggleSolar();
@@ -224,7 +246,8 @@ public void mousePressed() {
       earth.countNodes();
       moon.countNodes();
       mars.countNodes();
-      javascript.refreshResults();
+      if(web)
+        javascript.refreshResults();
     } else {
       dragY = mouseY;
       dragX = mouseX;
@@ -1535,7 +1558,7 @@ class UI {
       textFont(font, 20);
       text("Created by Haley Hiers, Kali Ruppert, & Jordan Silver", width/2, 180);
 
-      text("    Hugo and Nebula award-winning novels have been analyzed to reveal several\ncrucial pieces of information:  date of publication, date of action, and place of action.  In\ncapturing and visualizing this data, we can reveal how the literary imagination shapes the\nuniverse in three time periods.  Before the Moon Landing (1969), in the period following\nthe moon landing and preceding the launching of the Hubble telescope (1969-1989),\nand after the launching of the Hubble to the present day, looking at where (and when)\nfictional representations situate humanity generates valuable insight into the hopes\nand fears of English-speaking society about the future of our world.", width/2, 240);
+      text("    Hugo and Nebula award-winning novels have been analyzed to reveal several\ncrucial pieces of information:  date of publication, date of action, and place of action.  In\ncapturing and visualizing this data, we can reveal how the literary imagination shapes the\nuniverse in three time periods.  Before the Moon Landing (1969), in the period following\nthe moon landing and preceding the launching of the Hubble telescope (1969-1989),\nand after the launching of the Hubble to the present day, looking at where (and when)\nfictional representations situate humanity. This generates valuable insight into the \nhopes and fears of English-speaking society about the future of our world.", width/2, 240);
 
       text("Press any key to close", width/2, 560);
 

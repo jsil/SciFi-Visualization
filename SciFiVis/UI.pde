@@ -99,7 +99,7 @@ class UI {
 
       stroke(textColor);
       fill(bgColor);
-      rect(700, 0, 300, 100);
+      rect(700, 0, 300, 110);
       if (!web) {
       } else {
         translate(5, 0, 15);
@@ -113,6 +113,7 @@ class UI {
       text("Show/Hide Statistics : S", 708, 30);
       text("Show/Hide Controls : C", 708, 45);
       text("Show/Hide Filters : F", 708, 60);
+      text("Solar System/Galaxy Mode: Space", 708, 75);
       popMatrix();
     } else {
       textFont(font, 20);

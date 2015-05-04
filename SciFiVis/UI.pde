@@ -187,49 +187,49 @@ class UI {
 
   boolean clickFilters(float x, float y) {
     println("x: " + x +  " y: " + y);
-    if (x >= 300 && x <= 335) {
+    if (x >= 310 && x <= 325) {
       println("1");
-      if (y >= 40 && y <= 75) {
+      if (y >= 58 && y <= 73) {
         nodeHandler.togglePublished(0);
         return true;
-      } else if (y >= 80 && y <= 99) {
+      } else if (y >= 83 && y <= 98) {
         nodeHandler.togglePublished(1);
         return true;
-      } else if (y >= 100 && y <= 125) {
+      } else if (y >= 108 && y <= 123) {
         nodeHandler.togglePublished(2);
         return true;
       } else {
         return false;
       }
-    } else if (x >= 400 && x <= 435) {
+    } else if (x >= 410 && x <= 425) {
       println("2");
-      if (y >= 40 && y <= 75) {
+      if (y >= 58 && y <= 73) {
         nodeHandler.toggleDateofActionWork(0);
         return true;
-      } else if (y >= 80 && y <= 99) {
+      } else if (y >= 83 && y <= 98) {
         nodeHandler.toggleDateofActionWork(1);
         return true;
-      } else if (y >= 100 && y <= 125) {
+      } else if (y >= 108 && y <= 123) {
         nodeHandler.toggleDateofActionWork(2);
         return true;
-      } else if (y >= 130 && y <= 150) {
+      } else if (y >= 133 && y <= 148) {
         nodeHandler.toggleDateofActionWork(3);
         return true;
-      } else if (y >= 155 && y <= 190) {
+      } else if (y >= 158 && y <= 173) {
         nodeHandler.toggleDateofActionWork(4);
         return true;
       } else {
         return false;
       }
-    } else if (x >= 520 && x <= 555) {
+    } else if (x >= 530 && x <= 545) {
       println("3");
-      if (y >= 40 && y <= 75) {
+      if (y >= 58 && y <= 73) {
         nodeHandler. toggleDateofActionUser(0);
         return true;
-      } else if (y >= 80 && y <= 99) {
+      } else if (y >= 83 && y <= 98) {
         nodeHandler. toggleDateofActionUser(1);
         return true;
-      } else if (y >= 100 && y <= 125) {
+      } else if (y >= 108 && y <= 123) {
         nodeHandler. toggleDateofActionUser(2);
         return true;
       } else {

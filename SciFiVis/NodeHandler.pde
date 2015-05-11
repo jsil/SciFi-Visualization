@@ -217,24 +217,25 @@ class NodeHandler {
       novelCountFixed = 1;
     }
 
-    String[] stats = new String[17];
+    String[] stats = new String[18];
     stats[0] = "Novels: " + novelCount;
     stats[1] = "Earth: " + earthCount + " (" + nf((((float)earthCount / novelCountFixed) * 100), 1, 2) + "%)";
     stats[2] = "Moon: " + moonCount + " (" + nf((((float)moonCount / novelCountFixed) * 100), 1, 2) + "%)";
     stats[3] = "Mars: " + marsCount + " (" + nf((((float)marsCount / novelCountFixed) * 100), 1, 2) + "%)";
     stats[4] = "Inside Solar System: " + insideSSCount + " (" + nf((((float)insideSSCount / novelCountFixed) * 100), 1, 2) + "%)";
     stats[5] = "Outside Solar System: " + outsideSSCount + " (" + nf((((float)outsideSSCount / novelCountFixed) * 100), 1, 2) + "%)";
-    stats[6] = "Fictional Location: " + fictionCount + " (" + nf((((float)fictionCount / novelCountFixed) * 100), 1, 2) + "%)";
-    stats[7] = "Female Author: " + femaleCount + " (" + nf((((float)femaleCount / novelCountFixed) * 100), 1, 2) + "%)";
-    stats[8] = "Male Author: " + maleCount + " (" + nf((((float)maleCount / novelCountFixed) * 100), 1, 2) + "%)";
-    stats[9] = "Past Work: " + pastCount + " (" + nf((((float)pastCount / novelCountFixed) * 100), 1, 2) + "%)";
-    stats[10] = "Contemporary Work: " + contemporaryCount + " (" + nf((((float)contemporaryCount / novelCountFixed) * 100), 1, 2) + "%)";
-    stats[11] = "Near Future Work: " + nearFutureCount + " (" + nf((((float)nearFutureCount / novelCountFixed) * 100), 1, 2) + "%)";
-    stats[12] = "Distant Future Work: " + distantFutureCount + " (" + nf((((float)distantFutureCount / novelCountFixed) * 100), 1, 2) + "%)";
-    stats[13] = "N/A Work: " + naCount + " (" + nf((((float)naCount / novelCountFixed) * 100), 1, 2) + "%)";
-    stats[14] = "20th Century & Before: " + userPastCount + " (" + nf((((float)userPastCount / novelCountFixed) * 100), 1, 2) + "%)";
-    stats[15] = "21st Century: " + userPresentCount + " (" + nf((((float)userPresentCount / novelCountFixed) * 100), 1, 2) + "%)";
-    stats[16] = "22nd Century & Beyond: " + userFutureCount + " (" + nf((((float)userFutureCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[6] = "Outside Galaxy: " + outsideMWGCount + " (" + nf((((float)outsideMWGCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[7] = "Fictional Location: " + fictionCount + " (" + nf((((float)fictionCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[8] = "Female Author: " + femaleCount + " (" + nf((((float)femaleCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[9] = "Male Author: " + maleCount + " (" + nf((((float)maleCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[10] = "Past Work: " + pastCount + " (" + nf((((float)pastCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[11] = "Contemporary Work: " + contemporaryCount + " (" + nf((((float)contemporaryCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[12] = "Near Future Work: " + nearFutureCount + " (" + nf((((float)nearFutureCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[13] = "Distant Future Work: " + distantFutureCount + " (" + nf((((float)distantFutureCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[14] = "N/A Work: " + naCount + " (" + nf((((float)naCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[15] = "20th Century & Before: " + userPastCount + " (" + nf((((float)userPastCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[16] = "21st Century: " + userPresentCount + " (" + nf((((float)userPresentCount / novelCountFixed) * 100), 1, 2) + "%)";
+    stats[17] = "22nd Century & Beyond: " + userFutureCount + " (" + nf((((float)userFutureCount / novelCountFixed) * 100), 1, 2) + "%)";
     return stats;
   }
 
